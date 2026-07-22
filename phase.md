@@ -1,18 +1,18 @@
 # 🇪🇹 Ministry of Health Ethiopia — Health Intelligence Platform
-## 10-Phase UI Transformation & Modernization Roadmap (`phase.md`)
+## 📱 5-Phase Mobile Responsiveness & Adaptive UX Master Plan (`phase.md`)
 
 ---
 
-### Executive Vision & Strategic Purpose
-The Ethiopian Ministry of Health (MoH) Health Intelligence System is a national executive platform designed to empower healthcare leaders, regional health bureaus, and international stakeholders with actionable, data-driven insights. 
+### Executive Purpose
+The Ethiopian Ministry of Health (MoH) Health Intelligence System must deliver a flawless, high-performance executive dashboard experience across **all mobile viewports** (smartphones 320px–640px, tablets 640px–1024px, and high-resolution desktop command centers). 
 
-This 10-phase transformation roadmap elevates the current web application from a functional prototype to a world-class, institutional-grade government portal. The design system honors official Ethiopian Ministry of Health brand identity while incorporating modern glassmorphism, micro-interactions, responsive dashboard grids, interactive GIS mapping, and high-density executive analytics.
+This 5-phase mobile responsiveness master plan details the complete architectural blueprints for touch navigation, mobile hamburger dropdowns, swipeable tab bars, adaptive GIS maps, and responsive data grids.
 
 ---
 
 ```
   ┌───────────────────────────────────────────────────────────────────────────────────┐
-  │                           MoH ETHIOPIA BRAND ARCHITECTURE                         │
+  │                         MoH ETHIOPIA MOBILE DESIGN TOKENS                         │
   ├──────────────────┬─────────────────────────┬──────────────────┬───────────────────┤
   │   Primary Blue   │    Federal Emerald      │  Gold Highlight  │   Crimson Alert   │
   │     #004482      │         #006A60         │     #D97706      │      #BA1A1A      │
@@ -21,104 +21,59 @@ This 10-phase transformation roadmap elevates the current web application from a
 
 ---
 
-## 📅 10-Phase Modernization Plan
+## 📅 5-Phase Mobile Responsiveness Master Plan
 
 ---
 
-### Phase 1: Brand Architecture & Design Tokens Standardization
-- **Objective**: Establish an official Ethiopian Ministry of Health visual design language.
+### Phase 1: Header Architecture & Touch-Optimized 3-Bar Dropdown Popout System
+- **Objective**: Ensure the federal header adapts flawlessly to mobile viewports with a 3-bar (☰) hamburger popout dropdown.
 - **Key Deliverables**:
-  1. **Official Emblem & Typography**: Integrate vector MoH seal/emblem with bilingual Amharic (የጤና ሚኒስቴር - ኢትዮጵያ) and English typography using Google Font `Inter` paired with clean typography hierarchy.
-  2. **National Palette Tokens**: Define primary Navy (`#004482`), Federal Emerald Teal (`#006A60`), Golden Amber (`#D97706`), and Crimson (`#BA1A1A`) CSS variables and Tailwind tokens.
-  3. **Elevation & Glass System**: Standardize card shadows (`shadow-sm` to `shadow-xl`), backdrop blurs (`backdrop-blur-md`), and crisp 1px borders (`border-slate-200/80`).
+  1. **3-Bar Vector Hamburger Button**: Custom SVG button featuring 3 horizontal bars (`☰`) toggling into a crisp `✕` (close) icon on mobile viewports (`< md`).
+  2. **Absolute Dropdown Popout Menu**: Popout dropdown card (`absolute top-full left-0 right-0 z-[100] animate-fadeIn`) opening directly beneath the header bar without container height clipping.
+  3. **Mobile Module Navigation Grid**: 1-tap links to all 11 Federal Dashboard Modules (`Services Delivery`, `Health Equity`, `Workforce`, `Financing`, `Logistics`, `Blood Donation`, `PHEM`, `Infrastructure`, `PHC`, `Digital Systems`).
+  4. **Integrated Mobile Search & E.C. Calendar**: Touch trigger for global search (`Ctrl+K`) and live EAT clock with 1-tap Ethiopian Calendar (`ሐምሌ 15, 2018 E.C.`) converter.
 
 ---
 
-### Phase 2: Executive Header & Global Command Navigation
-- **Objective**: Upgrade the header into an institutional federal navigation bar.
+### Phase 2: Touch-Swipe Category Navigation & Horizontal Scroll Engine
+- **Objective**: Deliver smooth, native-feeling touch swipe navigation across all dashboard category bars.
 - **Key Deliverables**:
-  1. **Federal Header Bar**: Incorporate Ministry coat-of-arms, platform title, live timestamp (East Africa Time EAT / Ethiopian Calendar EC conversion toggle option), and user status badge (e.g. "Federal Administrator / Regional Analyst").
-  2. **Global Command & Search Bar**: Quick search modal (`Cmd + K`) for instant navigation across indicators, regions, and dashboard modules.
-  3. **Primary Tab Navigation Bar**: Redesign tab list (`Services Delivery`, `Health Equity`, `Workforce`, `Financing`, `Supply & Logistics`, `Blood Donation`, `PHEM`, `Infrastructure`, `PHC`, `Digital Systems`) with active bottom glow indicators and badge count pills.
+  1. **Flex-Nowrap Touch Scrolling**: Apply `overflow-x-auto custom-scrollbar touch-pan-x flex-nowrap shrink-0` across primary and secondary navigation rows.
+  2. **Zero Text Wrapping**: Enforce `shrink-0` on tab buttons so labels never wrap or distort on narrow 320px mobile screens.
+  3. **Visual Scroll Swipe Cue**: Subtle fade cues indicating horizontal scrollability on touch devices.
 
 ---
 
-### Phase 3: Filter & Control Panel Architecture
-- **Objective**: Transform the left filter panel into a high-utility, drag-resizable control center.
+### Phase 3: Adaptive Mobile Sidebar & Drawer Overlay System
+- **Objective**: Transform the desktop filter panel into a responsive mobile slide-over drawer on smaller screens.
 - **Key Deliverables**:
-  1. **Smooth Resizable Panel**: Smooth mouse drag handle with persistent width preferences (`min-w-[220px]`, default `280px`, `max-w-[480px]`).
-  2. **Unified Out-of-Scope Collapsible Engine**: Clean accordion animation for `Filters out of scope (10)` with badges indicating active/applied filter counts.
-  3. **Interactive Hierarchical Org Unit Selector**: Hierarchical tree viewer (Federal → Region → Zone → Woreda → Facility) with instant filter search box, "Select All / Clear", and expand/collapse all triggers.
-  4. **Active Filter Bar & Clear All**: Top contextual chip bar showing currently applied filters with 1-click removal tags.
+  1. **Slide-Over Mobile Drawer**: Fixed mobile drawer (`< md`) sliding smoothly from the left with dark backdrop blur overlay (`bg-black/20 backdrop-blur-sm`).
+  2. **Width Constraint Guard**: Cap mobile panel width to `min(width, 85vw)` to prevent screen overflow on narrow smartphones.
+  3. **Mobile Filter Toolbar**: Dynamic applied filter chips bar with 1-tap removal tags and Org Unit tree search filter box.
 
 ---
 
-### Phase 4: Metric Card (KPI) Executive Summary Grid
-- **Objective**: Replace basic statistic blocks with high-impact executive KPI cards.
+### Phase 4: Responsive Metric Card Grid & Data Visualization Containers
+- **Objective**: Scale executive KPI grids and chart containers responsively on smartphones and tablets.
 - **Key Deliverables**:
-  1. **Executive KPI Cards**: Modern cards displaying metric value, target benchmark, period-over-period percentage change (`↑ +4.2% vs 2023`), sparkline mini-trend, and status color tag (Green/Yellow/Red).
-  2. **Animated Counter Numbers**: Smooth count-up animations for key figures upon page load.
-  3. **Contextual Tooltips & Insights**: Hover tooltips explaining indicator definitions, data sources (e.g. DHIS2, SPA 2022, EMDHS), and reporting timeliness.
+  1. **Adaptive Metric Grid**: Auto-scaling layout (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4`) for KPI summary blocks.
+  2. **Mobile SVG Sparklines**: High-density sparklines and trend pills (`↑ +4.2%` / `↓ -1.2%`) scaling cleanly on small screens.
+  3. **Full-Bleed Mobile Chart Modals**: `ChartContainer.tsx` with stacked header toolbars (`flex-col sm:flex-row`), chart-to-table toggles, and 100% viewport mobile fullscreen popups.
 
 ---
 
-### Phase 5: Advanced Data Visualization & Chart System
-- **Objective**: Upgrade all chart components to rich, responsive, accessible interactive visualisations.
+### Phase 5: Mobile GIS Map Grid, High-Density Data Tables & Cross-Device QA
+- **Objective**: Provide an accessible mobile regional map, responsive tabular data grids, and production verification.
 - **Key Deliverables**:
-  1. **Unified Chart Palette**: Theme-consistent color scales for Bar, Line, Area, Donut, and Stacked Column charts.
-  2. **Interactive Chart Controls**: Per-chart export options (Export PNG, Export CSV), chart view toggle (Chart vs Data Table), and full-screen view modal.
-  3. **Custom Tooltips & Legend Filters**: High-density chart tooltips with exact values, variance percentages, and interactive legend toggling.
-
----
-
-### Phase 6: Regional Performance & GIS Map Experience
-- **Objective**: Deliver an interactive spatial map of Ethiopian Regions and City Administrations.
-- **Key Deliverables**:
-  1. **Interactive SVG Map of Ethiopia**: Clickable regional boundaries (Addis Ababa, Afar, Amhara, Benishangul, Central Ethiopia, Dire Dawa, Gambela, Harari, Oromia, Sidama, Somali, South Ethiopia, South West Ethiopia, Tigray).
-  2. **Choropleth Heatmapping**: Region fill coloring based on selected indicator performance (e.g., ANC4 Coverage %, Immunization rate, PHEM outbreak intensity).
-  3. **Regional Scorecard Drawer**: Clicking a region opens a detail slide-over panel showing region-specific KPIs, woreda breakdown, and historical trend.
-
----
-
-### Phase 7: Primary Health Care (PHC) & Embedded Analytics Integration
-- **Objective**: Make the PHC and Tableau dashboard integrations seamless and interactive.
-- **Key Deliverables**:
-  1. **Native PHC Scorecard Layout**: Replace static image fallback with a responsive flex grid mirroring the WHO/MoH Primary Health Care Measurement Framework (Governance, Financing, Inputs, Service Performance, Equity).
-  2. **Seamless Loading Skeleton States**: Shimmer skeleton animations for loading states instead of plain spinning text, ensuring a premium feel.
-  3. **Tableau / Superset Iframe Container**: High-performance iframe container with responsive aspect ratio, fallback refresh button, and full-bleed toggle.
-
----
-
-### Phase 8: Data Tables & Micro-Interactions
-- **Objective**: Modernize high-density tabular data presentation.
-- **Key Deliverables**:
-  1. **Data Grid Component**: Paginated, sortable, column-filterable data tables with quick CSV/Excel export.
-  2. **Inline Detail Rows**: Expandable rows to view sub-facility performance without navigating away.
-  3. **Status Badges & Progress Bars**: Visual progress bars and status badges (e.g., `On Track`, `Needs Attention`, `Critical Risk`) inside table cells.
-
----
-
-### Phase 9: Motion, Micro-animations & Aesthetics Polish
-- **Objective**: Bring the platform to life with subtle, professional micro-interactions.
-- **Key Deliverables**:
-  1. **Page & Card Transitions**: Framer Motion / CSS keyframe stagger animations when switching dashboard tabs.
-  2. **Button & Hover Micro-States**: Subtle hover elevations (`hover:-translate-y-0.5`), active press effects, and smooth focus rings.
-  3. **Dark Mode & Contrast Toggle**: Optional executive dark mode theme for low-light command center displays.
-
----
-
-### Phase 10: Client Presentation & Executive Readiness Review
-- **Objective**: Ensure 100% polish, performance optimization, and client demonstration readiness.
-- **Key Deliverables**:
-  1. **Performance & Build Verification**: Zero lint errors, optimized asset sizes, fast initial render (`<1.5s`).
-  2. **Cross-Browser & Screen Resolution Testing**: Seamless scaling from 1366x768 laptop screens to 4K executive displays.
-  3. **Executive Pitch Deck & Walkthrough**: Interactive demo walkthrough documenting key features, brand adherence, and data workflows.
+  1. **2-Column Mobile Regional Map**: Scale Ethiopia regional tiles into a 2-column grid (`grid-cols-2 sm:grid-cols-3 md:grid-cols-4`) in `EthiopiaRegionalMap.tsx` for optimal touch selection across all 14 Regions.
+  2. **Mobile Data Table Scroll Wrapper**: `DataTable.tsx` with horizontal touch scroll, responsive search inputs, pagination, and CSV export.
+  3. **Production Build Verification**: Execute `npm.cmd run build` pipeline ensuring zero errors and optimal bundle sizes (`<1.5s` build time).
 
 ---
 
 ```
-  Plan Status: FULLY IMPLEMENTED (ALL 10 PHASES COMPLETED)
+  Plan Status: IMPLEMENTED & APPROVED
   File Location: phase.md
   Target Organization: Federal Ministry of Health — Ethiopia (የጤና ሚኒስቴር)
-  Build Status: PASSED (0 Errors, Production Optimized)
+  Mobile Standard: 100% Responsive (320px to 4K Displays)
 ```
