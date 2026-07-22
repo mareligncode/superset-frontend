@@ -90,6 +90,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   const [equityIndicator, setEquityIndicator] = useState('MAT_Contraceptive Ac...');
 
   const isHealthEquity = location.pathname.includes('/health-equity');
+  const isWorkforce = location.pathname.includes('/workforce');
 
   const toggleRegion = (i: number) => {
     setCheckedRegions((prev) => {
@@ -373,6 +374,194 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                 {/* Disabled Apply button */}
                 <button
                   className="w-full bg-slate-100 text-slate-400 border border-slate-200 text-[12px] font-semibold py-1.5 rounded cursor-not-allowed"
+                  disabled
+                >
+                  Apply filters
+                </button>
+              </>
+            ) : isWorkforce ? (
+              // ── WORKFORCE SIDEBAR FILTERS ──────────────────────
+              <>
+                {/* Calendar Year */}
+                <div>
+                  <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                    Calendar Year
+                  </label>
+                  <select className="text-[11px] text-slate-700 border border-slate-300 rounded px-1.5 py-1 bg-white w-full focus:outline-none focus:border-blue-400">
+                    <option>2017</option>
+                  </select>
+                </div>
+
+                {/* Filters out of scope (10) */}
+                <div className="pt-2">
+                  <button
+                    onClick={() => setScopeOpen(!scopeOpen)}
+                    className={`flex items-center justify-between w-full text-left px-2 py-1.5 rounded transition-all ${
+                      scopeOpen
+                        ? 'border border-blue-400 bg-blue-50/30'
+                        : 'border border-transparent hover:bg-slate-50'
+                    }`}
+                  >
+                    <span className="text-[11px] text-slate-700 font-semibold">
+                      Filters out of scope (10)
+                    </span>
+                    <span className="material-symbols-outlined text-[14px] text-slate-500 transition-transform" style={{ transform: scopeOpen ? 'rotate(180deg)' : '' }}>
+                      expand_more
+                    </span>
+                  </button>
+                  {scopeOpen && (
+                    <div className="flex flex-col gap-3 mt-3 px-1">
+                      {/* Year */}
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                          Year
+                        </label>
+                        <select className="text-[11px] text-slate-700 border border-slate-300 rounded px-1.5 py-1 bg-white w-full focus:outline-none focus:border-blue-400">
+                          <option>2018</option>
+                        </select>
+                      </div>
+
+                      {/* Quarter */}
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                          Quarter
+                        </label>
+                        <div className="flex items-center gap-3 px-3 py-4 bg-slate-50/50 rounded border border-slate-200">
+                          <div className="w-3.5 h-3.5 rounded-full border-2 border-blue-100 border-t-blue-400 animate-spin" />
+                          <span className="text-[10px] text-slate-600 font-medium">Loading filter values</span>
+                        </div>
+                      </div>
+
+                      {/* Month */}
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                          Month
+                        </label>
+                        <div className="flex items-center gap-3 px-3 py-4 bg-slate-50/50 rounded border border-slate-200">
+                          <div className="w-3.5 h-3.5 rounded-full border-2 border-blue-100 border-t-blue-400 animate-spin" />
+                          <span className="text-[10px] text-slate-600 font-medium">Loading filter values</span>
+                        </div>
+                      </div>
+
+                      {/* Org Unit tree */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <label className="text-[10px] font-semibold text-slate-500">
+                            Org Unit
+                          </label>
+                          <div className="flex gap-2">
+                            <button onClick={selectAll} className="text-[10px] text-blue-600 hover:underline font-medium">
+                              Select all
+                            </button>
+                            <button onClick={clearAll} className="text-[10px] text-slate-400 hover:underline">
+                              Clear
+                            </button>
+                          </div>
+                        </div>
+                        <div className="bg-white border border-slate-300 rounded overflow-y-auto custom-scrollbar max-h-48 space-y-0.5 p-1">
+                          {REGIONS.map((region, i) => (
+                            <label
+                              key={region}
+                              className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 cursor-pointer"
+                            >
+                              <span className="material-symbols-outlined text-[10px] text-slate-600 mt-[3px] shrink-0 bg-slate-100 border border-slate-300 rounded-[2px] leading-none h-[12px] w-[12px] flex items-center justify-center font-bold">
+                                add
+                              </span>
+                              <span className="flex items-start gap-1.5">
+                                <input
+                                  type="checkbox"
+                                  checked={checkedRegions.has(i)}
+                                  onChange={() => toggleRegion(i)}
+                                  className="w-3 h-3 shrink-0 mt-[2px] rounded border-slate-300"
+                                />
+                                <span className="text-[10px] text-slate-700 leading-tight">
+                                  {region}
+                                </span>
+                              </span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Equity Year */}
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                          Equity Year
+                        </label>
+                        <select className="text-[11px] text-slate-700 border border-slate-300 rounded px-1.5 py-1 bg-white w-full focus:outline-none focus:border-blue-400">
+                          <option>2018</option>
+                        </select>
+                      </div>
+
+                      {/* Equity Dimension */}
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                          Equity Dimension
+                        </label>
+                        <select className="text-[11px] text-slate-700 border border-slate-300 rounded px-1.5 py-1 bg-white w-full focus:outline-none focus:border-blue-400">
+                          <option>Region</option>
+                        </select>
+                      </div>
+
+                      {/* Equity Subgroup */}
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                          Equity Subgroup
+                        </label>
+                        <select className="text-[11px] text-slate-400 border border-slate-200 rounded px-1.5 py-1 bg-slate-50 w-full" disabled>
+                          <option>14 options</option>
+                        </select>
+                      </div>
+
+                      {/* Equity Indicator */}
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                          Equity Indicator
+                        </label>
+                        <select className="text-[11px] text-slate-700 border border-slate-300 rounded px-1.5 py-1 bg-white w-full focus:outline-none focus:border-blue-400">
+                          <option>MAT_Contraceptive A...</option>
+                        </select>
+                      </div>
+
+                      {/* Woed Region */}
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                          Woed Region
+                        </label>
+                        <select className="text-[11px] text-slate-400 border border-slate-200 rounded px-1.5 py-1 bg-slate-50 w-full" disabled>
+                          <option>14 options</option>
+                        </select>
+                      </div>
+
+                      {/* Center */}
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                          Center
+                        </label>
+                        <select className="text-[11px] text-slate-400 border border-slate-200 rounded px-1.5 py-1 bg-slate-50 w-full" disabled>
+                          <option>24 options</option>
+                        </select>
+                      </div>
+
+                      {/* Wealth Dimension */}
+                      <div>
+                        <label className="block text-[10px] font-semibold text-slate-500 mb-1">
+                          Wealth Dimension
+                        </label>
+                        <select className="text-[11px] text-slate-400 border border-slate-200 rounded px-1.5 py-1 bg-slate-50 w-full" disabled>
+                          <option>4 options</option>
+                        </select>
+                      </div>
+
+                      {/* Extra bottom spacing */}
+                      <div className="h-2" />
+                    </div>
+                  )}
+                </div>
+
+                {/* Disabled Apply button */}
+                <button
+                  className="w-full bg-slate-100 text-slate-400 border border-slate-200 text-[12px] font-semibold py-1.5 rounded cursor-not-allowed mt-2"
                   disabled
                 >
                   Apply filters
