@@ -90,7 +90,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   const [equityIndicator, setEquityIndicator] = useState('MAT_Contraceptive Ac...');
 
   const isHealthEquity = location.pathname.includes('/health-equity');
-  const isWorkforce = location.pathname.includes('/workforce');
+  const isWorkforce = location.pathname.includes('/health-workforce');
+  const isSupplyLogistics = location.pathname.includes('/supply-logistics');
 
   const toggleRegion = (i: number) => {
     setCheckedRegions((prev) => {
@@ -379,7 +380,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                   Apply filters
                 </button>
               </>
-            ) : isWorkforce ? (
+            ) : isWorkforce || isSupplyLogistics ? (
               // ── WORKFORCE SIDEBAR FILTERS ──────────────────────
               <>
                 {/* Calendar Year */}
