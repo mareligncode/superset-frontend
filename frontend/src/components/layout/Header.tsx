@@ -109,12 +109,12 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
       style={{ boxShadow: '0 2px 8px -4px rgba(0,68,130,0.12)' }}
     >
       {/* ── Left: Dual Logo + Navigation ────────────────────────── */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
         {/* Dual Ethiopian Government & MOH Logos */}
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-2 group shrink-0">
           {/* Logo 1: FDRE Emblem */}
-          <div className="flex items-center gap-2">
-            <svg viewBox="0 0 100 100" className="w-8 h-8 transition-transform group-hover:scale-105 duration-300">
+          <div className="flex items-center gap-1.5">
+            <svg viewBox="0 0 100 100" className="w-7 h-7 sm:w-8 sm:h-8 transition-transform group-hover:scale-105 duration-300 shrink-0">
               <defs>
                 <radialGradient id="fdreGrad" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="#0284c7" />
@@ -122,7 +122,6 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                 </radialGradient>
               </defs>
               <circle cx="50" cy="50" r="48" fill="url(#fdreGrad)" stroke="#facc15" strokeWidth="2" />
-              {/* Star */}
               <polygon
                 points="50,14 62,38 87,38 67,53 74,78 50,62 26,78 33,53 13,38 38,38"
                 fill="#facc15"
@@ -131,18 +130,18 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               />
               <circle cx="50" cy="50" r="8" fill="#0284c7" stroke="#facc15" strokeWidth="1.5" />
             </svg>
-            <div className="flex flex-col leading-none">
+            <div className="hidden sm:flex flex-col leading-none">
               <span className="text-[9px] font-bold text-slate-800 tracking-tight">የኢ.ፌ.ዲ.ሪ</span>
               <span className="text-[8.5px] font-black text-sky-700 tracking-wider">FDRE</span>
             </div>
           </div>
 
           {/* Divider */}
-          <div className="w-[1px] h-7 bg-slate-200 mx-0.5"></div>
+          <div className="w-[1px] h-6 sm:h-7 bg-slate-200 mx-0.5"></div>
 
           {/* Logo 2: Ministry of Health Emblem */}
-          <div className="flex items-center gap-2">
-            <svg viewBox="0 0 100 100" className="w-8 h-8 transition-transform group-hover:scale-105 duration-300">
+          <div className="flex items-center gap-1.5">
+            <svg viewBox="0 0 100 100" className="w-7 h-7 sm:w-8 sm:h-8 transition-transform group-hover:scale-105 duration-300 shrink-0">
               <defs>
                 <linearGradient id="mohGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#0ea5e9" />
@@ -150,25 +149,32 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                 </linearGradient>
               </defs>
               <circle cx="50" cy="50" r="48" fill="url(#mohGrad)" stroke="#10b981" strokeWidth="2" />
-              {/* Globe grid */}
               <circle cx="50" cy="50" r="32" fill="none" stroke="#ffffff" strokeWidth="3" strokeOpacity="0.8" />
               <line x1="18" y1="50" x2="82" y2="50" stroke="#ffffff" strokeWidth="3" strokeOpacity="0.8" />
               <line x1="50" y1="18" x2="50" y2="82" stroke="#ffffff" strokeWidth="3" strokeOpacity="0.8" />
-              {/* Caduceus / Rod of Asclepius & Serpent */}
               <path d="M50,22 L50,78" stroke="#facc15" strokeWidth="4" strokeLinecap="round" />
               <path d="M42,34 Q54,42 42,50 T58,66" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
             </svg>
-            <div className="flex flex-col leading-none">
-              <span className="text-[9px] font-bold text-slate-800 tracking-tight">የጤና ሚኒስቴር - ኢትዮጵያ</span>
+            <div className="hidden sm:flex flex-col leading-none">
+              <span className="text-[9px] font-bold text-slate-800 tracking-tight">የጤና ሚኒስቴር</span>
               <span className="text-[8.5px] font-black text-emerald-700 tracking-wider">MINISTRY OF HEALTH</span>
             </div>
           </div>
         </Link>
 
+        {/* Mobile Search Button (< md) */}
+        <button
+          onClick={() => setSearchModalOpen(true)}
+          className="md:hidden p-1.5 text-slate-500 hover:bg-slate-100 rounded-lg cursor-pointer"
+          aria-label="Search"
+        >
+          <span className="material-symbols-outlined text-[18px]">search</span>
+        </button>
+
         {/* Live Clock / Calendar Widget with EC/GC Toggle */}
         <div
           onClick={() => setShowGregorian(!showGregorian)}
-          className="hidden lg:flex items-center gap-2 px-3 py-1 bg-slate-50 border border-slate-200/80 rounded-full text-[11px] text-slate-600 font-medium cursor-pointer hover:bg-slate-100 transition-colors select-none"
+          className="hidden xl:flex items-center gap-2 px-3 py-1 bg-slate-50 border border-slate-200/80 rounded-full text-[11px] text-slate-600 font-medium cursor-pointer hover:bg-slate-100 transition-colors select-none"
           title="Click to toggle between Ethiopian and Gregorian Calendar"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -180,7 +186,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           <span className="text-[10px] text-slate-400 font-normal hover:text-slate-600">⇄ Toggle</span>
         </div>
 
-        {/* Global Command & Search Button */}
+        {/* Global Command & Search Button (Desktop) */}
         <button
           onClick={() => setSearchModalOpen(true)}
           className="hidden md:flex items-center gap-2 px-3 py-1 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-400 hover:text-slate-600 transition-all text-xs font-semibold cursor-pointer"
@@ -191,12 +197,12 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
         </button>
 
         {/* Primary Navigation Links */}
-        <nav className="flex items-center gap-1.5 ml-2" aria-label="Primary navigation">
+        <nav className="hidden sm:flex items-center gap-1 ml-1" aria-label="Primary navigation">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`px-3 py-1 text-[13px] font-semibold transition-all rounded-md ${
+              className={`px-2.5 py-1 text-xs sm:text-[13px] font-semibold transition-all rounded-md ${
                 isActive(link.to)
                   ? 'text-white font-bold bg-primary shadow-xs'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-slate-50'

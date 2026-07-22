@@ -28,7 +28,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
         className={`bg-white border border-slate-200/90 rounded-xl p-4 flex flex-col justify-between transition-all duration-200 hover:shadow-md hover:border-slate-300 relative group ${className}`}
       >
         {/* Header toolbar */}
-        <div className="flex items-start justify-between gap-2 pb-3 mb-3 border-b border-slate-100">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 pb-3 mb-3 border-b border-slate-100">
           <div>
             <h3 className="text-xs font-bold text-slate-800 tracking-tight leading-tight flex items-center gap-1.5">
               <span className="w-1.5 h-3.5 rounded-full bg-blue-600 inline-block" />

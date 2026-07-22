@@ -218,7 +218,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         className={`shrink-0 fixed md:relative h-full z-50 transition-transform duration-200 ${
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         } ${className}`}
-        style={{ width: collapsed ? '40px' : `${width}px` }}
+        style={{ width: collapsed ? '40px' : `min(${width}px, 85vw)` }}
       >
         <aside
           className="bg-white border-r border-slate-200 flex flex-col w-full h-full overflow-y-auto custom-scrollbar"
