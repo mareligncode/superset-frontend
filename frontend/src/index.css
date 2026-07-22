@@ -95,6 +95,34 @@ body {
 }
 
 /* ─────────────────────────────────────────────
+   Touch Scroll Cue Indicators for Mobile
+──────────────────────────────────────────────── */
+.scroll-cue-left,
+.scroll-cue-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  pointer-events: none;
+  z-index: 10;
+}
+.scroll-cue-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0.9), transparent);
+}
+.scroll-cue-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,0.9), transparent);
+}
+
+@media (min-width: 768px) {
+  .scroll-cue-left,
+  .scroll-cue-right {
+    display: none;
+  }
+}
+
+/* ─────────────────────────────────────────────
    Hide Scrollbar (keep scroll functionality)
 ──────────────────────────────────────────────── */
 .scrollbar-hide {
@@ -310,5 +338,47 @@ input {
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* ─────────────────────────────────────────────
+   Mobile-Optimized Touch Targets (44px minimum)
+──────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
 
+/* ─────────────────────────────────────────────
+   Responsive Grid Utilities for KPI Cards
+──────────────────────────────────────────────── */
+.kpi-responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .kpi-responsive-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .kpi-responsive-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Mobile Chart Fullscreen Modal
+──────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .chart-fullscreen-mobile {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: white;
+    border-radius: 0;
+  }
+}
 

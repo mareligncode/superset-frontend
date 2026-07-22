@@ -26,38 +26,38 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-label-md font-label-md text-on-surface-variant mb-xs">
+          <label className="block text-xs sm:text-sm font-medium text-slate-600 mb-1.5">
             {label}
           </label>
         )}
         <div className="relative">
           {icon && iconPosition === 'left' && (
-            <div className="absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
               {icon}
             </div>
           )}
           <input
             ref={ref}
             type={type}
-            className={`w-full bg-surface border ${
-              error ? 'border-error' : 'border-outline-variant'
-            } rounded-lg ${icon && iconPosition === 'left' ? 'pl-10' : 'pl-md'} ${
-              icon && iconPosition === 'right' ? 'pr-10' : 'pr-md'
-            } py-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-on-surface-variant ${className}`}
+            className={`w-full bg-white border ${
+              error ? 'border-red-500' : 'border-slate-200'
+            } rounded-lg ${icon && iconPosition === 'left' ? 'pl-10' : 'pl-3'} ${
+              icon && iconPosition === 'right' ? 'pr-10' : 'pr-3'
+            } py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-slate-400 ${className}`}
             disabled={disabled}
             {...props}
           />
           {icon && iconPosition === 'right' && (
-            <div className="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant">
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
               {icon}
             </div>
           )}
         </div>
         {error && (
-          <p className="text-label-md text-error mt-xs">{error}</p>
+          <p className="text-xs sm:text-sm text-red-600 mt-1.5">{error}</p>
         )}
         {helperText && !error && (
-          <p className="text-label-md text-on-surface-variant mt-xs">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1.5">
             {helperText}
           </p>
         )}

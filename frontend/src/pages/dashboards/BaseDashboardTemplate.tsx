@@ -74,7 +74,11 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
     <div className="flex flex-col h-full">
       {/* ── Primary category tab bar ─────────────────────────── */}
       {showPrimaryTabs && (
-        <div className="bg-white border-b border-outline-variant overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none">
+        <div className="bg-white border-b border-outline-variant overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none relative">
+          {/* Mobile scroll cue indicators */}
+          <div className="scroll-cue-left md:hidden" />
+          <div className="scroll-cue-right md:hidden" />
+          
           <div className="flex flex-nowrap min-w-max">
             {PRIMARY_CATEGORIES.map((tab) => {
               const active = tab === resolvedPrimary;
@@ -82,7 +86,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
                 <button
                   key={tab}
                   onClick={() => navigate(PRIMARY_TAB_PATHS[tab] || '/dashboards')}
-                  className={`relative px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium shrink-0 transition-colors border-b-2 ${
+                  className={`relative px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium shrink-0 transition-colors border-b-2 touch-target ${
                     active
                       ? 'text-primary border-primary font-semibold'
                       : 'text-on-surface-variant border-transparent hover:text-on-surface hover:border-outline-variant'
@@ -98,7 +102,11 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
 
       {/* ── Secondary sub-category tab bar (Services Delivery) ── */}
       {showSecondaryTabs && (
-        <div className="bg-white border-b border-outline-variant overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none">
+        <div className="bg-white border-b border-outline-variant overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none relative">
+          {/* Mobile scroll cue indicators */}
+          <div className="scroll-cue-left md:hidden" />
+          <div className="scroll-cue-right md:hidden" />
+          
           <div className="flex flex-nowrap min-w-max px-2">
             {SERVICES_DELIVERY_TABS.map(({ label, path }) => {
               const active = label === resolvedSecondary;
@@ -106,7 +114,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
                 <button
                   key={label}
                   onClick={() => navigate(path)}
-                  className={`relative px-2.5 sm:px-3 py-2 sm:py-2.5 text-[11.5px] sm:text-[12.5px] font-medium shrink-0 transition-colors border-b-2 ${
+                  className={`relative px-2.5 sm:px-3 py-2 sm:py-2.5 text-[11.5px] sm:text-[12.5px] font-medium shrink-0 transition-colors border-b-2 touch-target ${
                     active
                       ? 'text-primary border-primary font-semibold'
                       : 'text-on-surface-variant border-transparent hover:text-on-surface'

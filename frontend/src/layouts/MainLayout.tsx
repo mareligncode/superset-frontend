@@ -16,7 +16,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-slate-50">
       <Header />
       <div className="flex flex-1 overflow-hidden">
         {showSidebar && (

@@ -21,22 +21,22 @@ const DashboardsPage: React.FC = () => {
   }, {} as Record<string, typeof dashboards>);
 
   return (
-    <div className="space-y-xl pb-xl">
+    <div className="space-y-8 sm:space-y-12 pb-8 sm:pb-12">
       <div>
-        <h1 className="text-headline-lg font-bold text-on-surface mb-sm">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2 sm:mb-3">
           All Dashboards
         </h1>
-        <p className="text-body-lg text-on-surface-variant">
+        <p className="text-base sm:text-lg text-slate-600">
           Browse and access all available health intelligence dashboards
         </p>
       </div>
 
       {Object.entries(groupedDashboards).map(([category, dashboards]) => (
         <section key={category}>
-          <h2 className="text-headline-md font-bold text-on-surface mb-lg">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4 sm:mb-6">
             {category}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {dashboards.map((dashboard) => (
               <Card
                 key={dashboard.path}
@@ -45,15 +45,15 @@ const DashboardsPage: React.FC = () => {
                 className="cursor-pointer"
               >
                 <div className="flex flex-col">
-                  <div className="flex items-start justify-between mb-md">
-                    <span className="material-symbols-outlined text-4xl text-primary">
+                  <div className="flex items-start justify-between mb-3 sm:mb-4">
+                    <span className="material-symbols-outlined text-3xl sm:text-4xl text-blue-600">
                       monitoring
                     </span>
                   </div>
-                  <h3 className="text-title-lg font-bold text-on-surface mb-sm">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 sm:mb-3">
                     {dashboard.title}
                   </h3>
-                  <p className="text-body-md text-on-surface-variant">
+                  <p className="text-sm sm:text-base text-slate-600">
                     {dashboard.description}
                   </p>
                 </div>

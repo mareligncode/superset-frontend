@@ -60,7 +60,7 @@ const KpiCard: React.FC<KpiCardProps> = ({
 
   return (
     <div
-      className={`relative bg-white border border-slate-200/80 rounded-xl p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:border-blue-300 group ${className}`}
+      className={`relative bg-white border border-slate-200/80 rounded-xl p-3 sm:p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:border-blue-300 group ${className}`}
       style={{ boxShadow: '0 4px 16px -4px rgba(0,68,130,0.05)' }}
     >
       {/* Visual top bar glow accent */}
@@ -109,7 +109,7 @@ const KpiCard: React.FC<KpiCardProps> = ({
         {/* Large KPI number & Sparkline side-by-side */}
         <div className="flex items-baseline justify-between gap-2 mt-1">
           <div
-            className="text-3xl font-black tracking-tight"
+            className="text-2xl sm:text-3xl font-black tracking-tight"
             style={{ color: '#004482', fontVariantNumeric: 'tabular-nums' }}
           >
             {displayValue}

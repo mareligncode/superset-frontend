@@ -7,18 +7,18 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <section className="py-xl px-margin">
-        <div className="max-w-max_width mx-auto text-center">
-          <h1 className="text-display-lg font-bold text-on-surface mb-lg">
+      <section className="py-12 sm:py-16 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 sm:mb-6">
             Ethiopian Ministry of Health
           </h1>
-          <p className="text-headline-md text-on-surface-variant mb-xl max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-slate-600 mb-6 sm:mb-8 max-w-3xl mx-auto">
             Comprehensive health intelligence system for data-driven decision making
             across all regions of Ethiopia
           </p>
-          <div className="flex gap-md justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-xs sm:max-w-none mx-auto">
             <Button
               variant="primary"
               size="lg"
@@ -38,12 +38,12 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Dashboard Categories */}
-      <section className="py-xl px-margin bg-surface-container-low">
-        <div className="max-w-max_width mx-auto">
-          <h2 className="text-headline-lg font-bold text-on-surface mb-lg text-center">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-slate-100">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6 text-center">
             Dashboard Categories
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {PRIMARY_CATEGORIES.map((category) => (
               <Card
                 key={category}
@@ -51,11 +51,11 @@ const HomePage: React.FC = () => {
                 onClick={() => navigate(ROUTES.DASHBOARDS)}
                 className="cursor-pointer"
               >
-                <div className="flex flex-col items-center text-center p-lg">
-                  <span className="material-symbols-outlined text-6xl text-primary mb-md">
+                <div className="flex flex-col items-center text-center p-4 sm:p-6">
+                  <span className="material-symbols-outlined text-4xl sm:text-5xl text-blue-600 mb-2 sm:mb-3">
                     dashboard
                   </span>
-                  <h3 className="text-title-lg font-bold text-on-surface">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900">
                     {category}
                   </h3>
                 </div>
@@ -66,45 +66,45 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-xl px-margin">
-        <div className="max-w-max_width mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-lg">
+      <section className="py-12 sm:py-16 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <Card variant="glass">
               <div className="text-center">
-                <div className="text-headline-lg font-bold text-primary mb-sm">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600 mb-2 sm:mb-3">
                   14
                 </div>
-                <div className="text-body-md text-on-surface-variant">
+                <div className="text-sm sm:text-base text-slate-600">
                   Regions Covered
                 </div>
               </div>
             </Card>
             <Card variant="glass">
               <div className="text-center">
-                <div className="text-headline-lg font-bold text-secondary mb-sm">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-emerald-600 mb-2 sm:mb-3">
                   16
                 </div>
-                <div className="text-body-md text-on-surface-variant">
+                <div className="text-sm sm:text-base text-slate-600">
                   Dashboard Categories
                 </div>
               </div>
             </Card>
             <Card variant="glass">
               <div className="text-center">
-                <div className="text-headline-lg font-bold text-tertiary mb-sm">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-800 mb-2 sm:mb-3">
                   120M+
                 </div>
-                <div className="text-body-md text-on-surface-variant">
+                <div className="text-sm sm:text-base text-slate-600">
                   Population Served
                 </div>
               </div>
             </Card>
             <Card variant="glass">
               <div className="text-center">
-                <div className="text-headline-lg font-bold text-primary mb-sm">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600 mb-2 sm:mb-3">
                   24/7
                 </div>
-                <div className="text-body-md text-on-surface-variant">
+                <div className="text-sm sm:text-base text-slate-600">
                   Real-time Monitoring
                 </div>
               </div>

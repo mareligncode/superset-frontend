@@ -71,7 +71,7 @@ const PHCPage: React.FC = () => {
         ) : (
           <div className="space-y-5 animate-fadeIn">
             {/* KPI Metric Summary Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="kpi-responsive-grid">
               <KpiCard
                 label="Primary Health Care Units"
                 value="17,542"

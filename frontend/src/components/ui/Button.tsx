@@ -28,16 +28,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center font-bold rounded-lg transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2';
     
     const variantStyles = {
-      primary: 'bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container shadow-md focus:ring-primary',
-      secondary: 'border border-primary text-primary hover:bg-surface-container focus:ring-primary',
-      ghost: 'text-on-surface-variant hover:bg-surface-container focus:ring-outline',
-      error: 'bg-error text-on-error hover:bg-error-container hover:text-on-error-container shadow-md focus:ring-error',
+      primary: 'bg-blue-600 text-white hover:bg-blue-700 shadow-md focus:ring-blue-600',
+      secondary: 'border border-blue-600 text-blue-600 hover:bg-blue-50 focus:ring-blue-600',
+      ghost: 'text-slate-600 hover:bg-slate-100 focus:ring-slate-400',
+      error: 'bg-red-600 text-white hover:bg-red-700 shadow-md focus:ring-red-600',
     };
 
     const sizeStyles = {
-      sm: 'px-md py-xs text-label-md',
-      md: 'px-lg py-sm text-body-md',
-      lg: 'px-xl py-md text-body-lg',
+      sm: 'px-3 py-1.5 text-xs',
+      md: 'px-4 py-2 text-sm',
+      lg: 'px-5 py-2.5 text-base',
     };
 
     const widthStyle = fullWidth ? 'w-full' : '';
@@ -51,7 +51,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {loading && (
           <svg
-            className="animate-spin -ml-1 mr-sm h-4 w-4"
+            className="animate-spin -ml-1 mr-2 h-4 w-4"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -72,11 +72,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           </svg>
         )}
         {!loading && icon && iconPosition === 'left' && (
-          <span className="mr-sm">{icon}</span>
+          <span className="mr-2">{icon}</span>
         )}
         {children}
         {!loading && icon && iconPosition === 'right' && (
-          <span className="ml-sm">{icon}</span>
+          <span className="ml-2">{icon}</span>
         )}
       </button>
     );

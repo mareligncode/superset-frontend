@@ -18,14 +18,14 @@ export interface CardProps {
 
 const CardIcons = () => (
   <div className="flex items-center gap-1 shrink-0">
-    <button className="w-6 h-6 flex items-center justify-center rounded text-outline hover:text-on-surface-variant hover:bg-surface-container transition-colors" aria-label="Filter">
-      <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>filter_list</span>
+    <button className="w-7 h-7 sm:w-6 sm:h-6 flex items-center justify-center rounded text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors touch-target" aria-label="Filter">
+      <span className="material-symbols-outlined text-[14px] sm:text-[14px]">filter_list</span>
     </button>
-    <button className="w-6 h-6 flex items-center justify-center rounded text-outline hover:text-on-surface-variant hover:bg-surface-container transition-colors" aria-label="Info">
-      <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>info</span>
+    <button className="w-7 h-7 sm:w-6 sm:h-6 flex items-center justify-center rounded text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors touch-target" aria-label="Info">
+      <span className="material-symbols-outlined text-[14px] sm:text-[14px]">info</span>
     </button>
-    <button className="w-6 h-6 flex items-center justify-center rounded text-outline hover:text-on-surface-variant hover:bg-surface-container transition-colors" aria-label="More options">
-      <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>more_vert</span>
+    <button className="w-7 h-7 sm:w-6 sm:h-6 flex items-center justify-center rounded text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors touch-target" aria-label="More options">
+      <span className="material-symbols-outlined text-[14px] sm:text-[14px]">more_vert</span>
     </button>
   </div>
 );
@@ -43,18 +43,18 @@ const Card: React.FC<CardProps> = ({
 }) => {
   const variantStyles: Record<string, string> = {
     default:
-      'bg-white border border-outline-variant rounded-lg shadow-card',
+      'bg-white border border-slate-200 rounded-lg shadow-sm',
     elevated:
-      'bg-white border border-outline-variant rounded-xl shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200 cursor-pointer',
+      'bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer',
     glass:
-      'glass border border-white/30 rounded-lg shadow-card',
+      'glass border border-white/30 rounded-lg shadow-sm',
   };
 
   const paddingStyles: Record<string, string> = {
     none: '',
-    sm:   'p-2',
-    md:   'p-3',
-    lg:   'p-4',
+    sm:   'p-2 sm:p-3',
+    md:   'p-3 sm:p-4',
+    lg:   'p-4 sm:p-5',
   };
 
   const hasHeader = title || subtitle || headerAction || showCardIcons;

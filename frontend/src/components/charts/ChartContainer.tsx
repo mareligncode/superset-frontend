@@ -115,26 +115,26 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
       {/* Fullscreen Dialog Modal */}
       {isFullscreen && (
         <div className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 animate-fadeIn">
-          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-5xl h-[85vh] flex flex-col overflow-hidden">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
+          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-5xl h-[85vh] md:h-[85vh] flex flex-col overflow-hidden chart-fullscreen-mobile">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200 bg-slate-50 gap-3">
               <div>
-                <h2 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                <h2 className="text-sm sm:text-base font-extrabold text-slate-900 flex items-center gap-2">
                   <span className="w-2 h-4 rounded-full bg-blue-600" />
                   {title}
                 </h2>
-                {subtitle && <p className="text-xs text-slate-500">{subtitle}</p>}
+                {subtitle && <p className="text-[11px] sm:text-xs text-slate-500">{subtitle}</p>}
               </div>
 
               <button
                 onClick={() => setIsFullscreen(false)}
-                className="w-8 h-8 rounded-full bg-slate-200 text-slate-700 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all cursor-pointer"
+                className="w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-slate-200 text-slate-700 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all cursor-pointer touch-target"
               >
-                <span className="material-symbols-outlined text-[18px]">close</span>
+                <span className="material-symbols-outlined text-[20px] sm:text-[18px]">close</span>
               </button>
             </div>
 
-            <div className="flex-1 p-6 overflow-auto flex items-center justify-center bg-slate-50/50">
-              <div className="w-full h-full max-w-4xl flex items-center justify-center bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+            <div className="flex-1 p-4 sm:p-6 overflow-auto flex items-center justify-center bg-slate-50/50">
+              <div className="w-full h-full max-w-4xl flex items-center justify-center bg-white p-4 sm:p-6 rounded-xl border border-slate-200 shadow-xs">
                 {children}
               </div>
             </div>

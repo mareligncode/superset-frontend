@@ -62,21 +62,21 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-lg bg-inverse-surface/20 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/20 backdrop-blur-sm"
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal="true"
       aria-labelledby={title ? 'modal-title' : undefined}
     >
       <div
-        className={`bg-surface rounded-xl shadow-elevated border border-outline-variant w-full ${sizeStyles[size]} max-h-[90vh] flex flex-col`}
+        className={`bg-white rounded-xl shadow-2xl border border-slate-200 w-full ${sizeStyles[size]} max-h-[90vh] flex flex-col animate-fadeIn`}
       >
         {(title || showCloseButton) && (
-          <div className="flex items-center justify-between p-lg border-b border-outline-variant">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-6 border-b border-slate-200 gap-3">
             {title && (
               <h2
                 id="modal-title"
-                className="text-headline-md font-headline-md text-on-surface"
+                className="text-base sm:text-lg font-bold text-slate-900"
               >
                 {title}
               </h2>
@@ -84,21 +84,21 @@ const Modal: React.FC<ModalProps> = ({
             {showCloseButton && (
               <button
                 onClick={onClose}
-                className="p-sm rounded-full hover:bg-surface-container transition-colors ml-auto"
+                className="w-10 h-10 sm:w-8 sm:h-8 rounded-full hover:bg-slate-100 transition-colors ml-auto flex items-center justify-center touch-target"
                 aria-label="Close modal"
               >
-                <span className="material-symbols-outlined text-on-surface-variant">
+                <span className="material-symbols-outlined text-slate-600 text-[20px] sm:text-[18px]">
                   close
                 </span>
               </button>
             )}
           </div>
         )}
-        <div className="flex-1 overflow-y-auto p-lg custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar">
           {children}
         </div>
         {footer && (
-          <div className="p-lg border-t border-outline-variant">
+          <div className="p-4 sm:p-6 border-t border-slate-200">
             {footer}
           </div>
         )}

@@ -207,7 +207,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       {/* Mobile overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden animate-fadeIn"
           onClick={onClose}
         />
       )}
@@ -225,22 +225,40 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
           style={{ boxShadow: '4px 0 20px -8px rgba(0,68,130,0.06)' }}
         >
         {/* Header row */}
-        <div className="flex items-center justify-between px-3 pt-3 pb-2 shrink-0">
+        <div className="flex items-center justify-between px-3 pt-3 pb-2 shrink-0 border-b border-slate-100 mb-1">
           {!collapsed && (
-            <span className="text-[12px] font-semibold text-slate-800 tracking-wide">
+            <span className="text-[12px] font-bold text-slate-800 tracking-wide flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-[16px] text-blue-600">tune</span>
               Filters and controls
             </span>
           )}
-          <button
-            onClick={() => setCollapsed(!collapsed)}
-            className="ml-auto w-6 h-6 flex items-center justify-center rounded bg-slate-50 text-slate-500 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 border border-slate-200 transition-all hover:shadow-sm"
-            aria-label={collapsed ? 'Expand filters' : 'Collapse filters'}
-            title={collapsed ? 'Expand filters' : 'Collapse filters'}
-          >
-            <span className={`material-symbols-outlined text-[16px] transition-transform duration-300 ${collapsed ? '' : 'rotate-0'}`}>
-              {collapsed ? 'chevron_right' : 'chevron_left'}
-            </span>
-          </button>
+
+          <div className="flex items-center gap-1 ml-auto">
+            {/* Mobile Close Drawer Button (< md) */}
+            {onClose && (
+              <button
+                onClick={onClose}
+                className="md:hidden px-3 py-2 text-[11px] font-bold text-slate-600 hover:text-red-600 bg-slate-100 hover:bg-red-50 border border-slate-200 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer touch-target shadow-sm"
+                aria-label="Close filters"
+                title="Close filters drawer"
+              >
+                <span className="material-symbols-outlined text-[16px]">close</span>
+                <span>Close Filters</span>
+              </button>
+            )}
+
+            {/* Desktop Collapse Button (≥ md) */}
+            <button
+              onClick={() => setCollapsed(!collapsed)}
+              className="hidden md:flex w-6 h-6 items-center justify-center rounded bg-slate-50 text-slate-500 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 border border-slate-200 transition-all hover:shadow-sm"
+              aria-label={collapsed ? 'Expand filters' : 'Collapse filters'}
+              title={collapsed ? 'Expand filters' : 'Collapse filters'}
+            >
+              <span className={`material-symbols-outlined text-[16px] transition-transform duration-300 ${collapsed ? '' : 'rotate-0'}`}>
+                {collapsed ? 'chevron_right' : 'chevron_left'}
+              </span>
+            </button>
+          </div>
         </div>
 
         {!collapsed && (
