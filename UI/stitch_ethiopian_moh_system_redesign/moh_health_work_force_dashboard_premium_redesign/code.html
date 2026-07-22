@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ethiopia MoH Health Intelligence - Health Work Force</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d5e3ff",
+                        "on-background": "#0b1c30",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-variant": "#d3e4fe",
+                        "outline": "#727783",
+                        "primary": "#004482",
+                        "surface-dim": "#cbdbf5",
+                        "primary-container": "#005cab",
+                        "on-tertiary-fixed": "#002204",
+                        "on-primary-fixed-variant": "#004786",
+                        "surface-container": "#e5eeff",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-high": "#dce9ff",
+                        "primary-fixed-dim": "#a6c8ff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "tertiary-container": "#186a21",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#a6c8ff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#8ef4e4",
+                        "on-secondary-container": "#007166",
+                        "secondary": "#006a60",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#414751",
+                        "on-primary-container": "#bdd6ff",
+                        "secondary-container": "#8ef4e4",
+                        "error": "#ba1a1a",
+                        "surface": "#f8f9ff",
+                        "outline-variant": "#c1c6d3",
+                        "tertiary": "#005011",
+                        "on-surface": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "inverse-surface": "#213145",
+                        "background": "#f8f9ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#95e88f",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#095fae",
+                        "secondary-fixed-dim": "#72d8c8",
+                        "on-primary-fixed": "#001c3b",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#88d982",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary-fixed": "#a3f69c",
+                        "surface-bright": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "md": "16px",
+                        "max_width": "1440px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        .chart-grid-line {
+            stroke: #e2e8f0;
+            stroke-dasharray: 4;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden flex flex-col h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface-container-highest flex justify-between items-center w-full px-margin h-16 border-b border-outline-variant z-50 fixed top-0 left-0 right-0">
+<div class="flex items-center space-x-md">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Ethiopia MoH Health Intelligence</span>
+</div>
+</div>
+</div>
+<nav class="hidden md:flex items-center space-x-lg h-full">
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center h-full px-2" href="#">Home</a>
+<a class="text-primary border-b-2 border-primary font-bold h-full flex items-center px-2" href="#">Dashboards</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center h-full px-2" href="#">Charts</a>
+</nav>
+<div class="flex items-center space-x-md">
+<div class="relative group">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-2 rounded-full hover:bg-surface-variant/50 transition-colors">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-2 rounded-full hover:bg-surface-variant/50 transition-colors">settings</span>
+<div class="h-10 w-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a senior government health administrator, clean lighting, corporate office environment, Ethiopian nationality, high quality portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZKf3aR1jhGLsFKIs6Fr-MYPsRHQ3xquElXNsfv8y2-e2mccudi0ujsltgnty6Amrye9PUEdmJT9EByiUpPJZislG68jnYU6Vg-v2pSqiDZ_rVsKmsW8537NSyDeh4DADIjKtCOvhMhpCIF3cj9yxBLKR6zDv4vEciWCMVUsFlRE1Nm0Ttc3AVe7-Cag9EgNkAdi89zAHDoqD2cIEsErr3CkrVJlhqYyagVt3AaRcY3bJyljdtPVVJ1IVS6mcVihKJzkHpXilJHM"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-16 overflow-hidden">
+<!-- SideNavBar / Filters -->
+<aside class="w-64 bg-surface flex flex-col border-r border-outline-variant h-full overflow-y-auto custom-scrollbar">
+<div class="p-lg flex flex-col space-y-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">filter_list</span>
+<h2 class="font-title-lg text-title-lg text-primary">Filters and controls</h2>
+</div>
+<div class="space-y-md">
+<div class="flex flex-col space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Calendar Year</label>
+<select class="w-full h-10 bg-white border border-outline-variant rounded-lg px-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+<option selected="">2017</option>
+<option>2018</option>
+<option>2019</option>
+<option>2020</option>
+</select>
+</div>
+<div class="flex flex-col space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Region</label>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="bg-primary-container text-on-primary-container text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1">
+                                All Regions <span class="material-symbols-outlined text-xs cursor-pointer">close</span>
+</span>
+</div>
+</div>
+</div>
+<button class="bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-primary-container transition-all active:scale-95 shadow-sm">
+                    Apply Filters
+                </button>
+</div>
+<div class="mt-auto p-lg border-t border-outline-variant">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-md">Health Categories</h3>
+<nav class="flex flex-col space-y-1">
+<a class="flex items-center space-x-md p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md text-label-md">Service Delivery</span>
+</a>
+<a class="flex items-center space-x-md p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">diversity_1</span>
+<span class="font-label-md text-label-md">Health Equity</span>
+</a>
+<a class="flex items-center space-x-md p-2 rounded-lg bg-primary-container text-on-primary-container font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-md text-label-md">Health Work Force</span>
+</a>
+<a class="flex items-center space-x-md p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Health Financing</span>
+</a>
+<a class="flex items-center space-x-md p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-md text-label-md">Supply & Logistics</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- Main Dashboard Canvas -->
+<main class="flex-1 overflow-y-auto custom-scrollbar bg-background p-margin">
+<div class="max-w-max_width mx-auto space-y-lg">
+<!-- KPI Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-white p-lg rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl">groups</span>
+</div>
+<h3 class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Total Work Force</h3>
+<p class="text-display-lg font-display-lg text-primary mt-2">492,181</p>
+<div class="flex items-center mt-4 text-secondary gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-xs font-medium">+3.2% vs previous period</span>
+</div>
+</div>
+<div class="bg-white p-lg rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl">admin_panel_settings</span>
+</div>
+<h3 class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Total Administrative Staff</h3>
+<p class="text-display-lg font-display-lg text-primary mt-2">167,171</p>
+<div class="flex items-center mt-4 text-on-surface-variant gap-1">
+<span class="text-xs font-medium">34% of total workforce</span>
+</div>
+</div>
+<div class="bg-white p-lg rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl">medical_information</span>
+</div>
+<h3 class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Total Health Professionals</h3>
+<p class="text-display-lg font-display-lg text-primary mt-2">325,010</p>
+<div class="flex items-center mt-4 text-secondary gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="text-xs font-medium">Verified professional registry</span>
+</div>
+</div>
+</div>
+<!-- Main Visualizations Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Treemap: Health Workforce by Category -->
+<div class="lg:col-span-7 bg-white p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col min-h-[400px]">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Health Workforce by Category</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">more_vert</span>
+</div>
+<div class="flex-1 grid grid-cols-6 grid-rows-4 gap-2">
+<!-- Simulated Treemap with div shapes -->
+<div class="col-span-3 row-span-4 bg-primary/20 rounded-lg p-3 border border-primary/10 hover:bg-primary/30 transition-colors flex flex-col justify-center items-center text-center">
+<span class="font-bold text-primary">Medical Professionals</span>
+<span class="text-sm opacity-80">145.2k</span>
+</div>
+<div class="col-span-3 row-span-2 bg-secondary-container rounded-lg p-3 border border-secondary/10 hover:opacity-80 transition-opacity flex flex-col justify-center items-center text-center">
+<span class="font-bold text-on-secondary-container">Nursing & Midwifery</span>
+<span class="text-sm opacity-80">98.5k</span>
+</div>
+<div class="col-span-2 row-span-2 bg-tertiary-fixed rounded-lg p-3 border border-tertiary/10 hover:opacity-80 transition-opacity flex flex-col justify-center items-center text-center">
+<span class="font-bold text-on-tertiary-fixed-variant">Administrative</span>
+<span class="text-sm opacity-80">167k</span>
+</div>
+<div class="col-span-1 row-span-2 bg-error-container rounded-lg p-2 border border-error/10 hover:opacity-80 transition-opacity flex flex-col justify-center items-center text-center">
+<span class="font-bold text-on-error-container text-xs">Pharma</span>
+<span class="text-[10px]">21.4k</span>
+</div>
+</div>
+</div>
+<!-- Horizontal Bar Chart: Density -->
+<div class="lg:col-span-5 bg-white p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col min-h-[400px]">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Work Force Density Per 1000</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">more_vert</span>
+</div>
+<div class="flex-1 space-y-3 pt-2 overflow-y-auto">
+<!-- Density Bars -->
+<div class="space-y-1">
+<div class="flex justify-between text-xs text-on-surface-variant"><span>Addis Ababa</span><span>9.83</span></div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 98%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs text-on-surface-variant"><span>Harari</span><span>4.06</span></div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 41%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs text-on-surface-variant"><span>Gambella</span><span>3.45</span></div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 35%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs text-on-surface-variant"><span>Dire Dawa</span><span>2.44</span></div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 24%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs text-on-surface-variant"><span>Tigray</span><span>2.25</span></div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 22%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Grouped Bar Chart -->
+<div class="bg-white p-lg rounded-xl border border-outline-variant shadow-sm">
+<div class="flex flex-col md:flex-row justify-between md:items-center mb-lg gap-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Health Professionals vs Administrative Staff</h3>
+<p class="text-on-surface-variant text-body-md mt-1">Regional breakdown comparison</p>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-primary"></div>
+<span class="text-label-md font-label-md text-on-surface-variant">Health Professionals</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-secondary-fixed-dim"></div>
+<span class="text-label-md font-label-md text-on-surface-variant">Administrative Staff</span>
+</div>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between gap-4 pt-12 relative">
+<!-- Y-Axis Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-12">
+<div class="border-b border-outline-variant/30 w-full"></div>
+<div class="border-b border-outline-variant/30 w-full"></div>
+<div class="border-b border-outline-variant/30 w-full"></div>
+<div class="border-b border-outline-variant/30 w-full"></div>
+</div>
+<!-- Region Bars -->
+<div class="flex-1 flex flex-col items-center">
+<div class="flex items-end gap-1 h-full mb-2">
+<div class="w-6 bg-primary rounded-t-sm" style="height: 85%"></div>
+<div class="w-6 bg-secondary-fixed-dim rounded-t-sm" style="height: 45%"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-medium rotate-[-45deg] md:rotate-0 mt-2">Addis Ababa</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="flex items-end gap-1 h-full mb-2">
+<div class="w-6 bg-primary rounded-t-sm" style="height: 30%"></div>
+<div class="w-6 bg-secondary-fixed-dim rounded-t-sm" style="height: 15%"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-medium rotate-[-45deg] md:rotate-0 mt-2">Afar</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="flex items-end gap-1 h-full mb-2">
+<div class="w-6 bg-primary rounded-t-sm" style="height: 70%"></div>
+<div class="w-6 bg-secondary-fixed-dim rounded-t-sm" style="height: 40%"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-medium rotate-[-45deg] md:rotate-0 mt-2">Amhara</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="flex items-end gap-1 h-full mb-2">
+<div class="w-6 bg-primary rounded-t-sm" style="height: 25%"></div>
+<div class="w-6 bg-secondary-fixed-dim rounded-t-sm" style="height: 10%"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-medium rotate-[-45deg] md:rotate-0 mt-2">Gambella</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="flex items-end gap-1 h-full mb-2">
+<div class="w-6 bg-primary rounded-t-sm" style="height: 95%"></div>
+<div class="w-6 bg-secondary-fixed-dim rounded-t-sm" style="height: 55%"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-medium rotate-[-45deg] md:rotate-0 mt-2">Oromia</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="flex items-end gap-1 h-full mb-2">
+<div class="w-6 bg-primary rounded-t-sm" style="height: 50%"></div>
+<div class="w-6 bg-secondary-fixed-dim rounded-t-sm" style="height: 30%"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-medium rotate-[-45deg] md:rotate-0 mt-2">Sidama</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="flex items-end gap-1 h-full mb-2">
+<div class="w-6 bg-primary rounded-t-sm" style="height: 40%"></div>
+<div class="w-6 bg-secondary-fixed-dim rounded-t-sm" style="height: 20%"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-medium rotate-[-45deg] md:rotate-0 mt-2">Tigray</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- AI Assistant FAB -->
+<button class="fixed bottom-margin right-margin bg-primary text-white py-3 px-6 rounded-full shadow-lg flex items-center gap-3 hover:bg-primary-container transition-all active:scale-95 group z-[100]">
+<div class="bg-white/20 p-1 rounded-full group-hover:bg-white/30 transition-colors">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<span class="font-bold text-body-lg">Ask Health Intelligence</span>
+</button>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant w-full py-md z-50">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin max-w-max_width mx-auto">
+<div class="flex items-center space-x-md mb-md md:mb-0">
+<span class="font-body-md text-body-md font-bold text-primary">MoH ETHIOPIA</span>
+<span class="text-on-surface-variant font-label-md text-label-md">© 2024 Ethiopian Ministry of Health. All rights reserved. Data Integrity Guaranteed.</span>
+</div>
+<div class="flex space-x-lg">
+<a class="text-on-surface-variant hover:underline font-label-md text-label-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:underline font-label-md text-label-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:underline font-label-md text-label-md" href="#">Data Portal</a>
+<a class="text-on-surface-variant hover:underline font-label-md text-label-md" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for KPI cards
+        document.querySelectorAll('.bg-white').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('scale-[1.005]');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('scale-[1.005]');
+            });
+        });
+    </script>
+</body></html>

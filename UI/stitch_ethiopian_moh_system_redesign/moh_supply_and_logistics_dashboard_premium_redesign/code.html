@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ethiopia Health Intelligence - Supply and Logistics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#f8f9ff",
+                    "outline-variant": "#c1c6d3",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#8ef4e4",
+                    "on-surface-variant": "#414751",
+                    "on-primary-container": "#bdd6ff",
+                    "surface-container-low": "#eff4ff",
+                    "background": "#f8f9ff",
+                    "on-tertiary-fixed-variant": "#005312",
+                    "inverse-surface": "#213145",
+                    "on-surface": "#0b1c30",
+                    "tertiary": "#005011",
+                    "on-tertiary-container": "#95e88f",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#a3f69c",
+                    "surface-container-highest": "#d3e4fe",
+                    "tertiary-fixed-dim": "#88d982",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#72d8c8",
+                    "on-primary-fixed": "#001c3b",
+                    "surface-tint": "#095fae",
+                    "outline": "#727783",
+                    "surface-variant": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "inverse-on-surface": "#eaf1ff",
+                    "primary-fixed": "#d5e3ff",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#186a21",
+                    "surface-container-high": "#dce9ff",
+                    "primary-fixed-dim": "#a6c8ff",
+                    "on-secondary-fixed-variant": "#005048",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-container": "#e5eeff",
+                    "primary-container": "#005cab",
+                    "on-tertiary-fixed": "#002204",
+                    "on-primary-fixed-variant": "#004786",
+                    "surface-dim": "#cbdbf5",
+                    "primary": "#004482",
+                    "secondary-fixed": "#8ef4e4",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#a6c8ff",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#006a60",
+                    "on-secondary-container": "#007166"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "margin": "32px",
+                    "md": "16px",
+                    "max_width": "1440px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .chart-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-40 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center px-margin h-16 w-full">
+<div class="flex items-center gap-lg">
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">Ethiopia Health Intelligence</div>
+<nav class="hidden md:flex gap-md">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Home</a>
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 cursor-pointer active:opacity-80" href="#">Dashboards</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Analytics</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative flex items-center bg-surface-container-low rounded-full px-md py-xs">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-48" placeholder="Search data..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-high p-xs rounded-full transition-all">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-high p-xs rounded-full transition-all">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a senior healthcare data analyst in a modern office, soft natural lighting, high-end professional atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW2kuZlUh7R1gBbzq7DqiafRJXEqnMBTDFcko6Pl6w9qVdRQWOL3bBZ_DqQYdn61JuUsq-E84h4IkGwpMyZCqI_ygm5vlFYEPxTniqgM96lUnSZTT9wb1Re98iTltj3JieBjGCAlfPvy6xry3vaF5AVXxO--geKAK784q8waXQARrbHKihBKsk80LfthdrW9w1NE4Sgv1i1SJLtbFg_Jzqv2e79VRgAWV55dkHUdLkUgCgYcOKOFKW_nKSpGOn5K9mUJ7DSVLCBjQ"/>
+</div>
+</div>
+</header>
+<!-- Sub-Navigation (Categories) -->
+<nav class="fixed top-16 left-64 right-0 z-30 bg-surface-bright dark:bg-surface-container border-b border-outline-variant flex items-center px-lg h-12 gap-xl">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all cursor-pointer" href="#">Services Delivery</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all cursor-pointer" href="#">Health Equity</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all cursor-pointer" href="#">Health Work Force</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all cursor-pointer" href="#">Resource Tracking</a>
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed font-semibold border-b-2 border-primary transition-all cursor-pointer" href="#">Supply and Logistics</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all cursor-pointer" href="#">Infrastructure</a>
+</nav>
+<!-- SideNavBar (Filters & Controls) -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant flex flex-col p-md gap-sm z-30">
+<div class="mb-md">
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">Filters &amp; Controls</div>
+<div class="font-label-md text-label-md text-on-surface-variant">National Oversight</div>
+</div>
+<div class="flex flex-col gap-md flex-grow custom-scrollbar overflow-y-auto">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Calendar Year</label>
+<div class="flex items-center justify-between bg-surface-container-highest p-sm rounded-lg border border-outline-variant">
+<span class="text-body-md font-medium">2017</span>
+<span class="material-symbols-outlined text-outline cursor-pointer">close</span>
+</div>
+</div>
+<nav class="space-y-xs mt-lg">
+<div class="flex items-center gap-sm p-sm bg-primary-container text-on-primary-container font-bold rounded-lg transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md text-label-md">Service Delivery</span>
+</div>
+<div class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">balance</span>
+<span class="font-label-md text-label-md">Health Equity</span>
+</div>
+<div class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Health Workforce</span>
+</div>
+<div class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-label-md text-label-md">Infrastructure</span>
+</div>
+<div class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Medical Supplies</span>
+</div>
+<div class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Financing</span>
+</div>
+</nav>
+</div>
+<button class="mt-auto bg-primary text-on-primary py-sm px-md rounded-lg font-label-md text-label-md font-bold shadow-sm hover:opacity-90 active:scale-95 transition-all">
+            Apply All Filters
+        </button>
+<div class="border-t border-outline-variant pt-md mt-md flex flex-col gap-xs">
+<div class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</div>
+<div class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors cursor-pointer">
+<span class="material-symbols-outlined">download</span>
+<span class="font-label-md text-label-md">Export Data</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-28 pl-64 pb-12 pr-6">
+<div class="max-w-[1440px] mx-auto px-lg">
+<!-- Top Row KPIs -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg mb-lg">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-md flex gap-sm text-outline">
+<span class="material-symbols-outlined text-sm cursor-help hover:text-primary">info</span>
+<span class="material-symbols-outlined text-sm cursor-pointer hover:text-primary">more_vert</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase mb-sm">Pharmaceuticals wastage rate</div>
+<div class="flex items-baseline gap-xs">
+<span class="font-display-lg text-display-lg text-primary">0.68</span>
+<span class="material-symbols-outlined text-secondary font-bold" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+</div>
+<div class="font-label-md text-label-md text-secondary mt-xs">-2.4% from previous year</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-md flex gap-sm text-outline">
+<span class="material-symbols-outlined text-sm cursor-help hover:text-primary">info</span>
+<span class="material-symbols-outlined text-sm cursor-pointer hover:text-primary">more_vert</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase mb-sm">Average procurement lead time (Days)</div>
+<div class="flex items-baseline gap-xs">
+<span class="font-display-lg text-display-lg text-primary">201</span>
+<span class="material-symbols-outlined text-error font-bold" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant mt-xs">Target: 180 Days</div>
+</div>
+</div>
+<!-- Middle Row -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-lg mb-lg">
+<!-- Trend Chart -->
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold">Supply Vs Distributed (In Billion ETB) Yearly Trend</h3>
+<div class="flex items-center gap-md text-on-surface-variant">
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="font-label-md text-label-md">Distributed</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md">Procured</span>
+</div>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<div class="absolute inset-0 flex flex-col justify-between text-label-md text-outline opacity-50">
+<span>80</span><span>60</span><span>40</span><span>20</span><span>0</span>
+</div>
+<div class="absolute inset-0 pt-2 pb-6 pl-8">
+<div class="w-full h-full" style="background: linear-gradient(to top, #f8f9ff 0%, transparent 100%); position: relative;">
+<!-- Simple Visualization Replacement for Line Chart -->
+<svg class="w-full h-full overflow-visible" viewbox="0 0 100 40">
+<path d="M0,35 L14,34 L28,33 L42,30 L56,22 L70,25 L84,20 L100,10" fill="none" stroke="#004482" stroke-width="0.5"></path>
+<path d="M0,38 L14,37 L28,36 L42,34 L56,25 L70,23 L84,18 L100,5" fill="none" stroke="#006a60" stroke-dasharray="1,1" stroke-width="0.5"></path>
+<circle cx="84" cy="20" fill="#ba1a1a" r="1.5"></circle>
+</svg>
+</div>
+</div>
+<div class="absolute bottom-0 w-full flex justify-between px-8 font-label-md text-label-md text-on-surface-variant">
+<span>2010</span><span>2011</span><span>2012</span><span>2013</span><span>2014</span><span>2015</span><span>2016</span><span>2017</span>
+</div>
+</div>
+</div>
+<!-- Grouped Bar Chart -->
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold">Inventory Management &amp; Supplier Fill Rates</h3>
+<span class="material-symbols-outlined text-outline">filter_list</span>
+</div>
+<div class="space-y-md">
+<div class="space-y-xs">
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Drug Availability (%)</span>
+<span class="font-bold">85%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Forecast accuracy (%)</span>
+<span class="font-bold">72%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 72%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Stock availability</span>
+<span class="font-bold">94%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full" style="width: 94%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Local Supplier's fill rate</span>
+<span class="font-bold">61%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-error h-full" style="width: 61%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Average distribution cost</span>
+<span class="font-bold">48%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary-fixed-dim h-full" style="width: 48%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Row -->
+<div class="grid grid-cols-1 xl:grid-cols-5 gap-lg">
+<!-- Lead Times Chart -->
+<div class="xl:col-span-2 bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold mb-lg">Procurement &amp; Supply Chain Lead Times</h3>
+<div class="space-y-lg">
+<div class="flex items-center gap-md">
+<div class="w-32 font-label-md text-label-md text-on-surface-variant text-right">Vehicle out-of-service</div>
+<div class="flex-grow h-6 bg-primary/10 rounded flex items-center px-sm">
+<div class="h-4 bg-primary rounded" style="width: 15%"></div>
+<span class="ml-2 font-label-md text-label-md text-primary font-bold">12d</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 font-label-md text-label-md text-on-surface-variant text-right">Average suppliers</div>
+<div class="flex-grow h-6 bg-primary/10 rounded flex items-center px-sm">
+<div class="h-4 bg-primary rounded" style="width: 45%"></div>
+<span class="ml-2 font-label-md text-label-md text-primary font-bold">45d</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 font-label-md text-label-md text-on-surface-variant text-right">Procurement lead</div>
+<div class="flex-grow h-6 bg-primary/10 rounded flex items-center px-sm">
+<div class="h-4 bg-primary rounded" style="width: 85%"></div>
+<span class="ml-2 font-label-md text-label-md text-primary font-bold">201d</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 font-label-md text-label-md text-on-surface-variant text-right">Pharma delivery</div>
+<div class="flex-grow h-6 bg-primary/10 rounded flex items-center px-sm">
+<div class="h-4 bg-primary rounded" style="width: 5%"></div>
+<span class="ml-2 font-label-md text-label-md text-primary font-bold">3d</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="xl:col-span-3 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold">Pharmaceuticals and Medical Supplies Procurement</h3>
+<div class="flex gap-sm">
+<button class="material-symbols-outlined text-outline-variant hover:text-primary transition-colors">search</button>
+<button class="material-symbols-outlined text-outline-variant hover:text-primary transition-colors">download</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="px-md py-sm">Indicator Name</th>
+<th class="px-md py-sm">Target</th>
+<th class="px-md py-sm">Actual</th>
+<th class="px-md py-sm">% Target</th>
+<th class="px-md py-sm">Score</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md">Avg pharmaceuticals delivery time</td>
+<td class="px-md py-md">1.1</td>
+<td class="px-md py-md">3</td>
+<td class="px-md py-md">272.7</td>
+<td class="px-md py-md"><span class="bg-secondary-container text-on-secondary-fixed-variant px-sm py-xs rounded-full font-bold">Excellent</span></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<td class="px-md py-md">Stock availability</td>
+<td class="px-md py-md">70</td>
+<td class="px-md py-md">58.2</td>
+<td class="px-md py-md">83.1</td>
+<td class="px-md py-md"><span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-sm py-xs rounded-full font-bold">Good</span></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<td class="px-md py-md">Average suppliers lead time</td>
+<td class="px-md py-md">55</td>
+<td class="px-md py-md">57</td>
+<td class="px-md py-md">103.6</td>
+<td class="px-md py-md"><span class="bg-secondary-fixed text-on-secondary-fixed-variant px-sm py-xs rounded-full font-bold">On Target</span></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<td class="px-md py-md">RRF reporting rate</td>
+<td class="px-md py-md">100</td>
+<td class="px-md py-md">100</td>
+<td class="px-md py-md">100</td>
+<td class="px-md py-md"><span class="bg-secondary-fixed text-on-secondary-fixed-variant px-sm py-xs rounded-full font-bold">On Target</span></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<td class="px-md py-md">Avg procurement lead time</td>
+<td class="px-md py-md">200</td>
+<td class="px-md py-md">201</td>
+<td class="px-md py-md">100.5</td>
+<td class="px-md py-md"><span class="bg-tertiary-fixed-dim text-on-tertiary-fixed-variant px-sm py-xs rounded-full font-bold">Satisfactory</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB: Ask Health Intelligence -->
+<button class="fixed bottom-margin right-margin bg-primary text-on-primary p-md rounded-full shadow-lg flex items-center gap-sm hover:scale-105 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-label-md text-label-md font-bold pr-xs">Ask Health Intelligence</span>
+<div class="absolute -top-1 -right-1 w-3 h-3 bg-error rounded-full animate-ping"></div>
+</button>
+<!-- Institutional Footer -->
+<footer class="pl-64 pr-margin py-lg border-t border-outline-variant bg-surface-container-lowest mt-xl">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm opacity-60 grayscale hover:grayscale-0 transition-all cursor-pointer">
+<img class="h-10 w-auto" data-alt="Official logo of the Ethiopian Ministry of Health, professional government branding, clean sharp vector look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZmrJ1yAwHmuMkc5D8bOC-osEV7jezMdiX4Ycqce3rHa3FX2EFb06AWyFJom_H6Kwhsb1KLQBtG3mD8MkvCP5bz7RiMMINO0pKQWjCGEEhN78e6bAo5kYWMrE5pyHh91Ahs9j9Mun8t7XB55_CSFdJBkvcNgx_7i583-qCaRkpyAFVxV2xX-a_y_mFuBuLjKcgTjgDSOYOdyYEHnuG3HRD9CaToyhPlDK8_u4E2uHGvjeJhMwOo3wGk64rE4-b-ALOAX0Gm0RDSs0"/>
+<div class="text-on-surface-variant font-label-md text-label-md">
+<div class="font-bold">Ministry of Health</div>
+<div>Federal Democratic Republic of Ethiopia</div>
+</div>
+</div>
+</div>
+<div class="flex gap-xl text-on-surface-variant font-label-md text-label-md">
+<a class="hover:text-primary transition-colors" href="#">Data Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">System Support</a>
+<a class="hover:text-primary transition-colors" href="#">Knowledge Base</a>
+<span class="text-outline">© 2024 Ethiopia Health Intelligence</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for dashboard cards
+        document.querySelectorAll('.bg-surface-container-lowest').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+                card.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
+                card.style.transition = 'all 0.3s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+            });
+        });
+    </script>
+</body></html>

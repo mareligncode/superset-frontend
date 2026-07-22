@@ -1,0 +1,364 @@
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
+export interface FilterPanelProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+  className?: string;
+}
+
+const REGIONS = [
+  'Addis Ababa City Administration',
+  'Afar Region',
+  'Amhara Region',
+  'Benishangul Gumuz Region',
+  'Central Ethiopian Region',
+  'Dire Dawa City Administration',
+  'Gambela Region',
+  'Harari Region',
+  'Oromia Region',
+  'Sidama Region',
+  'Somali Region',
+  'South West Ethiopia Region',
+  'Southern Nations Region',
+  'Tigray Region',
+];
+
+const YEARS = ['2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017'];
+
+const FilterPanel: React.FC<FilterPanelProps> = ({
+  isOpen = true,
+  onClose,
+  className = '',
+}) => {
+  const location = useLocation();
+  const [selectedYear, setSelectedYear] = useState('2018');
+  const [selectedQuarter, setSelectedQuarter] = useState('');
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [checkedRegions, setCheckedRegions] = useState<Set<number>>(new Set());
+  const [scopeOpen, setScopeOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+
+  // Health Equity Specific States
+  const [equityDimension, setEquityDimension] = useState('Region');
+  const [equityIndicator, setEquityIndicator] = useState('MAT_Contraceptive Ac...');
+
+  const isHealthEquity = location.pathname.includes('/health-equity');
+
+  const toggleRegion = (i: number) => {
+    setCheckedRegions((prev) => {
+      const next = new Set(prev);
+      next.has(i) ? next.delete(i) : next.add(i);
+      return next;
+    });
+  };
+
+  const selectAll = () => setCheckedRegions(new Set(REGIONS.map((_, i) => i)));
+  const clearAll = () => setCheckedRegions(new Set());
+
+  return (
+    <>
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+          onClick={onClose}
+        />
+      )}
+
+      {/* Panel */}
+      <aside
+        className={`bg-white border-r border-outline-variant flex flex-col shrink-0 overflow-y-auto custom-scrollbar fixed md:relative h-full z-50 transition-all duration-200 ${
+          collapsed ? 'w-10' : 'w-[152px]'
+        } ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${className}`}
+        style={{ boxShadow: '2px 0 6px rgba(0,0,0,0.04)' }}
+      >
+        {/* Header row */}
+        <div className="flex items-center justify-between px-3 pt-3 pb-2 shrink-0">
+          {!collapsed && (
+            <span className="text-[12px] font-semibold text-on-surface">
+              Filters and controls
+            </span>
+          )}
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            className="ml-auto text-on-surface-variant hover:text-on-surface transition-colors"
+            aria-label={collapsed ? 'Expand filters' : 'Collapse filters'}
+          >
+            <span className="material-symbols-outlined text-[16px]">
+              {collapsed ? 'chevron_right' : 'remove'}
+            </span>
+          </button>
+        </div>
+
+        {!collapsed && (
+          <div className="flex flex-col gap-3 px-3 pb-4">
+            {isHealthEquity ? (
+              // ── HEALTH EQUITY SIDEBAR FILTERS ──────────────────────
+              <>
+                {/* Equity Year */}
+                <div>
+                  <label className="block text-[11px] font-semibold text-on-surface-variant mb-1 uppercase tracking-wider">
+                    Equity Year
+                  </label>
+                  <div className="flex items-center gap-1 flex-wrap">
+                    {selectedYear && (
+                      <span className="filter-tag">
+                        {selectedYear}
+                        <button onClick={() => setSelectedYear('')} aria-label="Remove year">×</button>
+                      </span>
+                    )}
+                    <select
+                      value={selectedYear}
+                      onChange={(e) => setSelectedYear(e.target.value)}
+                      className="text-[12px] text-on-surface-variant border border-outline-variant rounded px-1 py-0.5 bg-white w-full mt-1 focus:outline-none focus:border-primary"
+                    >
+                      <option value="">Select year</option>
+                      {YEARS.map((y) => (
+                        <option key={y} value={y}>{y}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Equity Dimension */}
+                <div>
+                  <label className="block text-[11px] font-semibold text-on-surface-variant mb-1 uppercase tracking-wider">
+                    Equity Dimension
+                  </label>
+                  <div className="flex items-center gap-1 flex-wrap">
+                    {equityDimension && (
+                      <span className="filter-tag">
+                        {equityDimension}
+                        <button onClick={() => setEquityDimension('')} aria-label="Remove dimension">×</button>
+                      </span>
+                    )}
+                    <select
+                      value={equityDimension}
+                      onChange={(e) => setEquityDimension(e.target.value)}
+                      className="text-[12px] text-on-surface-variant border border-outline-variant rounded px-1 py-0.5 bg-white w-full mt-1 focus:outline-none focus:border-primary"
+                    >
+                      <option value="">Select dimension</option>
+                      <option value="Region">Region</option>
+                      <option value="Wealth Quintile">Wealth Quintile</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Equity Subgroup */}
+                <div>
+                  <label className="block text-[11px] font-semibold text-on-surface-variant mb-1 uppercase tracking-wider">
+                    Equity Subgroup
+                  </label>
+                  <select
+                    className="text-[12px] text-on-surface-variant border border-outline-variant rounded px-1 py-0.5 bg-white w-full focus:outline-none focus:border-primary"
+                    disabled
+                  >
+                    <option value="">14 options</option>
+                  </select>
+                </div>
+
+                {/* Equity Indicator */}
+                <div>
+                  <label className="block text-[11px] font-semibold text-on-surface-variant mb-1 uppercase tracking-wider">
+                    Equity Indicator
+                  </label>
+                  <div className="flex items-center gap-1 flex-wrap">
+                    {equityIndicator && (
+                      <span className="filter-tag text-[10px] truncate max-w-full">
+                        {equityIndicator}
+                        <button onClick={() => setEquityIndicator('')} aria-label="Remove indicator">×</button>
+                      </span>
+                    )}
+                    <select
+                      value={equityIndicator}
+                      onChange={(e) => setEquityIndicator(e.target.value)}
+                      className="text-[12px] text-on-surface-variant border border-outline-variant rounded px-1 py-0.5 bg-white w-full mt-1 focus:outline-none focus:border-primary"
+                    >
+                      <option value="">Select indicator</option>
+                      <option value="MAT_Contraceptive Ac...">MAT_Contraceptive Ac...</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Filters out of scope (0) */}
+                <div className="border-t border-outline-variant pt-2">
+                  <button
+                    onClick={() => setScopeOpen(!scopeOpen)}
+                    className="flex items-center justify-between w-full text-left"
+                  >
+                    <span className="text-[11px] text-on-surface-variant font-medium">
+                      Filters out of scope (0)
+                    </span>
+                    <span className="material-symbols-outlined text-[14px] text-outline transition-transform" style={{ transform: scopeOpen ? 'rotate(180deg)' : '' }}>
+                      expand_more
+                    </span>
+                  </button>
+                  {scopeOpen && (
+                    <p className="text-[11px] text-on-surface-variant mt-1 leading-relaxed">
+                      No filters out of scope.
+                    </p>
+                  )}
+                </div>
+
+                {/* Disabled Apply button */}
+                <button
+                  className="w-full bg-slate-100 text-slate-400 border border-slate-200 text-[12px] font-semibold py-1.5 rounded cursor-not-allowed"
+                  disabled
+                >
+                  Apply filters
+                </button>
+              </>
+            ) : (
+              // ── STANDARD SIDEBAR FILTERS ──────────────────────────
+              <>
+                {/* Year filter — tag style */}
+                <div>
+                  <label className="block text-[11px] font-semibold text-on-surface-variant mb-1 uppercase tracking-wider">
+                    Year
+                  </label>
+                  <div className="flex items-center gap-1 flex-wrap">
+                    {selectedYear && (
+                      <span className="filter-tag">
+                        {selectedYear}
+                        <button onClick={() => setSelectedYear('')} aria-label="Remove year">×</button>
+                      </span>
+                    )}
+                    <select
+                      value={selectedYear}
+                      onChange={(e) => setSelectedYear(e.target.value)}
+                      className="text-[12px] text-on-surface-variant border border-outline-variant rounded px-1 py-0.5 bg-white w-full mt-1 focus:outline-none focus:border-primary"
+                    >
+                      <option value="">Select year</option>
+                      {YEARS.map((y) => (
+                        <option key={y} value={y}>{y}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Quarter */}
+                <div>
+                  <label className="block text-[11px] font-semibold text-on-surface-variant mb-1 uppercase tracking-wider">
+                    Quarter
+                  </label>
+                  <select
+                    value={selectedQuarter}
+                    onChange={(e) => setSelectedQuarter(e.target.value)}
+                    className="text-[12px] text-on-surface-variant border border-outline-variant rounded px-1 py-0.5 bg-white w-full focus:outline-none focus:border-primary"
+                  >
+                    <option value="">4 options</option>
+                    <option value="q1">Q1</option>
+                    <option value="q2">Q2</option>
+                    <option value="q3">Q3</option>
+                    <option value="q4">Q4</option>
+                  </select>
+                </div>
+
+                {/* Month */}
+                <div>
+                  <label className="block text-[11px] font-semibold text-on-surface-variant mb-1 uppercase tracking-wider">
+                    Month
+                  </label>
+                  <select
+                    value={selectedMonth}
+                    onChange={(e) => setSelectedMonth(e.target.value)}
+                    className="text-[12px] text-on-surface-variant border border-outline-variant rounded px-1 py-0.5 bg-white w-full focus:outline-none focus:border-primary"
+                  >
+                    <option value="">11 options</option>
+                    {['Meskerem','Tikimt','Hidar','Tahsas','Tir','Yekatit','Megabit','Miazia','Ginbot','Sene','Hamle','Nehase'].map((m) => (
+                      <option key={m} value={m}>{m}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Org Unit tree */}
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">
+                      Org Unit
+                    </label>
+                    <div className="flex gap-2">
+                      <button onClick={selectAll} className="text-[10px] text-primary hover:underline font-medium">
+                        Select all
+                      </button>
+                      <button onClick={clearAll} className="text-[10px] text-on-surface-variant hover:underline">
+                        Clear
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="bg-surface-container-low border border-outline-variant rounded overflow-y-auto custom-scrollbar max-h-52 space-y-0.5 p-1">
+                    {REGIONS.map((region, i) => (
+                      <label
+                        key={region}
+                        className="flex items-start gap-1.5 px-1 py-0.5 rounded hover:bg-surface-container cursor-pointer"
+                      >
+                        <span className="material-symbols-outlined text-[13px] text-outline mt-0.5 shrink-0">
+                          {checkedRegions.has(i) ? 'indeterminate_check_box' : 'add_box'}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <input
+                            type="checkbox"
+                            checked={checkedRegions.has(i)}
+                            onChange={() => toggleRegion(i)}
+                            className="w-3 h-3 shrink-0 mt-0.5"
+                          />
+                          <span className="text-[11px] text-on-surface leading-tight">
+                            {region}
+                          </span>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Filters out of scope */}
+                <div className="border-t border-outline-variant pt-2">
+                  <button
+                    onClick={() => setScopeOpen(!scopeOpen)}
+                    className="flex items-center justify-between w-full text-left"
+                  >
+                    <span className="text-[11px] text-on-surface-variant font-medium">
+                      Filters out of scope (II)
+                    </span>
+                    <span className="material-symbols-outlined text-[14px] text-outline transition-transform" style={{ transform: scopeOpen ? 'rotate(180deg)' : '' }}>
+                      expand_more
+                    </span>
+                  </button>
+                  {scopeOpen && (
+                    <p className="text-[11px] text-on-surface-variant mt-1 leading-relaxed">
+                      Extended regional data filters and demographic overlays.
+                    </p>
+                  )}
+                </div>
+
+                {/* Apply button */}
+                <button className="w-full bg-primary text-on-primary text-[12px] font-semibold py-1.5 rounded hover:bg-primary/90 transition-colors">
+                  Apply filters
+                </button>
+              </>
+            )}
+
+            {/* Clear All Link */}
+            <button
+              onClick={() => {
+                setSelectedYear('2018');
+                setSelectedQuarter('');
+                setSelectedMonth('');
+                setCheckedRegions(new Set());
+                setEquityDimension('Region');
+                setEquityIndicator('MAT_Contraceptive Ac...');
+              }}
+              className="text-[11px] text-on-surface-variant hover:text-primary transition-colors text-center w-full mt-1 hover:underline"
+            >
+              Clear all
+            </button>
+          </div>
+        )}
+      </aside>
+    </>
+  );
+};
+
+export default FilterPanel;

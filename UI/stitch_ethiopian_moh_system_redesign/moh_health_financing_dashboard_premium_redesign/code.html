@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Health Financing Dashboard | Ethiopian Ministry of Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#cbdbf5",
+                        "background": "#f8f9ff",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "outline": "#727783",
+                        "on-tertiary-fixed": "#002204",
+                        "surface-variant": "#d3e4fe",
+                        "outline-variant": "#c1c6d3",
+                        "surface-container-low": "#eff4ff",
+                        "tertiary": "#005011",
+                        "tertiary-fixed": "#a3f69c",
+                        "on-secondary-fixed-variant": "#005048",
+                        "primary": "#004482",
+                        "on-error-container": "#93000a",
+                        "surface": "#f8f9ff",
+                        "on-primary-fixed-variant": "#004786",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#414751",
+                        "surface-container": "#e5eeff",
+                        "on-primary-fixed": "#001c3b",
+                        "on-tertiary-container": "#95e88f",
+                        "secondary-container": "#8ef4e4",
+                        "on-error": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "inverse-surface": "#213145",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#88d982",
+                        "secondary-fixed": "#8ef4e4",
+                        "primary-fixed-dim": "#a6c8ff",
+                        "on-background": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dce9ff",
+                        "surface-tint": "#095fae",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-primary-container": "#bdd6ff",
+                        "inverse-primary": "#a6c8ff",
+                        "primary-fixed": "#d5e3ff",
+                        "primary-container": "#005cab",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#72d8c8",
+                        "secondary": "#006a60",
+                        "on-secondary-fixed": "#00201c",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#186a21",
+                        "on-secondary-container": "#007166"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "max_width": "1440px",
+                        "gutter": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-grid {
+            background-image: radial-gradient(circle, #c1c6d3 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.1;
+        }
+        .bento-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant fixed top-0 w-full z-50 h-16">
+<div class="flex justify-between items-center w-full px-margin h-full max-w-max_width mx-auto">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+</div>
+<h1 class="text-title-lg font-title-lg font-bold text-primary">Ethiopian Ministry of Health</h1>
+</div>
+<nav class="hidden md:flex items-center gap-xl h-full">
+<a class="text-on-surface-variant font-medium hover:bg-surface-container transition-colors px-3 py-2 rounded-md" href="#">Home</a>
+<a class="text-primary border-b-2 border-primary font-bold pb-1 flex items-center gap-1" href="#">Dashboards</a>
+<a class="text-on-surface-variant font-medium hover:bg-surface-container transition-colors px-3 py-2 rounded-md" href="#">Charts</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">light_mode</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-sm bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant">
+<img class="w-7 h-7 rounded-full object-cover" data-alt="Close-up headshot of a professional healthcare administrator with a warm smile, wearing a dark blue suit against a clean, modern architectural background. The lighting is bright and corporate, matching the institutional health intelligence style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJhXESYZr6jA0boddzVSSgza664247xATVn9HeORBbVY1Yh473kMhcg9DAedgV4DrowB_C0-zZfMP5pfNm-_NGoiu2YeDkNUnI4ZPKeDg-vQaR_5-w6Yn37ddUY5Lk5Nucu5U1PaBfzpBVJ7kMrpsAiEoeayvPX6HhMaiigbenAO5ei7u5x8IAlwqj5od98L3JwmuPQtTN9WzoszjnxfJaUyeWyoaOaO2Wi__Dnhf_dBLT-tbRK42dQbLiWI9HTz7eB6AcnQLmhP8"/>
+<span class="text-label-md font-label-md font-bold text-on-surface">Settings</span>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex pt-16 flex-1 h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="w-80 bg-surface-container-low border-r border-outline-variant flex flex-col h-full overflow-y-auto hidden lg:flex shrink-0">
+<div class="p-md flex flex-col gap-md">
+<div class="flex flex-col gap-xs">
+<h2 class="text-title-lg font-title-lg font-bold text-on-surface">Filters and controls</h2>
+<p class="text-label-md font-label-md text-on-surface-variant">Global Dashboard Filters</p>
+</div>
+<div class="space-y-md">
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md font-bold text-on-surface-variant">Calendar Year</label>
+<select class="w-full bg-surface border border-outline-variant rounded-lg p-2.5 text-body-md focus:ring-2 focus:ring-primary focus:border-primary">
+<option>2017</option>
+<option>2016</option>
+<option>2015</option>
+</select>
+</div>
+</div>
+<button class="w-full py-2.5 bg-primary-container text-on-primary font-bold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    Apply filters
+                </button>
+</div>
+<div class="mt-4 border-t border-outline-variant p-md">
+<p class="text-label-md font-label-md font-bold text-outline mb-4 uppercase tracking-wider">Health Categories</p>
+<nav class="flex flex-col gap-1">
+<button class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">clinical_notes</span>
+<span class="text-label-md font-label-md">Services Delivery</span>
+</button>
+<button class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">balance</span>
+<span class="text-label-md font-label-md">Health Equity</span>
+</button>
+<button class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">group</span>
+<span class="text-label-md font-label-md">Health Work Force</span>
+</button>
+<button class="flex items-center gap-md p-md bg-primary-container text-on-primary-container rounded-lg font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="text-label-md font-label-md">Health Financing</span>
+</button>
+<button class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="text-label-md font-label-md">Supply and Logistics</span>
+</button>
+</nav>
+</div>
+<div class="mt-auto border-t border-outline-variant p-md bg-surface-container-lowest">
+<nav class="flex flex-col gap-1">
+<button class="flex items-center gap-md p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</button>
+<button class="flex items-center gap-md p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">help</span>
+<span class="text-label-md font-label-md">Help Center</span>
+</button>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-background p-lg lg:p-xl space-y-xl scroll-smooth">
+<!-- Breadcrumbs / Top Indicator Row -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="text-label-md font-label-md">Dashboards</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-label-md font-label-md font-bold text-primary">Health Financing Analysis</span>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant rounded-md text-label-md font-bold hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span> Export Data
+                    </button>
+<button class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant rounded-md text-label-md font-bold hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">share</span> Share
+                    </button>
+</div>
+</div>
+<!-- 1. Key Metrics Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-surface p-xl rounded-xl border border-outline-variant bento-card relative overflow-hidden">
+<div class="absolute inset-0 chart-grid"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-sm">
+<span class="text-label-md font-label-md font-bold text-on-surface-variant uppercase tracking-widest">Eligible Households</span>
+<span class="material-symbols-outlined text-primary">family_history</span>
+</div>
+<div class="text-display-lg font-display-lg text-primary">16,370,044</div>
+<div class="flex items-center gap-1 mt-xs text-secondary font-bold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="text-label-md font-label-md">+4.2% from last year</span>
+</div>
+</div>
+</div>
+<div class="bg-surface p-xl rounded-xl border border-outline-variant bento-card relative overflow-hidden">
+<div class="absolute inset-0 chart-grid"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-sm">
+<span class="text-label-md font-label-md font-bold text-on-surface-variant uppercase tracking-widest">CBHI Member Households</span>
+<span class="material-symbols-outlined text-primary">group_add</span>
+</div>
+<div class="text-display-lg font-display-lg text-primary">13,673,066</div>
+<p class="text-body-md text-on-surface-variant mt-xs">Covering nearly 73M population</p>
+</div>
+</div>
+<div class="bg-surface p-xl rounded-xl border border-outline-variant bento-card relative overflow-hidden">
+<div class="absolute inset-0 chart-grid"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-sm">
+<span class="text-label-md font-label-md font-bold text-on-surface-variant uppercase tracking-widest">Share of Govt Budget (%)</span>
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</div>
+<div class="text-display-lg font-display-lg text-primary">12.1%</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full mt-lg overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 12.1%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Primary Data Visualizations -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Trend in Health Budget Share -->
+<div class="bg-surface rounded-xl border border-outline-variant bento-card flex flex-col">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Trend in Health Budget Share</h3>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 text-label-md font-bold"><span class="w-2 h-2 rounded-full bg-primary"></span> Total Budget</span>
+<span class="flex items-center gap-1 text-label-md font-bold text-outline"><span class="w-2 h-2 rounded-full bg-outline"></span> Inv</span>
+</div>
+</div>
+<div class="p-lg h-80 relative">
+<div class="absolute inset-0 m-lg border-l border-b border-outline-variant flex items-end">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 500 200">
+<path d="M0,150 L100,140 L200,135 L300,130 L400,138 L500,142" fill="none" stroke="#004482" stroke-linecap="round" stroke-width="3"></path>
+<circle cx="0" cy="150" fill="#004482" r="4"></circle>
+<circle cx="100" cy="140" fill="#004482" r="4"></circle>
+<circle cx="200" cy="135" fill="#004482" r="4"></circle>
+<circle cx="300" cy="130" fill="#004482" r="4"></circle>
+<circle cx="400" cy="138" fill="#004482" r="4"></circle>
+<circle cx="500" cy="142" fill="#004482" r="4"></circle>
+</svg>
+</div>
+<div class="absolute bottom-4 left-16 right-lg flex justify-between text-label-md text-on-surface-variant font-bold">
+<span>2012</span><span>2013</span><span>2014</span><span>2015</span><span>2016</span><span>2017</span>
+</div>
+</div>
+</div>
+<!-- Budget Share by Region -->
+<div class="bg-surface rounded-xl border border-outline-variant bento-card flex flex-col">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Budget Share by Region</h3>
+<button class="p-1 hover:bg-surface-container rounded-md"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="p-lg flex flex-wrap gap-2 h-80">
+<div class="flex-1 min-w-[30%] bg-primary-container/20 border border-primary/20 rounded p-sm flex flex-col justify-center items-center text-center">
+<span class="text-label-md font-bold text-primary">Addis Ababa</span>
+<span class="text-headline-sm font-bold text-primary">24.1%</span>
+</div>
+<div class="flex-1 min-w-[20%] bg-secondary-container/20 border border-secondary/20 rounded p-sm flex flex-col justify-center items-center text-center">
+<span class="text-label-md font-bold text-on-secondary-container">Oromia</span>
+<span class="text-headline-sm font-bold text-on-secondary-container">18.5%</span>
+</div>
+<div class="flex-1 min-w-[20%] bg-tertiary-fixed border border-tertiary/20 rounded p-sm flex flex-col justify-center items-center text-center">
+<span class="text-label-md font-bold text-tertiary">Amhara</span>
+<span class="text-headline-sm font-bold text-tertiary">15.2%</span>
+</div>
+<div class="w-full grid grid-cols-4 gap-2">
+<div class="bg-surface-container p-sm rounded border border-outline-variant text-center">
+<span class="block text-label-md font-bold truncate">Tigray</span>
+<span class="block text-label-md font-medium">9.1%</span>
+</div>
+<div class="bg-surface-container p-sm rounded border border-outline-variant text-center">
+<span class="block text-label-md font-bold truncate">Sidama</span>
+<span class="block text-label-md font-medium">7.4%</span>
+</div>
+<div class="bg-surface-container p-sm rounded border border-outline-variant text-center">
+<span class="block text-label-md font-bold truncate">Somali</span>
+<span class="block text-label-md font-medium">6.8%</span>
+</div>
+<div class="bg-surface-container p-sm rounded border border-outline-variant text-center">
+<span class="block text-label-md font-bold truncate">Afar</span>
+<span class="block text-label-md font-medium">4.2%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. CBHI Coverage & SDG Disbursement -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<div class="lg:col-span-2 bg-surface rounded-xl border border-outline-variant bento-card flex flex-col">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">CBHI Coverage by Region</h3>
+<div class="flex gap-4">
+<span class="flex items-center gap-1 text-label-md font-bold"><span class="w-2 h-2 rounded-full bg-primary"></span> Members</span>
+<span class="flex items-center gap-1 text-label-md font-bold"><span class="w-2 h-2 rounded-full bg-secondary"></span> Renewal</span>
+</div>
+</div>
+<div class="p-lg overflow-x-auto">
+<div class="flex items-end gap-md h-64 min-w-[600px] border-b border-outline-variant px-sm pb-1">
+<!-- Bars Simulation -->
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-12 bg-primary rounded-t-sm" style="height: 80%"></div>
+<div class="w-12 bg-secondary rounded-t-sm" style="height: 65%"></div>
+<span class="text-label-md font-bold mt-2">Addis</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-12 bg-primary rounded-t-sm" style="height: 55%"></div>
+<div class="w-12 bg-secondary rounded-t-sm" style="height: 45%"></div>
+<span class="text-label-md font-bold mt-2">Afar</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-12 bg-primary rounded-t-sm" style="height: 90%"></div>
+<div class="w-12 bg-secondary rounded-t-sm" style="height: 75%"></div>
+<span class="text-label-md font-bold mt-2">Amhara</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-12 bg-primary rounded-t-sm" style="height: 70%"></div>
+<div class="w-12 bg-secondary rounded-t-sm" style="height: 60%"></div>
+<span class="text-label-md font-bold mt-2">Dire Dawa</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-12 bg-primary rounded-t-sm" style="height: 65%"></div>
+<div class="w-12 bg-secondary rounded-t-sm" style="height: 55%"></div>
+<span class="text-label-md font-bold mt-2">Harari</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface rounded-xl border border-outline-variant bento-card flex flex-col">
+<div class="p-lg border-b border-outline-variant">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">SDG Disbursement Rate</h3>
+</div>
+<div class="p-lg space-y-md">
+<div class="space-y-sm">
+<div class="flex justify-between text-label-md font-bold"><span>WHO</span> <span>92%</span></div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 92%"></div>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-label-md font-bold"><span>UNICEF</span> <span>85%</span></div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-label-md font-bold"><span>USAID</span> <span>78%</span></div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full" style="width: 78%"></div>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-label-md font-bold"><span>GAVI</span> <span>95%</span></div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 95%"></div>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-label-md font-bold"><span>UNFPA</span> <span>64%</span></div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full" style="width: 64%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. Bottom Analysis Row -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<div class="bg-surface rounded-xl border border-outline-variant bento-card flex flex-col">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Health Service Utilization</h3>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 text-label-md font-bold"><span class="w-2 h-2 rounded-full bg-primary"></span> PHC</span>
+<span class="flex items-center gap-1 text-label-md font-bold text-secondary"><span class="w-2 h-2 rounded-full bg-secondary"></span> Hospital</span>
+</div>
+</div>
+<div class="p-lg h-64 relative">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 500 150">
+<!-- PHC Line -->
+<path d="M0,100 L100,85 L200,60 L300,50 L400,45 L500,40" fill="none" stroke="#004482" stroke-width="2.5"></path>
+<!-- Hospital Line -->
+<path d="M0,130 L100,125 L200,120 L300,110 L400,105 L500,100" fill="none" stroke="#006a60" stroke-dasharray="4" stroke-width="2.5"></path>
+</svg>
+<div class="absolute bottom-4 left-lg right-lg flex justify-between text-label-md text-on-surface-variant font-bold">
+<span>2012</span><span>2013</span><span>2014</span><span>2015</span><span>2016</span><span>2017</span>
+</div>
+</div>
+</div>
+<div class="bg-surface rounded-xl border border-outline-variant bento-card flex flex-col">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">SDG Performance Fund Disbursement</h3>
+<span class="text-label-md font-bold text-on-surface-variant">USD Millions</span>
+</div>
+<div class="p-lg h-64 flex items-end justify-between gap-4">
+<div class="flex flex-col items-center gap-1 group w-full">
+<div class="w-full bg-primary-container rounded-t-sm" style="height: 40%"></div>
+<span class="text-label-md font-bold">2011</span>
+</div>
+<div class="flex flex-col items-center gap-1 group w-full">
+<div class="w-full bg-primary-container rounded-t-sm" style="height: 65%"></div>
+<span class="text-label-md font-bold">2012</span>
+</div>
+<div class="flex flex-col items-center gap-1 group w-full">
+<div class="w-full bg-primary-container rounded-t-sm" style="height: 80%"></div>
+<span class="text-label-md font-bold">2013</span>
+</div>
+<div class="flex flex-col items-center gap-1 group w-full">
+<div class="w-full bg-primary-container rounded-t-sm" style="height: 55%"></div>
+<span class="text-label-md font-bold">2014</span>
+</div>
+<div class="flex flex-col items-center gap-1 group w-full">
+<div class="w-full bg-primary-container rounded-t-sm" style="height: 45%"></div>
+<span class="text-label-md font-bold">2015</span>
+</div>
+<div class="flex flex-col items-center gap-1 group w-full">
+<div class="w-full bg-primary-container rounded-t-sm" style="height: 60%"></div>
+<span class="text-label-md font-bold">2016</span>
+</div>
+<div class="flex flex-col items-center gap-1 group w-full">
+<div class="w-full bg-primary-container rounded-t-sm" style="height: 70%"></div>
+<span class="text-label-md font-bold">2017</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-background border-t border-outline-variant py-lg mt-xl">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin max-w-max_width mx-auto gap-md">
+<p class="text-label-md font-label-md text-on-surface-variant">© 2024 Ethiopian Ministry of Health. All rights reserved.</p>
+<div class="flex gap-xl">
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Terms of Service</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Data Governance</a>
+</div>
+</div>
+</footer>
+</main>
+</div>
+<!-- AI Assistant Floating Button -->
+<div class="fixed bottom-8 right-8 z-[60]">
+<button class="flex items-center gap-3 bg-primary text-on-primary px-6 py-4 rounded-full shadow-2xl hover:scale-105 transition-transform group" id="ai-assistant-btn">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">auto_awesome</span>
+<span class="font-bold">Ask Health Intelligence</span>
+</button>
+<!-- AI Panel (hidden by default) -->
+<div class="hidden absolute bottom-20 right-0 w-96 bg-surface rounded-2xl border border-outline shadow-2xl overflow-hidden flex flex-col" id="ai-panel">
+<div class="bg-primary p-md text-on-primary flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-bold">Intelligence Hub</span>
+</div>
+<button class="hover:bg-white/10 rounded-full p-1" onclick="document.getElementById('ai-panel').classList.add('hidden')"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="p-md h-80 overflow-y-auto space-y-md">
+<div class="bg-surface-container-low p-md rounded-lg text-body-md">
+                    Hello! I'm your health data analyst. How can I help you understand the financing trends today?
+                </div>
+<div class="bg-primary-container text-on-primary-container p-md rounded-lg text-body-md self-end ml-12">
+                    What's driving the budget increase in Addis Ababa?
+                </div>
+<div class="bg-surface-container-low p-md rounded-lg text-body-md">
+                    The increase is primarily driven by expansion of CBHI infrastructure and urban primary healthcare modernization projects started in Q1...
+                </div>
+</div>
+<div class="p-md border-t border-outline-variant bg-surface-container-lowest">
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant rounded-full px-4 py-2 text-body-md pr-12 focus:ring-1 focus:ring-primary focus:border-primary" placeholder="Type your query..." type="text"/>
+<button class="absolute right-2 top-1.5 p-1 text-primary"><span class="material-symbols-outlined">send</span></button>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // AI Assistant Toggle logic
+        const aiBtn = document.getElementById('ai-assistant-btn');
+        const aiPanel = document.getElementById('ai-panel');
+
+        aiBtn.addEventListener('click', () => {
+            aiPanel.classList.toggle('hidden');
+        });
+
+        // Simple animation for the bars on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.bg-primary-container, .bg-primary, .bg-secondary');
+            bars.forEach(bar => {
+                const height = bar.style.height;
+                bar.style.height = '0';
+                setTimeout(() => {
+                    bar.style.transition = 'height 1s cubic-bezier(0.16, 1, 0.3, 1)';
+                    bar.style.height = height;
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html><html lang="en" class="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><meta charset="utf-8"><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f8f9ff",
+                        "inverse-primary": "#a6c8ff",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#095fae",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary-container": "#bdd6ff",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "tertiary": "#005011",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-background": "#0b1c30",
+                        "tertiary-container": "#186a21",
+                        "outline-variant": "#c1c6d3",
+                        "on-secondary-container": "#007166",
+                        "tertiary-fixed-dim": "#88d982",
+                        "on-primary-fixed": "#001c3b",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-high": "#dce9ff",
+                        "error": "#ba1a1a",
+                        "outline": "#727783",
+                        "inverse-surface": "#213145",
+                        "secondary-fixed-dim": "#72d8c8",
+                        "primary-fixed": "#d5e3ff",
+                        "secondary-container": "#8ef4e4",
+                        "surface-container": "#e5eeff",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-container": "#95e88f",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#a3f69c",
+                        "on-surface-variant": "#414751",
+                        "primary-fixed-dim": "#a6c8ff",
+                        "surface-container-low": "#eff4ff",
+                        "primary-container": "#005cab",
+                        "on-primary-fixed-variant": "#004786",
+                        "secondary": "#006a60",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-fixed": "#8ef4e4",
+                        "on-secondary-fixed-variant": "#005048",
+                        "surface": "#f8f9ff",
+                        "primary": "#004482",
+                        "on-surface": "#0b1c30",
+                        "on-tertiary-fixed": "#002204",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#00201c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "max_width": "1440px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "margin": "32px",
+                        "base": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "sans": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "title-lg": ["Inter"]
+                    }
+                },
+            },
+        }
+    }catch(_e){}</script></head><body class="bg-background text-on-surface font-sans selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 bg-surface border-b border-outline-variant flex justify-between items-center w-full px-margin h-16 max-w-max_width mx-auto">
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm gap-md">
+<img class="h-10 w-auto" data-alt="Official logo of the Ethiopian Ministry of Health featuring the emblem of Ethiopia in a professional gold and blue circular design, high-resolution vector style suitable for a governmental health platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXxpnt-Mcm41q5C30lHYqy6c0IasJvI3I1bCPvGWFLMsYPzg4qdx9ZK4bdJlD6-Pmvx_7U9Y-Vyr4CZbHCN7uKPQVzeMSgFHiTXX0qTi1zkxvGo0T7CZgkgYDbKrK5AUNV0CCFyZsoDjbE4n1W5fsxaMVvocJRYlrCzhVWtJ2SB_VUnJjUEii2bNDVevVOJnag6VaxoKzVGUx6sFyZqiHssKpEw549UhAo0pRFq9VlaV1QH6Zy8LZXyJ4cmHxj6EfwRASvLQ_nmSo">
+<span class="text-title-lg font-title-lg font-bold text-primary">Ethiopian Ministry of Health</span>
+</div>
+<nav class="hidden md:flex items-center ml-xl gap-lg">
+<a class="text-primary border-b-2 border-primary font-bold pb-1 text-label-md font-label-md" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors text-label-md font-label-md" href="#">Dashboards</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors text-label-md font-label-md" href="#">Charts</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-on-surface-variant" data-original-icon="light_mode">light_mode</span></button>
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant" data-original-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-sm"></div>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container p-xs rounded-lg transition-colors">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-xs font-bold">JD</div>
+<span class="text-label-md font-label-md font-semibold text-on-surface">Settings</span>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div><button class="p-sm rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-on-surface-variant">more_vert</span></button>
+</div>
+</header>
+<div class="flex h-[calc(100vh-64px)] overflow-hidden">
+<!-- SideNavBar / Filters and controls -->
+<aside class="w-80 bg-surface-container-low border-r border-outline-variant flex flex-col shrink-0 overflow-y-auto custom-scrollbar">
+<div class="p-md space-y-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Filters and controls</h2>
+<p class="text-label-md font-label-md text-on-surface-variant">Global Dashboard Filters</p>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary">filter_list_off</button>
+</div>
+<!-- Filter Controls -->
+<div class="space-y-sm">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Year</label>
+<div class="relative">
+<select class="w-full bg-surface border border-outline-variant rounded-lg px-md py-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary appearance-none">
+<option>2018</option>
+<option>2019</option>
+<option>2020</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Quarter</label>
+<div class="relative">
+<select class="w-full bg-surface border border-outline-variant rounded-lg px-md py-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary appearance-none">
+<option>4 options</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Month</label>
+<div class="relative">
+<select class="w-full bg-surface border border-outline-variant rounded-lg px-md py-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary appearance-none">
+<option>11 options</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Org Unit Tree -->
+<div>
+<div class="flex justify-between items-center mb-sm">
+<label class="text-label-md font-label-md text-on-surface-variant font-bold">Org Unit</label>
+<div class="flex gap-sm">
+<button class="text-[10px] text-primary font-bold uppercase tracking-wider">Select all</button>
+<button class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Clear</button>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant rounded-lg p-sm space-y-sm max-h-96 overflow-y-auto custom-scrollbar">
+<!-- Hierarchy Item -->
+<div class="space-y-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-sm text-outline">add_box</span>
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+<span class="text-body-md text-on-surface">Addis Ababa City Administration</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-sm text-outline">add_box</span>
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+<span class="text-body-md text-on-surface">Afar Region</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-sm text-outline">add_box</span>
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+<span class="text-body-md text-on-surface">Amhara Region</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-sm text-outline">add_box</span>
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+<span class="text-body-md text-on-surface">Benishangul Gumuz Region</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-sm text-outline">indeterminate_check_box</span>
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+<span class="text-body-md text-on-surface">Central Ethiopian Region</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-sm">
+<details class="group border-t border-outline-variant">
+<summary class="flex justify-between items-center py-md cursor-pointer list-none">
+<span class="text-label-md font-label-md font-bold text-on-surface-variant">Filters out of scope (II)</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="pb-md text-body-md text-on-surface-variant px-sm">
+                            Extended regional data filters and demographic overlays.
+                        </div>
+</details>
+</div>
+<button class="w-full bg-primary text-on-primary py-sm rounded-lg font-bold hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-[0.98]">
+                    Apply filters
+                </button>
+</div>
+<!-- SideNav Footer -->
+<div class="mt-auto p-md border-t border-outline-variant bg-surface-container-low">
+<div class="space-y-sm">
+<button class="flex items-center gap-md w-full p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md font-medium">Settings</span>
+</button>
+<button class="flex items-center gap-md w-full p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">help</span>
+<span class="text-label-md font-label-md font-medium">Help Center</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Dashboard Canvas -->
+<main class="flex-1 overflow-y-auto bg-background p-lg relative scroll-smooth">
+<!-- Category Navigation (Tabs Level 1) -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm mb-lg overflow-x-auto scrollbar-hide">
+<div class="flex whitespace-nowrap min-w-max px-lg">
+<button class="px-md py-lg text-label-md font-label-md tab-active">Services Delivery</button>
+<button class="px-md py-lg text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">Health Equity</button>
+<button class="px-md py-lg text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">Health Work Force</button>
+<button class="px-md py-lg text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">Health Financing</button>
+<button class="px-md py-lg text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">Supply and Logistics</button>
+<button class="px-md py-lg text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">Blood Donation</button>
+<button class="px-md py-lg text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">PHEM</button>
+<button class="px-md py-lg text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">Infrastructure</button>
+<button class="px-md py-lg text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">PHC</button>
+<button class="px-md py-lg text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">Digital Systems Monitoring</button>
+</div>
+</div>
+<!-- Domain Navigation (Tabs Level 2) -->
+<div class="flex items-center gap-sm mb-lg">
+<button class="bg-primary-container text-on-primary-container px-md py-sm rounded-full text-label-md font-label-md font-bold">Family Planning</button>
+<button class="hover:bg-surface-container px-md py-sm rounded-full text-label-md font-label-md text-on-surface-variant transition-colors">Maternal</button>
+<button class="hover:bg-surface-container px-md py-sm rounded-full text-label-md font-label-md text-on-surface-variant transition-colors">Neonatal</button>
+<button class="hover:bg-surface-container px-md py-sm rounded-full text-label-md font-label-md text-on-surface-variant transition-colors">NCD</button>
+<button class="hover:bg-surface-container px-md py-sm rounded-full text-label-md font-label-md text-on-surface-variant transition-colors">Malaria</button>
+<button class="hover:bg-surface-container px-md py-sm rounded-full text-label-md font-label-md text-on-surface-variant transition-colors">HIV</button>
+<button class="hover:bg-surface-container px-md py-sm rounded-full text-label-md font-label-md text-on-surface-variant transition-colors">TB</button>
+</div>
+<!-- Dashboard Grid -->
+<div class="chart-grid pb-xl">
+<!-- Chart 1: Line Chart -->
+<div class="bg-surface rounded-xl border border-outline-variant p-md shadow-sm flex flex-col h-96">
+<div class="flex justify-between items-start mb-lg">
+<div class="flex flex-col">
+<h3 class="text-title-lg font-bold text-on-surface">Contraceptive Acceptance Rate from DHIS2</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-label-md text-on-surface-variant">Performance</span>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">info</button>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+</div>
+</div>
+<div class="flex-1 relative flex items-end">
+<div class="w-full h-full bg-surface-container-low rounded flex items-center justify-center border border-dashed border-outline-variant overflow-hidden">
+<!-- SVG Placeholder for Line Chart -->
+<svg class="w-full h-full" viewBox="0 0 800 200">
+<path d="M0,150 Q50,145 100,140 T200,135 T300,145 T400,130 T500,120 T600,125 T700,115 T800,120" fill="none" stroke="#005cab" stroke-width="3"></path>
+<path d="M0,150 Q50,145 100,140 T200,135 T300,145 T400,130 T500,120 T600,125 T700,115 T800,120 V200 H0 Z" fill="#005cab" fill-opacity="0.1"></path>
+</svg>
+</div>
+<!-- Custom Labels -->
+<div class="absolute bottom-0 left-0 right-0 flex justify-between px-md py-xs text-[10px] text-on-surface-variant font-medium bg-surface/80">
+<span class="">01-Hamle</span><span class="">02-Nehase</span><span class="">03-Meskerem</span><span class="">04-Tikimt</span><span class="">05-Hidar</span><span class="">06-Tahsas</span><span class="">07-Tir</span><span class="">08-Yekatit</span><span class="">09-Megabit</span><span class="">10-Miazia</span><span class="">11-Ginbot</span>
+</div>
+</div>
+</div>
+<!-- Chart 2: Donut Chart -->
+<div class="bg-surface rounded-xl border border-outline-variant p-md shadow-sm flex flex-col h-96">
+<div class="flex justify-between items-start mb-lg">
+<h3 class="text-title-lg font-bold text-on-surface">Contraceptive New &amp; Repeat Acceptors By Age</h3>
+<div class="flex gap-sm">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">info</button>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+</div>
+</div>
+<div class="flex-1 flex items-center justify-center relative">
+<div class="relative w-56 h-56 rounded-full border-[18px] border-primary" style="border-color: #006a60 #005cab #ba1a1a #005011;">
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-headline-sm font-bold text-on-surface">145.8k</span>
+<span class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest">Total Users</span>
+</div>
+</div>
+<div class="ml-lg space-y-sm">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-sm bg-[#ba1a1a]"></span>
+<span class="text-label-md font-medium text-on-surface-variant">30-49 Years (32.3k)</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-sm bg-[#005cab]"></span>
+<span class="text-label-md font-medium text-on-surface-variant">25-29 Years (46.4k)</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-sm bg-[#006a60]"></span>
+<span class="text-label-md font-medium text-on-surface-variant">20-24 Years (45.5k)</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-sm bg-[#005011]"></span>
+<span class="text-label-md font-medium text-on-surface-variant">15-19 Years (21.6k)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart 3: Grouped Bar Chart -->
+<div class="bg-surface rounded-xl border border-outline-variant p-md shadow-sm flex flex-col h-96">
+<div class="flex justify-between items-start mb-lg">
+<h3 class="text-title-lg font-bold text-on-surface">Current Use Of Any Contraceptive Methods (EDHS)</h3>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-sm bg-primary-container"></span>
+<span class="text-[10px] font-bold text-on-surface-variant">Current Use</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-sm bg-error"></span>
+<span class="text-[10px] font-bold text-on-surface-variant">Unmet Need</span>
+</div>
+<button class="material-symbols-outlined text-outline ml-sm">more_vert</button>
+</div>
+</div>
+<div class="flex-1 flex items-end gap-lg px-md pb-sm border-b border-outline-variant">
+<!-- Bars 2000 -->
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full flex justify-center items-end gap-1 h-full">
+<div class="w-6 bg-primary-container rounded-t h-[15%]"></div>
+<div class="w-6 bg-error rounded-t h-[65%]"></div>
+</div>
+<span class="text-[10px] mt-sm font-bold text-on-surface-variant">2000</span>
+</div>
+<!-- Bars 2005 -->
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full flex justify-center items-end gap-1 h-full">
+<div class="w-6 bg-primary-container rounded-t h-[25%]"></div>
+<div class="w-6 bg-error rounded-t h-[60%]"></div>
+</div>
+<span class="text-[10px] mt-sm font-bold text-on-surface-variant">2005</span>
+</div>
+<!-- Bars 2011 -->
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full flex justify-center items-end gap-1 h-full">
+<div class="w-6 bg-primary-container rounded-t h-[45%]"></div>
+<div class="w-6 bg-error rounded-t h-[40%]"></div>
+</div>
+<span class="text-[10px] mt-sm font-bold text-on-surface-variant">2011</span>
+</div>
+<!-- Bars 2016 -->
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full flex justify-center items-end gap-1 h-full">
+<div class="w-6 bg-primary-container rounded-t h-[55%]"></div>
+<div class="w-6 bg-error rounded-t h-[35%]"></div>
+</div>
+<span class="text-[10px] mt-sm font-bold text-on-surface-variant">2016</span>
+</div>
+<!-- Bars 2019 -->
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full flex justify-center items-end gap-1 h-full">
+<div class="w-6 bg-primary-container rounded-t h-[65%]"></div>
+<div class="w-6 bg-error rounded-t h-[25%]"></div>
+</div>
+<span class="text-[10px] mt-sm font-bold text-on-surface-variant">2019</span>
+</div>
+</div>
+</div>
+<!-- Chart 4: Treemap -->
+<div class="bg-surface rounded-xl border border-outline-variant p-md shadow-sm flex flex-col h-96">
+<div class="flex justify-between items-start mb-lg">
+<h3 class="text-title-lg font-bold text-on-surface">Acceptors By Method (DHIS2)</h3>
+<button class="material-symbols-outlined text-outline">info</button>
+</div>
+<div class="flex-1 grid grid-cols-12 grid-rows-6 gap-xs">
+<div class="col-span-6 row-span-6 bg-[#ba1a1a] rounded flex items-center justify-center p-sm text-center">
+<div class="text-on-error">
+<p class="text-xs font-bold">Injectables</p>
+<p class="text-lg font-extrabold">77.1k</p>
+</div>
+</div>
+<div class="col-span-4 row-span-4 bg-[#005011] rounded flex items-center justify-center p-sm text-center">
+<div class="text-white">
+<p class="text-[10px] font-bold">Oral Contraceptives</p>
+<p class="text-md font-extrabold">46.7k</p>
+</div>
+</div>
+<div class="col-span-2 row-span-6 bg-secondary-fixed-dim rounded flex items-center justify-center p-sm text-center">
+<div class="text-on-secondary-fixed">
+<p class="text-[10px] font-bold">Implants</p>
+<p class="text-md font-extrabold">18.2k</p>
+</div>
+</div>
+<div class="col-span-4 row-span-2 bg-primary-container rounded flex items-center justify-center p-sm text-center">
+<div class="text-on-primary-container">
+<p class="text-[10px] font-bold">Others</p>
+<p class="text-xs font-extrabold">3.05k</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- FAB: Ask AI (Contextual for Home/Dashboard) -->
+<button class="fixed bottom-margin left-margin bg-primary text-on-primary w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group"><span class="material-symbols-outlined group-hover:rotate-12 transition-transform">bolt</span><div class="absolute left-16 bg-inverse-surface text-inverse-on-surface px-md py-sm rounded-lg text-label-md font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Ask Health Insights AI</div></button>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface border-t border-outline-variant py-lg">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin max-w-max_width mx-auto gap-md">
+<div class="flex items-center gap-sm">
+<span class="text-label-md font-bold text-on-surface">© 2024 Ethiopian Ministry of Health. All rights reserved.</span>
+</div>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant text-label-md font-label-md hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant text-label-md font-label-md hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant text-label-md font-label-md hover:text-primary underline transition-all" href="#">Data Governance</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for tab switching
+        document.querySelectorAll('nav a, button.tab-active, button.px-md.py-lg').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                const siblings = tab.parentElement.children;
+                Array.from(siblings).forEach(s => {
+                    s.classList.remove('tab-active', 'text-primary', 'border-b-2', 'border-primary', 'font-bold');
+                    s.classList.add('text-on-surface-variant', 'font-medium');
+                });
+                tab.classList.remove('text-on-surface-variant', 'font-medium');
+                tab.classList.add('tab-active', 'text-primary', 'border-b-2', 'border-primary', 'font-bold');
+            });
+        });
+
+        // Simple animation for the FAB icon
+        setInterval(() => {
+            const icon = document.querySelector('.fixed.bottom-margin span');
+            if(icon) {
+                icon.style.opacity = '0.7';
+                setTimeout(() => icon.style.opacity = '1', 500);
+            }
+        }, 3000);
+    </script>
+
+</body></html>

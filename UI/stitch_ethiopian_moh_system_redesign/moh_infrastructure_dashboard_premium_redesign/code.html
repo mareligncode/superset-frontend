@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Infrastructure | Health Intelligence Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#cbdbf5",
+                    "tertiary": "#005011",
+                    "secondary-fixed": "#8ef4e4",
+                    "tertiary-fixed": "#a3f69c",
+                    "inverse-primary": "#a6c8ff",
+                    "primary-fixed-dim": "#a6c8ff",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#213145",
+                    "surface-container-high": "#dce9ff",
+                    "tertiary-container": "#186a21",
+                    "secondary-fixed-dim": "#72d8c8",
+                    "error": "#ba1a1a",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "on-primary-fixed-variant": "#004786",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f8f9ff",
+                    "on-primary-container": "#bdd6ff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#95e88f",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#eff4ff",
+                    "secondary-container": "#8ef4e4",
+                    "surface-bright": "#f8f9ff",
+                    "secondary": "#006a60",
+                    "primary": "#004482",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-surface-variant": "#414751",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-tertiary-fixed": "#002204",
+                    "on-surface": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-fixed-dim": "#88d982",
+                    "on-tertiary-fixed-variant": "#005312",
+                    "surface-tint": "#095fae",
+                    "primary-fixed": "#d5e3ff",
+                    "on-secondary-fixed-variant": "#005048",
+                    "surface-variant": "#d3e4fe",
+                    "primary-container": "#005cab",
+                    "outline": "#727783",
+                    "on-primary-fixed": "#001c3b",
+                    "on-secondary-container": "#007166",
+                    "outline-variant": "#c1c6d3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "max_width": "1440px",
+                    "md": "16px",
+                    "margin": "32px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "xl": "32px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chart-bar-h { transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .map-pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 0.8; } 100% { opacity: 0.4; } }
+        .scroll-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm flex items-center justify-between px-margin w-full h-16 sticky top-0 z-50 transition-colors duration-200">
+<div class="flex items-center gap-md">
+<div class="h-10 w-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">health_metrics</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">Health Intelligence Platform</span>
+</div>
+<div class="hidden md:flex flex-1 max-w-md mx-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 focus:outline-none focus:border-primary text-body-md transition-all" placeholder="Search facilities, indicators, or data sources..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined text-on-surface-variant">notifications</span></button>
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined text-on-surface-variant">settings</span></button>
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined text-on-surface-variant">help</span></button>
+<div class="h-10 w-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a government health official wearing a formal suit, set against a soft blurred office background with warm natural lighting. The style is clean, corporate, and high-fidelity, matching the professional institutional trust of the Health Intelligence Platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsQH6nIsZef_ILddGQUMf0mBlUCk2_CIHwXVRYVY9__04S38oS0ec_HjL22ZDCDIGtj-xH76eFd_qhqkhL7UGqoFAxdsvBc0sgV1No-8l3PD67qXr7vzIa-lmgjgXFcZ0CC7W2s4C-xi_Qop1C514wfAzTAdcQ6wAziOOnE__2w86r8OnwmMm_RaerWo7iDTeq8bwUDRcWtlRORyIwSkKwJb5GNLJPFh2wKBZx6D972RpyiFeARPONLZNjO443u5wiIw1CV4cO2Uw"/>
+</div>
+</div>
+</header>
+<!-- Sub Navigation -->
+<nav class="bg-surface-container-low dark:bg-surface-container-lowest border-b border-outline-variant flex gap-gutter px-margin w-full h-12 items-center overflow-x-auto scroll-hide sticky top-16 z-40">
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-all duration-150 whitespace-nowrap" href="#">Service Delivery</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-all duration-150 whitespace-nowrap" href="#">Health Equity</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-all duration-150 whitespace-nowrap" href="#">Human Resources</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-all duration-150 whitespace-nowrap" href="#">Supply Chain</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-primary border-b-2 border-primary pb-1 transition-all duration-150 whitespace-nowrap" href="#">Infrastructure</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-all duration-150 whitespace-nowrap" href="#">Finance</a>
+</nav>
+<div class="flex">
+<!-- Sidebar Filters -->
+<aside class="bg-surface-container-low dark:bg-surface-container border-r border-outline-variant flex flex-col p-md fixed left-0 top-[112px] h-[calc(100vh-112px)] w-80 overflow-y-auto hidden lg:flex">
+<div class="mb-lg">
+<h2 class="font-title-lg text-title-lg font-semibold text-on-surface mb-xs">Filters &amp; Controls</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Refine dataset view</p>
+</div>
+<div class="space-y-md flex-1">
+<!-- Filter Item -->
+<div class="space-y-sm">
+<label class="font-label-md text-on-surface-variant uppercase">Geography</label>
+<div class="bg-surface-container-high p-sm flex items-center justify-between rounded-lg cursor-pointer hover:bg-surface-container-highest transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">map</span>
+<span class="font-body-md">All Regions</span>
+</div>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-on-surface-variant uppercase">Facility Type</label>
+<div class="bg-secondary-container text-on-secondary-container p-sm flex items-center justify-between rounded-lg font-medium">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">festival</span>
+<span class="font-body-md">All Facilities</span>
+</div>
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-on-surface-variant uppercase">Time Period</label>
+<div class="bg-surface-container-high p-sm flex items-center justify-between rounded-lg cursor-pointer">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-body-md">EFY 2016</span>
+</div>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<div class="pt-md border-t border-outline-variant">
+<div class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md">Indicator Type</span>
+</div>
+<div class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">database</span>
+<span class="font-body-md">Data Source</span>
+</div>
+</div>
+</div>
+<button class="bg-primary text-on-primary w-full py-md rounded-lg font-bold shadow-md hover:shadow-lg transition-all mt-lg flex items-center justify-center gap-sm">
+                Apply Filters
+            </button>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-80 flex-1 p-margin">
+<!-- Bento Grid Dashboard -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Card: Health Facilities by Status -->
+<div class="col-span-12 xl:col-span-6 bg-surface border border-outline-variant rounded-xl p-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-lg">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold">Health Facilities by Status</h3>
+<button class="text-on-surface-variant"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<div class="space-y-md">
+<div class="space-y-base">
+<div class="flex justify-between font-label-md text-on-surface-variant">
+<span>Health Center</span>
+<span>3.93k</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary chart-bar-h" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-base">
+<div class="flex justify-between font-label-md text-on-surface-variant">
+<span>Primary Hospital</span>
+<span>275</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container chart-bar-h" style="width: 45%"></div>
+</div>
+</div>
+<div class="space-y-base">
+<div class="flex justify-between font-label-md text-on-surface-variant">
+<span>General Hospital</span>
+<span>108</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary chart-bar-h" style="width: 25%"></div>
+</div>
+</div>
+<div class="space-y-base">
+<div class="flex justify-between font-label-md text-on-surface-variant">
+<span>Comprehensive Specialized</span>
+<span>32</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary chart-bar-h" style="width: 15%"></div>
+</div>
+</div>
+<div class="space-y-base">
+<div class="flex justify-between font-label-md text-on-surface-variant">
+<span>Basic &amp; Comprehensive HP</span>
+<span>15.4k</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed-dim chart-bar-h" style="width: 95%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card: Health Facilities by Region -->
+<div class="col-span-12 xl:col-span-6 bg-surface border border-outline-variant rounded-xl p-lg shadow-sm">
+<div class="flex justify-between items-start mb-lg">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold">Health Facilities by Region</h3>
+<div class="flex gap-sm">
+<span class="flex items-center gap-1 text-[10px] uppercase font-bold text-on-surface-variant"><div class="w-2 h-2 rounded-full bg-primary"></div> Functional</span>
+<span class="flex items-center gap-1 text-[10px] uppercase font-bold text-on-surface-variant"><div class="w-2 h-2 rounded-full bg-error"></div> Under Construction</span>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between gap-base px-md">
+<div class="flex flex-col items-center flex-1 h-full justify-end group">
+<div class="w-full bg-primary-container rounded-t h-3/4 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] mt-2 rotate-45 origin-left whitespace-nowrap">Addis Ababa</span>
+</div>
+<div class="flex flex-col items-center flex-1 h-full justify-end group">
+<div class="w-full bg-primary-container rounded-t h-1/4 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] mt-2 rotate-45 origin-left whitespace-nowrap">Afar</span>
+</div>
+<div class="flex flex-col items-center flex-1 h-full justify-end group">
+<div class="w-full bg-primary-container rounded-t h-4/5 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] mt-2 rotate-45 origin-left whitespace-nowrap">Amhara</span>
+</div>
+<div class="flex flex-col items-center flex-1 h-full justify-end group">
+<div class="w-full bg-primary-container rounded-t h-1/5 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] mt-2 rotate-45 origin-left whitespace-nowrap">Benishangul</span>
+</div>
+<div class="flex flex-col items-center flex-1 h-full justify-end group">
+<div class="w-full bg-primary-container rounded-t h-full group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] mt-2 rotate-45 origin-left whitespace-nowrap">Oromia</span>
+</div>
+<div class="flex flex-col items-center flex-1 h-full justify-end group">
+<div class="w-full bg-primary-container rounded-t h-1/2 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] mt-2 rotate-45 origin-left whitespace-nowrap">Sidama</span>
+</div>
+<div class="flex flex-col items-center flex-1 h-full justify-end group">
+<div class="w-full bg-primary-container rounded-t h-2/5 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] mt-2 rotate-45 origin-left whitespace-nowrap">Somali</span>
+</div>
+</div>
+</div>
+<!-- Card: Health Facilities Distribution Map -->
+<div class="col-span-12 xl:col-span-8 bg-surface border border-outline-variant rounded-xl p-lg shadow-sm min-h-[500px] flex flex-col">
+<div class="flex justify-between items-center mb-lg">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold">Health Facilities Distribution Map</h3>
+<p class="text-label-md text-on-surface-variant">Spatial visualization of Ethiopia's health network</p>
+</div>
+<div class="flex bg-surface-container-low p-1 rounded-lg border border-outline-variant">
+<button class="px-md py-1 bg-surface-container-highest rounded text-label-md font-bold text-primary">Points</button>
+<button class="px-md py-1 text-label-md font-medium text-on-surface-variant">Heatmap</button>
+</div>
+</div>
+<div class="flex-1 relative bg-[#e5eeff]/30 rounded-xl overflow-hidden border border-outline-variant/30 flex items-center justify-center">
+<!-- Simulated Ethiopia Map with Cluster Effect -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#004482 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative w-4/5 h-4/5 flex items-center justify-center">
+<!-- Clusters -->
+<div class="absolute top-1/4 left-1/2 w-12 h-12 bg-primary/40 rounded-full flex items-center justify-center map-pulse border border-primary/60">
+<span class="text-[10px] font-bold text-on-primary">420</span>
+</div>
+<div class="absolute top-1/2 left-1/3 w-16 h-16 bg-secondary/40 rounded-full flex items-center justify-center map-pulse border border-secondary/60">
+<span class="text-[10px] font-bold text-on-secondary">1.2k</span>
+</div>
+<div class="absolute bottom-1/4 right-1/4 w-10 h-10 bg-tertiary/40 rounded-full flex items-center justify-center map-pulse border border-tertiary/60">
+<span class="text-[10px] font-bold text-on-tertiary">250</span>
+</div>
+<div class="absolute top-2/3 left-1/2 w-20 h-20 bg-primary-container/40 rounded-full flex items-center justify-center map-pulse border border-primary-container/60">
+<span class="text-[10px] font-bold text-on-primary-container">2.8k</span>
+</div>
+<!-- Static Dot Layer -->
+<div class="absolute inset-0 opacity-60">
+<!-- Scatter random points -->
+<div class="absolute top-10 left-20 w-2 h-2 bg-primary rounded-full"></div>
+<div class="absolute top-40 left-10 w-2 h-2 bg-secondary rounded-full"></div>
+<div class="absolute top-60 left-80 w-2 h-2 bg-error rounded-full"></div>
+<div class="absolute bottom-20 left-40 w-2 h-2 bg-tertiary rounded-full"></div>
+<div class="absolute bottom-40 right-40 w-2 h-2 bg-primary rounded-full"></div>
+<div class="absolute top-10 right-10 w-2 h-2 bg-secondary rounded-full"></div>
+</div>
+<!-- Legend -->
+<div class="absolute bottom-4 right-4 bg-white/80 backdrop-blur-md p-md rounded-lg shadow-md border border-outline-variant">
+<h4 class="text-[10px] font-bold uppercase text-on-surface-variant mb-sm">Legend</h4>
+<div class="space-y-base">
+<div class="flex items-center gap-sm text-[10px]"><div class="w-2 h-2 rounded-full bg-primary"></div> Specialty Clinic</div>
+<div class="flex items-center gap-sm text-[10px]"><div class="w-2 h-2 rounded-full bg-secondary"></div> Hospital</div>
+<div class="flex items-center gap-sm text-[10px]"><div class="w-2 h-2 rounded-full bg-tertiary"></div> Health Post</div>
+<div class="flex items-center gap-sm text-[10px]"><div class="w-2 h-2 rounded-full bg-error"></div> Clinic</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card: Quick Stats / Summary -->
+<div class="col-span-12 xl:col-span-4 grid grid-rows-3 gap-gutter">
+<div class="bg-primary text-on-primary rounded-xl p-lg flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="z-10">
+<p class="text-label-md font-medium uppercase opacity-80">Total Facilities</p>
+<h2 class="text-display-lg font-display-lg">24,812</h2>
+</div>
+<div class="flex items-center gap-sm z-10">
+<span class="material-symbols-outlined text-on-primary">trending_up</span>
+<span class="text-body-md">+2.4% from last quarter</span>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]">domain</span>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant rounded-xl p-lg flex flex-col justify-between shadow-sm">
+<div>
+<p class="text-label-md font-medium uppercase text-on-surface-variant">Functionality Rate</p>
+<h2 class="text-headline-lg font-headline-lg text-primary">94.2%</h2>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full">
+<div class="h-full bg-primary rounded-full" style="width: 94%"></div>
+</div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container rounded-xl p-lg flex flex-col justify-between shadow-sm">
+<div>
+<p class="text-label-md font-medium uppercase opacity-80">Avg. Catchment Pop.</p>
+<h2 class="text-headline-lg font-headline-lg">15,400</h2>
+</div>
+<p class="text-body-md italic">Per Primary Hospital Unit</p>
+</div>
+</div>
+<!-- Table: Services for Selected Facility -->
+<div class="col-span-12 bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="px-lg py-md border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold">Services for Selected Facility</h3>
+<div class="flex gap-md">
+<div class="flex items-center gap-base text-body-md text-on-surface-variant">
+<span>Show</span>
+<select class="bg-surface-container-low border border-outline-variant rounded px-2 py-1 focus:outline-none">
+<option>200</option>
+<option>500</option>
+</select>
+<span>entries</span>
+</div>
+<button class="bg-primary-container text-white px-md py-1 rounded text-label-md font-bold uppercase hover:bg-primary transition-colors">Export CSV</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low text-label-md text-on-surface-variant uppercase font-bold border-b border-outline-variant">
+<tr>
+<th class="px-lg py-md">Facility Name</th>
+<th class="px-lg py-md">Type</th>
+<th class="px-lg py-md text-right">Emergency Beds</th>
+<th class="px-lg py-md text-right">Catchment Pop.</th>
+<th class="px-lg py-md text-right">Imaging Rooms</th>
+<th class="px-lg py-md text-right">Inpatient Beds</th>
+<th class="px-lg py-md">Status</th>
+</tr>
+</thead>
+<tbody class="text-body-md text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface-container transition-colors">
+<td class="px-lg py-md font-medium">Federal Ministry of Health</td>
+<td class="px-lg py-md"><span class="bg-surface-container-highest px-2 py-1 rounded text-[10px]">Headquarters</span></td>
+<td class="px-lg py-md text-right text-on-surface-variant italic">N/A</td>
+<td class="px-lg py-md text-right text-on-surface-variant italic">N/A</td>
+<td class="px-lg py-md text-right">12</td>
+<td class="px-lg py-md text-right text-on-surface-variant italic">N/A</td>
+<td class="px-lg py-md"><span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary"></div> Active</span></td>
+</tr>
+<tr class="bg-background/40 border-b border-outline-variant hover:bg-surface-container transition-colors">
+<td class="px-lg py-md font-medium">Mekonen Primary Clinic</td>
+<td class="px-lg py-md"><span class="bg-surface-container-highest px-2 py-1 rounded text-[10px]">Clinic</span></td>
+<td class="px-lg py-md text-right">1</td>
+<td class="px-lg py-md text-right">8,400</td>
+<td class="px-lg py-md text-right">0</td>
+<td class="px-lg py-md text-right">0</td>
+<td class="px-lg py-md"><span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary"></div> Active</span></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container transition-colors">
+<td class="px-lg py-md font-medium">Legetafo Health Center</td>
+<td class="px-lg py-md"><span class="bg-surface-container-highest px-2 py-1 rounded text-[10px]">Health Center</span></td>
+<td class="px-lg py-md text-right">4</td>
+<td class="px-lg py-md text-right">25,000</td>
+<td class="px-lg py-md text-right">1</td>
+<td class="px-lg py-md text-right">12</td>
+<td class="px-lg py-md"><span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary"></div> Active</span></td>
+</tr>
+<tr class="bg-background/40 border-b border-outline-variant hover:bg-surface-container transition-colors">
+<td class="px-lg py-md font-medium">Abi Adi General Hospital</td>
+<td class="px-lg py-md"><span class="bg-surface-container-highest px-2 py-1 rounded text-[10px]">General Hospital</span></td>
+<td class="px-lg py-md text-right">8</td>
+<td class="px-lg py-md text-right">145,000</td>
+<td class="px-lg py-md text-right">4</td>
+<td class="px-lg py-md text-right">98</td>
+<td class="px-lg py-md"><span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary"></div> Active</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-lg py-md bg-surface-container-low flex justify-between items-center">
+<span class="text-label-md text-on-surface-variant uppercase">Showing 1 to 4 of 24,812 entries</span>
+<div class="flex gap-base">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary text-label-md font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-surface hover:bg-surface-container-high transition-colors text-label-md">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-surface hover:bg-surface-container-high transition-colors text-label-md">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Ask AI FAB -->
+<div class="fixed bottom-margin right-margin z-50 group">
+<div class="absolute -top-12 right-0 bg-on-surface text-surface px-md py-xs rounded-lg text-label-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            How many hospitals are in Oromia?
+        </div>
+<button class="h-16 w-16 bg-on-surface text-surface rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition-transform active:scale-95 border-2 border-primary-fixed">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</button>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant flex flex-col md:flex-row justify-between items-center px-margin py-lg w-full mt-auto">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-on-primary">security</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 Ethiopian Ministry of Health. All rights reserved.</p>
+</div>
+<div class="flex gap-lg mt-md md:mt-0">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors underline" href="#">Legal Information</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors underline" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors underline" href="#">Data Governance</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors underline" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions and data animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simulated data load animation
+            const bars = document.querySelectorAll('.chart-bar-h');
+            bars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 200);
+            });
+
+            // Active button state switching
+            const sidebarTabs = document.querySelectorAll('.sidebar-tab');
+            sidebarTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    sidebarTabs.forEach(t => t.classList.remove('bg-secondary-container', 'text-on-secondary-container'));
+                    tab.classList.add('bg-secondary-container', 'text-on-secondary-container');
+                });
+            });
+        });
+    </script>
+</body></html>

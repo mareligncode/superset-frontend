@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Health Equity Dashboard - Ethiopian Ministry of Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#005011",
+                        "surface-container-low": "#eff4ff",
+                        "tertiary-container": "#186a21",
+                        "surface-container-high": "#dce9ff",
+                        "outline": "#727783",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#004786",
+                        "secondary-container": "#8ef4e4",
+                        "surface": "#f8f9ff",
+                        "on-secondary-container": "#007166",
+                        "background": "#f8f9ff",
+                        "primary": "#004482",
+                        "primary-container": "#005cab",
+                        "on-primary-container": "#bdd6ff",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#414751",
+                        "outline-variant": "#c1c6d3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "max_width": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "headline-sm": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #E2E8F0;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
+        }
+        .chart-bar-h { transition: width 1s ease-out; }
+        .chart-bar-v { transition: height 1s ease-out; }
+    </style>
+</head>
+<body class="text-on-background">
+<!-- TopNavBar -->
+<header class="bg-surface sticky top-0 z-50 border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin h-16 max-w-max_width mx-auto">
+<div class="flex items-center gap-md">
+<div class="text-title-lg font-title-lg font-bold text-primary">Ethiopian Ministry of Health</div>
+</div>
+<nav class="hidden md:flex gap-lg items-center">
+<a class="text-on-surface-variant font-medium hover:bg-surface-container transition-colors px-3 py-2 rounded" href="#">Home</a>
+<a class="text-primary border-b-2 border-primary font-bold pb-1 px-3 py-2" href="#">Dashboards</a>
+<a class="text-on-surface-variant font-medium hover:bg-surface-container transition-colors px-3 py-2 rounded" href="#">Charts</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant">light_mode</button>
+<button class="material-symbols-outlined text-on-surface-variant">notifications</button>
+<div class="flex items-center gap-xs text-on-surface-variant cursor-pointer">
+<span class="text-label-md font-label-md">Settings</span>
+<span class="material-symbols-outlined">more_horiz</span>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a health official in a bright office environment, high-key lighting, corporate and authoritative style, soft focus background with Ethiopian health department insignia." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxnT-6jmTpsuz13ZBlSTeulY-9KD5xvZBWjWdOfZhse0W6OLRrOEYPCByme61h5-3WBIqi23ASADhKAHf1jt7a55Z6MjtyA7S9PqlgdmtHjDQw0Qxu5NX4DHM2jW1pk6rKfXL1VNOPw7AWZ7_FKGwAEiYpiPkwJ3UtRqTWgCy9Ft2nxa9S2L-x7aRMAHAdhEZHOPt63DSYq7H9K3C44sWCL1SHwkawuMTGZ-SJWA7a1xdECdJp-oSEARu9r_qcDiMPEf57a88AEgY"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex min-h-[calc(100vh-64px)]">
+<!-- SideNavBar -->
+<aside class="w-80 flex-shrink-0 bg-surface-container-low border-r border-outline-variant flex flex-col p-md gap-sm">
+<div class="mb-md px-2">
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Filters and controls</h2>
+<p class="text-label-md font-label-md text-on-surface-variant">Global Dashboard Filters</p>
+</div>
+<div class="flex flex-col gap-md px-2 mb-xl">
+<div>
+<label class="text-label-md font-label-md text-on-surface-variant mb-1 block">Equity Year</label>
+<select class="w-full border-outline-variant rounded-lg text-body-md bg-white">
+<option>5 options</option>
+</select>
+</div>
+<div>
+<label class="text-label-md font-label-md text-on-surface-variant mb-1 block">Equity Dimension</label>
+<select class="w-full border-primary border-2 rounded-lg text-body-md bg-white">
+<option>6 options</option>
+</select>
+</div>
+<div>
+<label class="text-label-md font-label-md text-on-surface-variant mb-1 block">Equity Subgroup</label>
+<select class="w-full border-outline-variant rounded-lg text-body-md bg-white">
+<option>59 options</option>
+</select>
+</div>
+<div>
+<label class="text-label-md font-label-md text-on-surface-variant mb-1 block">Equity Indicator</label>
+<div class="relative">
+<input class="w-full border-outline-variant rounded-lg text-body-md bg-white pr-8" type="text" value="MAT_Contraceptive Ac..."/>
+<span class="material-symbols-outlined absolute right-2 top-2 text-on-surface-variant text-sm">close</span>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-xs">
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer">
+<span class="material-symbols-outlined">clinical_notes</span>
+<span class="text-label-md font-label-md">Services Delivery</span>
+</div>
+<div class="flex items-center gap-md p-sm bg-primary-container text-on-primary-container rounded-lg font-bold scale-[0.99] transition-transform">
+<span class="material-symbols-outlined">balance</span>
+<span class="text-label-md font-label-md">Health Equity</span>
+</div>
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer">
+<span class="material-symbols-outlined">group</span>
+<span class="text-label-md font-label-md">Health Work Force</span>
+</div>
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-label-md font-label-md">Health Financing</span>
+</div>
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="text-label-md font-label-md">Supply and Logistics</span>
+</div>
+</nav>
+<button class="mt-xl w-full bg-primary text-white py-2 rounded-lg font-bold text-body-md hover:bg-primary-container hover:text-on-primary-container transition-all">Apply filters</button>
+<div class="mt-auto pt-md border-t border-outline-variant flex flex-col gap-xs">
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</div>
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+<span class="text-label-md font-label-md">Help Center</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-grow p-margin max-w-[calc(1440px-320px)] mx-auto overflow-y-auto">
+<div class="flex flex-col gap-lg">
+<!-- Sub Navigation Tabs -->
+<div class="flex gap-xl border-b border-outline-variant pb-xs mb-md">
+<button class="text-on-surface-variant font-bold border-b-2 border-primary pb-2 text-title-lg">Simple Measures</button>
+<button class="text-on-surface-variant font-medium pb-2 text-title-lg hover:text-primary">Order Disproportionality</button>
+</div>
+<!-- Metric Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-card rounded-xl p-lg flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<h3 class="text-title-lg font-bold text-on-surface-variant">Difference (D)</h3>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-primary text-md">filter_alt</span>
+<span class="material-symbols-outlined text-on-surface-variant text-md">more_vert</span>
+</div>
+</div>
+<div class="text-[64px] leading-tight font-extrabold text-primary text-center my-4">0.72</div>
+</div>
+<div class="glass-card rounded-xl p-lg flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<h3 class="text-title-lg font-bold text-on-surface-variant">Estimates</h3>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-primary text-md">filter_alt</span>
+<span class="material-symbols-outlined text-on-surface-variant text-md">more_vert</span>
+</div>
+</div>
+<div class="text-[64px] leading-tight font-extrabold text-primary text-center my-4">0.49</div>
+</div>
+<div class="glass-card rounded-xl p-lg flex flex-col border-primary/20">
+<div class="flex justify-between items-start mb-md">
+<h3 class="text-title-lg font-bold text-on-surface-variant">Ratio (R)</h3>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-primary text-md">filter_alt</span>
+<span class="material-symbols-outlined text-on-surface-variant text-md">more_vert</span>
+</div>
+</div>
+<div class="text-[64px] leading-tight font-extrabold text-primary text-center my-4">7.32</div>
+</div>
+</div>
+<!-- Main Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Horizontal Bar Chart -->
+<div class="glass-card rounded-xl p-lg">
+<div class="flex justify-between items-center mb-xl">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Simple Measure</h3>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">filter_alt</span>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+<div class="flex gap-xs bg-surface-container rounded-full p-1">
+<span class="text-label-md font-bold px-3 py-1 bg-primary text-white rounded-full">All</span>
+<span class="text-label-md font-medium px-3 py-1 text-on-surface-variant">Inv</span>
+</div>
+</div>
+</div>
+<div class="space-y-sm">
+<!-- Regions List -->
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">Tigray</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 25%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.25</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">South West Ethiopia</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 65%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.65</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">South Ethiopia</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 62%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.62</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">Somali</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 18%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.18</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">Sidama</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 78%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.78</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">Oromia</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 82%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.82</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">Harari</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 58%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.58</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">Gambella</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 28%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.28</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">Dire Dawa</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 35%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.35</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">Central Ethiopia</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 72%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.72</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">Benishangul Gumuz</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 32%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.32</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-32 text-right text-label-md font-medium text-on-surface-variant">Amhara</div>
+<div class="flex-grow bg-surface-container rounded-full h-4 overflow-hidden">
+<div class="chart-bar-h bg-primary h-full rounded-full" style="width: 80%"></div>
+</div>
+<div class="w-12 text-label-md font-bold text-primary">0.80</div>
+</div>
+</div>
+</div>
+<!-- Vertical Bar Chart -->
+<div class="glass-card rounded-xl p-lg flex flex-col">
+<div class="flex justify-between items-center mb-xl">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Ratio to the minimum</h3>
+<div class="flex gap-md">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<span class="text-label-md font-medium text-on-surface-variant">Ratio</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+</div>
+<div class="flex-grow flex items-end justify-between gap-sm border-b border-outline-variant pb-md h-64">
+<!-- Vertical Bars -->
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 40%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block whitespace-nowrap">Addis Ababa</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 20%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">Afar</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 85%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">Amhara</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 35%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">BSG</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 75%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">Central</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 40%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">Dire Dawa</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 25%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">Gambella</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 60%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">Harari</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 88%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">Oromia</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 82%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">Sidama</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 12%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">Somali</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="chart-bar-v w-full bg-primary rounded-t-lg" style="height: 68%"></div>
+<span class="text-[8px] font-bold text-on-surface-variant rotate-45 mt-4 block">S. Ethiopia</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-background border-t border-outline-variant py-lg mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin max-w-max_width mx-auto">
+<div class="text-label-md font-bold text-on-surface mb-md md:mb-0">© 2024 Ethiopian Ministry of Health. All rights reserved.</div>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant text-label-md font-label-md hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant text-label-md font-label-md hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant text-label-md font-label-md hover:text-primary underline transition-all" href="#">Data Governance</a>
+</div>
+</div>
+</footer>
+<!-- FAB: Ask Health Intelligence -->
+<button class="fixed bottom-margin right-margin bg-primary text-white flex items-center gap-sm px-lg py-md rounded-full shadow-lg hover:scale-105 transition-transform z-[60]">
+<span class="material-symbols-outlined font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-bold text-body-md uppercase tracking-wider">Ask Health Intelligence</span>
+</button>
+<script>
+        // Micro-interactions and subtle loading states
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.chart-bar-h, .chart-bar-v');
+            bars.forEach(bar => {
+                const targetVal = bar.style.width || bar.style.height;
+                if(bar.classList.contains('chart-bar-h')) bar.style.width = '0';
+                else bar.style.height = '0';
+                
+                setTimeout(() => {
+                    if(bar.classList.contains('chart-bar-h')) bar.style.width = targetVal;
+                    else bar.style.height = targetVal;
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TB Health Intelligence Dashboard</title>
+<!-- Tailwind CSS with essential plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols for Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#72d8c8",
+                    "inverse-primary": "#a6c8ff",
+                    "on-primary-container": "#bdd6ff",
+                    "surface": "#f8f9ff",
+                    "on-secondary-fixed": "#00201c",
+                    "tertiary-fixed-dim": "#88d982",
+                    "on-tertiary-fixed-variant": "#005312",
+                    "on-secondary-fixed-variant": "#005048",
+                    "surface-dim": "#cbdbf5",
+                    "surface-bright": "#f8f9ff",
+                    "primary-container": "#005cab",
+                    "outline": "#727783",
+                    "outline-variant": "#c1c6d3",
+                    "surface-container-low": "#eff4ff",
+                    "primary": "#004482",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#d3e4fe",
+                    "secondary": "#006a60",
+                    "surface-tint": "#095fae",
+                    "on-primary-fixed-variant": "#004786",
+                    "tertiary-fixed": "#a3f69c",
+                    "on-surface-variant": "#414751",
+                    "secondary-container": "#8ef4e4",
+                    "background": "#f8f9ff",
+                    "on-tertiary-fixed": "#002204",
+                    "inverse-on-surface": "#eaf1ff",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#8ef4e4",
+                    "inverse-surface": "#213145",
+                    "on-secondary-container": "#007166",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#186a21",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#d5e3ff",
+                    "tertiary": "#005011",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#a6c8ff",
+                    "on-surface": "#0b1c30",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-primary-fixed": "#001c3b",
+                    "on-tertiary-container": "#95e88f",
+                    "on-background": "#0b1c30",
+                    "surface-container-highest": "#d3e4fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "max_width": "1440px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "md": "16px",
+                    "margin": "32px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        .chart-container {
+            height: 320px;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .custom-shadow {
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
+        }
+        .custom-border {
+            border: 1px solid #E2E8F0;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen">
+<!-- TopNavBar (Shell Layer 1) -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center w-full px-margin h-16 sticky top-0 z-50">
+<div class="flex items-center gap-md">
+<div class="flex gap-xs items-center">
+<img class="h-10 w-10 object-contain" data-alt="Official emblem of the Ethiopian Ministry of Health, featuring a gold heraldic shield on a deep blue background, symbolizing institutional authority and trust in national healthcare services." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHTd6JYbgmPM0L1XwjAm1zlEDGXTBFo74E3t0UcQ2bZGscvFpqV0st3uOTJ1N59U2ul_1XPq-BjFrpNjnzKtc8yc3e-eZ6_qjTFqXqmcZIdXULpLsPU1dWbVisPe62eoU10YqtySfM8I6QzzsNshGrv24wKL_f-EItOteWMWsC9ZTYV-uBwe7nMgnCGlVc08-uuBVEzpftJoTGGX3I2bmkANJzl3x6FjiN_Lb3ohj616DHJNjTOde-o9q-GBODCfoHgW8Rny5V3ws"/>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-bold text-primary dark:text-inverse-primary leading-tight">Ethiopian Ministry of Health</span>
+<span class="text-label-md font-label-md text-outline uppercase tracking-widest">Health Intelligence</span>
+</div>
+</div>
+<nav class="hidden md:flex gap-lg ml-xl">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors text-label-md font-label-md" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary font-bold pb-1 text-label-md font-label-md" href="#">Dashboards</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors text-label-md font-label-md" href="#">Charts</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-all p-2 rounded-full hover:bg-surface-container-high">settings</button>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-all p-2 rounded-full hover:bg-surface-container-high">light_mode</button>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-all p-2 rounded-full hover:bg-surface-container-high">more_vert</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs ml-sm">
+                EF
+            </div>
+</div>
+</header>
+<!-- Super-Navigation (Services & Categories) -->
+<nav class="flex gap-gutter items-center w-full px-margin h-12 bg-surface-container-low border-b border-outline-variant sticky top-16 z-40 overflow-x-auto whitespace-nowrap">
+<a class="text-primary border-b-2 border-primary font-bold h-full flex items-center px-sm transition-all duration-200 text-label-md font-label-md" href="#">Services Delivery</a>
+<a class="text-on-surface-variant hover:text-primary h-full flex items-center px-sm transition-all duration-200 text-label-md font-label-md" href="#">Health Equity</a>
+<a class="text-on-surface-variant hover:text-primary h-full flex items-center px-sm transition-all duration-200 text-label-md font-label-md" href="#">Health Work Force</a>
+<a class="text-on-surface-variant hover:text-primary h-full flex items-center px-sm transition-all duration-200 text-label-md font-label-md" href="#">Health Financing</a>
+<a class="text-on-surface-variant hover:text-primary h-full flex items-center px-sm transition-all duration-200 text-label-md font-label-md" href="#">Supply and Logistics</a>
+<a class="text-on-surface-variant hover:text-primary h-full flex items-center px-sm transition-all duration-200 text-label-md font-label-md" href="#">Blood Donation</a>
+<a class="text-on-surface-variant hover:text-primary h-full flex items-center px-sm transition-all duration-200 text-label-md font-label-md" href="#">PHEM</a>
+<a class="text-on-surface-variant hover:text-primary h-full flex items-center px-sm transition-all duration-200 text-label-md font-label-md" href="#">Infrastructure</a>
+</nav>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar (Filters) -->
+<aside class="bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline h-full w-80 flex flex-col gap-md p-lg overflow-y-auto custom-shadow shrink-0">
+<div class="flex justify-between items-center mb-sm">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">filter_list</span>
+<h2 class="text-title-lg font-title-lg font-semibold text-on-surface">Filters and controls</h2>
+</div>
+<button class="material-symbols-outlined text-outline-variant">keyboard_double_arrow_left</button>
+</div>
+<div class="space-y-md">
+<div class="space-y-xs">
+<label class="text-label-md font-label-md text-outline">Year</label>
+<div class="flex items-center gap-sm p-sm rounded-lg border border-outline-variant bg-surface-container-lowest">
+<span class="bg-primary-container text-on-primary-container text-xs px-2 py-0.5 rounded-full flex items-center gap-xs">2018 <span class="material-symbols-outlined text-[12px] cursor-pointer">close</span></span>
+<span class="material-symbols-outlined ml-auto text-outline">expand_more</span>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="text-label-md font-label-md text-outline">Quarter</label>
+<div class="flex items-center gap-sm p-sm rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface-variant">
+<span>4 options</span>
+<span class="material-symbols-outlined ml-auto text-outline">expand_more</span>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="text-label-md font-label-md text-outline">Month</label>
+<div class="flex items-center gap-sm p-sm rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface-variant">
+<span>11 options</span>
+<span class="material-symbols-outlined ml-auto text-outline">expand_more</span>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-baseline">
+<label class="text-label-md font-label-md text-outline">Org Unit</label>
+<div class="flex gap-sm">
+<button class="text-primary text-[10px] font-bold uppercase">Select all</button>
+<button class="text-outline text-[10px] font-bold uppercase">Clear</button>
+</div>
+</div>
+<div class="rounded-lg border border-outline-variant bg-surface-container-lowest p-sm h-64 overflow-y-auto space-y-sm">
+<!-- Hierarchical Tree -->
+<div class="flex items-center gap-sm group cursor-pointer hover:bg-surface-container-low p-1 rounded transition-colors">
+<span class="material-symbols-outlined text-outline-variant text-sm">add_box</span>
+<div class="w-3 h-3 border border-outline-variant rounded-sm"></div>
+<span class="text-body-md font-body-md">Addis Ababa City Administration</span>
+</div>
+<div class="flex items-center gap-sm group cursor-pointer hover:bg-surface-container-low p-1 rounded transition-colors">
+<span class="material-symbols-outlined text-outline-variant text-sm">add_box</span>
+<div class="w-3 h-3 border border-outline-variant rounded-sm"></div>
+<span class="text-body-md font-body-md">Afar Region</span>
+</div>
+<div class="flex items-center gap-sm group cursor-pointer hover:bg-surface-container-low p-1 rounded transition-colors">
+<span class="material-symbols-outlined text-outline-variant text-sm">add_box</span>
+<div class="w-3 h-3 border border-outline-variant rounded-sm"></div>
+<span class="text-body-md font-body-md">Amhara Region</span>
+</div>
+<div class="flex items-center gap-sm group cursor-pointer hover:bg-surface-container-low p-1 rounded transition-colors">
+<span class="material-symbols-outlined text-outline-variant text-sm">add_box</span>
+<div class="w-3 h-3 border border-outline-variant rounded-sm"></div>
+<span class="text-body-md font-body-md">Benishangul Gumuz</span>
+</div>
+<div class="flex items-center gap-sm group cursor-pointer hover:bg-surface-container-low p-1 rounded transition-colors">
+<span class="material-symbols-outlined text-outline-variant text-sm">add_box</span>
+<div class="w-3 h-3 border border-outline-variant rounded-sm"></div>
+<span class="text-body-md font-body-md">Gambella Region</span>
+</div>
+<div class="flex items-center gap-sm group cursor-pointer hover:bg-surface-container-low p-1 rounded transition-colors">
+<span class="material-symbols-outlined text-outline-variant text-sm">add_box</span>
+<div class="w-3 h-3 border border-outline-variant rounded-sm"></div>
+<span class="text-body-md font-body-md">Oromia Region</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto space-y-md">
+<div class="flex items-center justify-between py-sm border-t border-outline-variant">
+<span class="text-label-md font-label-md text-outline">Filters out of scope (0)</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+<button class="w-full bg-primary text-on-primary font-bold py-3 rounded-lg shadow-sm active:scale-95 transition-all">Apply Filters</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-[#F8FAFC]">
+<!-- Sub-tabs (Clinical domains) -->
+<div class="bg-surface border-b border-outline-variant px-margin py-xs flex gap-lg overflow-x-auto sticky top-0 z-30">
+<button class="px-md py-sm text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all">Family Planning</button>
+<button class="px-md py-sm text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all">Maternal</button>
+<button class="px-md py-sm text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all">Neonatal</button>
+<button class="px-md py-sm text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all">NCD</button>
+<button class="px-md py-sm text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all">Malaria</button>
+<button class="px-md py-sm text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all">HIV</button>
+<button class="px-md py-sm text-label-md font-label-md text-primary font-bold border-b-2 border-primary">TB</button>
+</div>
+<!-- Content Grid (Bento Style) -->
+<div class="p-lg grid grid-cols-12 gap-lg">
+<!-- Chart 1: TB Incidence Rate -->
+<section class="col-span-12 lg:col-span-6 bg-white rounded-xl custom-border custom-shadow p-lg flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h3 class="text-title-lg font-title-lg text-on-surface">TB Incidence Rate</h3>
+<span class="text-label-md font-label-md text-outline">Annual Trend Analysis (2012 - 2016)</span>
+</div>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-all">info</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-all">download</span>
+</div>
+</div>
+<div class="chart-container relative flex items-end pt-lg">
+<!-- Mockup SVG Line Chart -->
+<svg class="w-full h-full overflow-visible" viewbox="0 0 500 200">
+<path d="M 0,100 L 100,80 L 200,85 L 300,95 L 400,105 L 500,90" fill="none" stroke="#005CAB" stroke-linecap="round" stroke-width="3"></path>
+<circle cx="0" cy="100" fill="#005CAB" r="4"></circle>
+<circle cx="100" cy="80" fill="#005CAB" r="4"></circle>
+<circle cx="200" cy="85" fill="#005CAB" r="4"></circle>
+<circle cx="300" cy="95" fill="#005CAB" r="4"></circle>
+<circle cx="400" cy="105" fill="#005CAB" r="4"></circle>
+<circle cx="500" cy="90" fill="#005CAB" r="4"></circle>
+<!-- Grid lines -->
+<line stroke="#E2E8F0" stroke-width="1" x1="0" x2="500" y1="200" y2="200"></line>
+<line stroke="#F1F5F9" stroke-width="1" x1="0" x2="500" y1="150" y2="150"></line>
+<line stroke="#F1F5F9" stroke-width="1" x1="0" x2="500" y1="100" y2="100"></line>
+<line stroke="#F1F5F9" stroke-width="1" x1="0" x2="500" y1="50" y2="50"></line>
+</svg>
+<div class="absolute bottom-0 w-full flex justify-between text-[10px] text-outline font-bold mt-2">
+<span>2012</span>
+<span>2013</span>
+<span>2014</span>
+<span>2015</span>
+<span>2016</span>
+</div>
+</div>
+<div class="flex items-center gap-md pt-sm">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-label-md font-label-md text-outline">Incidence per 100k</span>
+</div>
+</div>
+</section>
+<!-- Chart 2: TB Treatment Coverage -->
+<section class="col-span-12 lg:col-span-6 bg-white rounded-xl custom-border custom-shadow p-lg flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h3 class="text-title-lg font-title-lg text-on-surface">TB Treatment Coverage</h3>
+<span class="text-label-md font-label-md text-outline">Performance by Month (Ethiopian Calendar)</span>
+</div>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-outline">filter_alt</span>
+<span class="material-symbols-outlined text-outline">more_horiz</span>
+</div>
+</div>
+<div class="chart-container flex items-end justify-around gap-2 px-sm">
+<!-- Bar chart simulation -->
+<div class="w-full bg-primary-container opacity-40 rounded-t-sm" style="height: 60%"></div>
+<div class="w-full bg-primary-container opacity-50 rounded-t-sm" style="height: 65%"></div>
+<div class="w-full bg-primary-container opacity-60 rounded-t-sm" style="height: 62%"></div>
+<div class="w-full bg-primary-container opacity-70 rounded-t-sm" style="height: 75%"></div>
+<div class="w-full bg-primary-container opacity-80 rounded-t-sm" style="height: 72%"></div>
+<div class="w-full bg-primary-container opacity-90 rounded-t-sm" style="height: 78%"></div>
+<div class="w-full bg-primary rounded-t-sm" style="height: 85%"></div>
+<div class="w-full bg-primary-container opacity-80 rounded-t-sm" style="height: 55%"></div>
+<div class="w-full bg-primary-container opacity-70 rounded-t-sm" style="height: 82%"></div>
+<div class="w-full bg-primary-container opacity-60 rounded-t-sm" style="height: 58%"></div>
+<div class="w-full bg-primary-container opacity-50 rounded-t-sm" style="height: 60%"></div>
+</div>
+<div class="flex justify-between text-[10px] text-outline font-bold mt-1 px-1 overflow-x-auto gap-2">
+<span>Hamle</span><span>Neh</span><span>Mes</span><span>Tik</span><span>Hid</span><span>Tah</span><span>Tir</span><span>Yek</span><span>Meg</span><span>Miy</span><span>Gin</span>
+</div>
+</section>
+<!-- Chart 3: Horizontal Grouped Comparison -->
+<section class="col-span-12 lg:col-span-7 bg-white rounded-xl custom-border custom-shadow p-lg flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h3 class="text-title-lg font-title-lg text-on-surface">Cure Rate &amp; TSR Comparison</h3>
+<span class="text-label-md font-label-md text-outline">By Reporting Unit and Type of Confirmation</span>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-xs">
+<div class="w-4 h-2 bg-primary"></div>
+<span class="text-[10px] text-outline font-bold uppercase">TSR</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-4 h-2 bg-secondary"></div>
+<span class="text-[10px] text-outline font-bold uppercase">Cure Rate</span>
+</div>
+</div>
+</div>
+<div class="space-y-md mt-sm overflow-y-auto max-h-[350px] pr-2">
+<!-- Repeatable Row -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center text-[11px] text-outline-variant font-bold">
+<span>Addis Ababa</span>
+<span>92% / 88%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 92%"></div>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 88%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-center text-[11px] text-outline-variant font-bold">
+<span>Amhara</span>
+<span>85% / 81%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 85%"></div>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 81%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-center text-[11px] text-outline-variant font-bold">
+<span>Oromia</span>
+<span>94% / 89%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 94%"></div>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 89%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-center text-[11px] text-outline-variant font-bold">
+<span>Sidama</span>
+<span>88% / 84%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 88%"></div>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 84%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Chart 4: Heatmap -->
+<section class="col-span-12 lg:col-span-5 bg-white rounded-xl custom-border custom-shadow p-lg flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h3 class="text-title-lg font-title-lg text-on-surface">TB Notification Heatmap</h3>
+<span class="text-label-md font-label-md text-outline">Regional Notification Density Per Sq KM</span>
+</div>
+<button class="material-symbols-outlined text-outline">fullscreen</button>
+</div>
+<div class="flex-1 relative min-h-[300px] flex items-center justify-center bg-surface-container-low rounded-lg overflow-hidden border border-outline-variant">
+<div class="w-full h-full bg-center bg-no-repeat bg-contain opacity-80 mix-blend-multiply" data-alt="A clean, minimalist vector map of Ethiopia divided by regional boundaries. The map is a geospatial heatmap utilizing a sophisticated color palette from light cream to deep coral-red, indicating varying densities of healthcare notifications. The style is professional and corporate, set against a subtle grid pattern with clinical precision and elegant data overlays." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBepJtCRaNSwqu06-eYDUonjkLKSnvhvePyit6UUdU_KeuoooEdHbYPaBSm9nbPuV0V9KmeK8b7WGoN2hm5ye1Rm_STDBqRF-BbesUYjd6wXShHrwu6mh-0fDadzNco0TpxBNsIObn89-CRJAqgCAmbuzdJlybhUQgzhmrH4vnj8fm73JA0f26wHl82enTcDRcTlj2w8GzEg5lP9ayaapFmwv7qmLWeMU62Y012bZ2Vfrbp32Fd9Ew9NiRik2P3wE2xJBng_HyX-x4')"></div>
+<!-- Floating Legend -->
+<div class="absolute bottom-md right-md bg-white/90 backdrop-blur-sm p-sm rounded-lg border border-outline-variant shadow-sm space-y-xs">
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 bg-[#FFE6E6] rounded-sm"></div>
+<span class="text-[10px] font-bold text-outline">0 - 1</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 bg-[#FFB3B3] rounded-sm"></div>
+<span class="text-[10px] font-bold text-outline">1 - 2</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 bg-[#FF6666] rounded-sm"></div>
+<span class="text-[10px] font-bold text-outline">2 - 3</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 bg-[#CC0000] rounded-sm"></div>
+<span class="text-[10px] font-bold text-outline">3 - 4</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 bg-[#660000] rounded-sm"></div>
+<span class="text-[10px] font-bold text-outline">4+</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Area -->
+<footer class="mt-lg border-t border-outline-variant px-margin py-lg bg-surface-container flex flex-col md:flex-row justify-between items-center gap-md text-on-surface-variant">
+<div class="flex gap-md items-center">
+<img class="h-8 w-8 grayscale" data-alt="Small version of the Ethiopian Ministry of Health logo used as a footer mark. It remains professional and minimalist, aligned with the corporate dashboard identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ3obu_Ic6jvq4YOiP-ptb1lKSq4GmUE5MayQSi4SzJ7wNnGqUOmY1OPNurAtgOHMIAP3F4pj-l6HIn29fKoe143ryovcRlaWLucEIscB9VeUqFpNX_F4slNe2rzEoXZPDvGUBS6-xHFHrOFoWiRPzw8-tu2s_Y7NSc9Ekw9rmSIon4lYXwu0AXNBwa8-028RSXpm7ZGHSrKc_eo29R78KLc6X74_loUUNMUFGSGP8NDgUPLOPzMJihAuobJnsjSpU5TSSBs1kYxQ"/>
+<div class="text-label-md font-label-md">
+<p>© 2024 Ethiopian Ministry of Health. All rights reserved.</p>
+<p class="text-[10px] opacity-70">Empowering health through data-driven intelligence.</p>
+</div>
+</div>
+<div class="flex gap-lg">
+<a class="text-label-md font-label-md hover:text-primary underline" href="#">Privacy Policy</a>
+<a class="text-label-md font-label-md hover:text-primary underline" href="#">Terms of Service</a>
+<a class="text-label-md font-label-md hover:text-primary underline" href="#">Contact Support</a>
+</div>
+</footer>
+</main>
+</div>
+<!-- AI Assistant Button -->
+<div class="fixed bottom-lg right-lg z-50">
+<button class="bg-primary text-on-primary px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-sm group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">smart_toy</span>
+<span class="font-bold text-body-md tracking-wide">Ask Health Intelligence</span>
+</button>
+</div>
+<script>
+        // Micro-interaction for hover effects on bars and chart elements
+        document.querySelectorAll('.chart-container > div').forEach(bar => {
+            bar.addEventListener('mouseenter', () => {
+                bar.style.filter = 'brightness(1.1)';
+            });
+            bar.addEventListener('mouseleave', () => {
+                bar.style.filter = 'brightness(1)';
+            });
+        });
+        
+        // Mobile sidebar toggle (conceptual)
+        const sidebar = document.querySelector('aside');
+        const main = document.querySelector('main');
+        // Basic responsiveness for interactions could be added here
+    </script>
+</body></html>

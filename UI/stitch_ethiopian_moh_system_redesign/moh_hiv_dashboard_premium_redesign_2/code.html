@@ -1,0 +1,498 @@
+<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#95e88f",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#a3f69c",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-fixed-dim": "#88d982",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#095fae",
+                        "secondary-fixed-dim": "#72d8c8",
+                        "on-primary-fixed": "#001c3b",
+                        "surface": "#f8f9ff",
+                        "outline-variant": "#c1c6d3",
+                        "secondary-container": "#8ef4e4",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#414751",
+                        "on-primary-container": "#bdd6ff",
+                        "surface-container-low": "#eff4ff",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "inverse-surface": "#213145",
+                        "tertiary": "#005011",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#8ef4e4",
+                        "inverse-primary": "#a6c8ff",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "secondary": "#006a60",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#007166",
+                        "outline": "#727783",
+                        "on-background": "#0b1c30",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-variant": "#d3e4fe",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d5e3ff",
+                        "tertiary-container": "#186a21",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-high": "#dce9ff",
+                        "primary-fixed-dim": "#a6c8ff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "primary-container": "#005cab",
+                        "on-tertiary-fixed": "#002204",
+                        "on-primary-fixed-variant": "#004786",
+                        "surface-container": "#e5eeff",
+                        "primary": "#004482",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "margin": "32px",
+                        "max_width": "1440px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="bg-surface-bright text-on-surface">
+<!-- TopNavBar Shell -->
+<header class="bg-surface dark:bg-on-surface border-b border-outline-variant dark:border-on-surface-variant sticky top-0 z-50 shadow-sm">
+<div class="flex justify-between items-center w-full px-gutter h-16 max-w-max_width mx-auto">
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;" data-original-icon="health_and_safety">health_and_safety</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">MoH Ethiopia</span>
+</div>
+<nav class="hidden md:flex items-center gap-lg ml-xl">
+<a href="#" class="font-title-lg text-title-lg text-on-surface-variant hover:text-primary transition-colors">Home</a>
+<a href="#" class="font-title-lg text-title-lg text-primary font-bold border-b-2 border-primary pb-1">Dashboards</a>
+<a href="#" class="font-title-lg text-title-lg text-on-surface-variant hover:text-primary transition-colors">Charts</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+
+</div>
+<button class="p-sm hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-original-icon="notifications">notifications</span>
+</button>
+<div class="flex items-center gap-sm ml-sm pl-md border-l border-outline-variant">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a professional healthcare administrator in a clinical setting, soft natural lighting, high-end corporate photography style, trustworthy and reliable mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0TQjtiL9f8e4-5_06YI9Nt-VQeeRBvK-NmE2SYAfsJPkPXrotm72-SiPTsCPLhwbbsixcQT8YYMSaxBZcsfTA08Gley1onaZPnpZY9ejnTvaHvFvMuYlNi5ZxKyihTdV5VAFSwx4uGARAEcy12N_w_uzbHdIwK6Mu7Jy2f6L7dzP2OEOEhhmqHuIDRbnjy7jJBVjolcza5qFbnK98S904JrPCXobYJ7UHGgF7BdqkD0nJzLErliFRAe7Q-tzeKOx4TEjy18bD198">
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Secondary Navigation -->
+<div class="bg-surface-container-low border-b border-outline-variant overflow-x-auto hide-scrollbar">
+<div class="flex items-center gap-xl h-12 px-gutter max-w-max_width mx-auto">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary h-full flex items-center px-sm whitespace-nowrap" href="#">Services Delivery</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#">Health Equity</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#">Health Work Force</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#">Health Financing</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#">Supply and Logistics</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#">Blood Donation</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#">PHEM</a>
+</div>
+</div>
+<div class="flex max-w-max_width mx-auto min-h-[calc(100vh-112px)]">
+<!-- SideNavBar Shell -->
+<aside class="w-64 bg-surface-container-low border-r border-outline-variant p-md flex flex-col gap-sm hidden md:flex shrink-0">
+<div class="mb-md">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-primary">filter_alt</span>
+<span class="font-title-lg text-title-lg text-primary">Filters and controls</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface-variant">Global Dashboard Scope</p>
+</div>
+<div class="space-y-lg flex-1">
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Year</label>
+<select class="w-full bg-surface border-outline-variant rounded-lg text-body-md py-2 focus:ring-primary focus:border-primary">
+<option>2018</option>
+<option>2019</option>
+</select>
+</div><div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Quarter</label>
+<select class="w-full bg-surface border-outline-variant rounded-lg text-body-md py-2 focus:ring-primary focus:border-primary">
+<option>All Quarters</option>
+<option>Q1</option>
+<option>Q2</option>
+<option>Q3</option>
+<option>Q4</option>
+</select>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Region</label>
+<div class="space-y-1 max-h-64 overflow-y-auto pr-xs">
+<label class="flex items-center gap-sm p-sm rounded-lg hover:bg-surface-variant transition-colors cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+<span class="text-body-md">Addis Ababa</span>
+</label>
+<label class="flex items-center gap-sm p-sm rounded-lg hover:bg-surface-variant transition-colors cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+<span class="text-body-md">Afar Region</span>
+</label>
+<label class="flex items-center gap-sm p-sm rounded-lg hover:bg-surface-variant transition-colors cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+<span class="text-body-md">Amhara Region</span>
+</label>
+<label class="flex items-center gap-sm p-sm rounded-lg hover:bg-surface-variant transition-colors cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+<span class="text-body-md">Oromia Region</span>
+</label>
+<label class="flex items-center gap-sm p-sm rounded-lg hover:bg-surface-variant transition-colors cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+<span class="text-body-md">Tigray Region</span>
+</label>
+</div>
+</div>
+
+</div>
+<button class="w-full bg-primary text-white font-label-md text-label-md py-3 rounded-lg shadow-sm hover:opacity-90 transition-all mt-auto uppercase tracking-widest font-bold">
+                Apply filters
+            </button>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-lg overflow-y-auto">
+<!-- HIV Sub-tabs -->
+<div class="flex gap-lg border-b border-outline-variant mb-lg overflow-x-auto hide-scrollbar">
+<button class="pb-sm font-label-md text-label-md text-on-surface-variant whitespace-nowrap hover:text-primary transition-colors">Family Planning</button>
+<button class="pb-sm font-label-md text-label-md text-on-surface-variant whitespace-nowrap hover:text-primary transition-colors">Maternal</button>
+<button class="pb-sm font-label-md text-label-md text-on-surface-variant whitespace-nowrap hover:text-primary transition-colors">Neonatal</button>
+<button class="pb-sm font-label-md text-label-md text-on-surface-variant whitespace-nowrap hover:text-primary transition-colors">NCD</button>
+<button class="pb-sm font-label-md text-label-md text-on-surface-variant whitespace-nowrap hover:text-primary transition-colors">Malaria</button>
+<button class="pb-sm font-label-md text-label-md text-primary font-bold border-b-2 border-primary whitespace-nowrap">HIV</button>
+<button class="pb-sm font-label-md text-label-md text-on-surface-variant whitespace-nowrap hover:text-primary transition-colors">TB</button>
+</div>
+<!-- Top Row: 95-95-95 Metric Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-lg">
+<!-- Card 1 -->
+<div class="bg-white p-lg rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between group hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface-variant">1st 95</h3>
+<p class="text-label-md font-label-md text-outline">Know status</p>
+</div>
+<span class="material-symbols-outlined text-primary opacity-20 group-hover:opacity-100 transition-opacity">info</span>
+</div>
+<div class="flex items-baseline gap-xs">
+<span class="font-display-lg text-display-lg text-primary">95</span>
+<span class="text-headline-md font-headline-md text-primary">%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1 mt-md">
+<div class="bg-primary h-full rounded-full w-[95%]"></div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-lg rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between group hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface-variant">2nd 95</h3>
+<p class="text-label-md font-label-md text-outline">On ART</p>
+</div>
+<span class="material-symbols-outlined text-primary opacity-20 group-hover:opacity-100 transition-opacity">info</span>
+</div>
+<div class="flex items-baseline gap-xs">
+<span class="font-display-lg text-display-lg text-primary">97</span>
+<span class="text-headline-md font-headline-md text-primary">%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1 mt-md">
+<div class="bg-primary h-full rounded-full w-[97%]"></div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white p-lg rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between group hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface-variant">3rd 95</h3>
+<p class="text-label-md font-label-md text-outline">Viral Suppression</p>
+</div>
+<span class="material-symbols-outlined text-primary opacity-20 group-hover:opacity-100 transition-opacity">info</span>
+</div>
+<div class="flex items-baseline gap-xs">
+<span class="font-display-lg text-display-lg text-primary">97</span>
+<span class="text-headline-md font-headline-md text-primary">%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1 mt-md">
+<div class="bg-primary h-full rounded-full w-[97%]"></div>
+</div>
+</div>
+</div>
+<!-- Middle Row: Charts & Data -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-lg mb-lg">
+<!-- HIV Exposed Infants Chart -->
+<div class="lg:col-span-2 bg-white p-lg rounded-xl shadow-sm border border-outline-variant pl-10">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-headline-sm text-headline-sm">HIV Exposed Infants</h3>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">download</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">more_vert</span>
+</div>
+</div>
+<div class="h-64 relative flex flex-col">
+  <div class="flex-1 relative">
+    <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+      <div class="border-b border-outline-variant/30 w-full h-0"></div>
+      <div class="border-b border-outline-variant/30 w-full h-0"></div>
+      <div class="border-b border-outline-variant/30 w-full h-0"></div>
+      <div class="border-b border-outline-variant/30 w-full h-0"></div>
+      <div class="border-b border-outline-variant w-full h-0"></div>
+    </div>
+    <div class="absolute -left-8 inset-y-0 flex flex-col justify-between text-[10px] text-outline py-1">
+      <span class="">120</span><span class="">90</span><span class="">60</span><span class="">30</span><span class="">0</span>
+    </div>
+    <div class="absolute inset-0 flex items-end justify-around px-2">
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 45%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 30%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 55%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 40%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 70%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 50%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 65%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 45%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 80%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 60%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 75%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 55%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 90%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 70%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 85%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 65%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 60%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 40%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 50%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 35%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 40%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 25%"></div>
+      </div>
+      <div class="flex items-end gap-1 h-full">
+        <div class="w-2 bg-primary rounded-t-sm" style="height: 30%"></div>
+        <div class="w-2 bg-secondary-container rounded-t-sm" style="height: 20%"></div>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-around mt-2 text-[10px] text-outline font-medium">
+    <span class="">Jan</span><span class="">Feb</span><span class="">Mar</span><span class="">Apr</span><span class="">May</span><span class="">Jun</span><span class="">Jul</span><span class="">Aug</span><span class="">Sep</span><span class="">Oct</span><span class="">Nov</span><span class="">Dec</span>
+  </div>
+</div>
+<div class="mt-lg flex gap-lg">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<span class="text-label-md font-label-md text-outline">Confirmatory Test</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 bg-secondary-container rounded-full"></div>
+<span class="text-label-md font-label-md text-outline">ARV Prophylaxis</span>
+</div>
+</div>
+</div>
+<!-- Adults and Children currently on ART -->
+<div class="lg:col-span-1 bg-primary text-white p-lg rounded-xl shadow-lg flex flex-col justify-center items-center text-center">
+<div class="mb-lg">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">diversity_1</span>
+</div>
+<h3 class="font-title-lg text-title-lg opacity-90 mb-md">Adults and Children Currently on ART</h3>
+<div class="font-display-lg text-display-lg">5.22k</div>
+<div class="mt-md px-md py-sm bg-white/10 rounded-full text-label-md font-label-md backdrop-blur-sm">
+                        +4.2% from last quarter
+                    </div>
+</div>
+<!-- HIV Test vs Positive Results Table -->
+<div class="lg:col-span-1 bg-white p-lg rounded-xl shadow-sm border border-outline-variant">
+<h3 class="font-title-lg text-title-lg mb-lg">HIV Test vs Positive Results</h3>
+<div class="space-y-md">
+<div class="flex justify-between items-center border-b border-outline-variant pb-sm">
+<span class="text-body-md text-on-surface-variant">Total Receiving Test</span>
+<span class="font-title-lg text-title-lg text-primary">10.2k</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant pb-sm">
+<span class="text-body-md text-on-surface-variant">Positive (PITC)</span>
+<span class="font-title-lg text-title-lg text-primary">360</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant pb-sm">
+<span class="text-body-md text-on-surface-variant">Positive (VCT)</span>
+<span class="font-title-lg text-title-lg text-primary">222</span>
+</div>
+</div>
+<div class="mt-lg">
+<div class="w-full h-32 bg-cover rounded-lg" data-alt="A clean, professional infographic diagram showing the cascading journey of HIV patients from initial testing to positive results confirmation, styled in minimalist blues and greens to match a medical dashboard aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDi_xAbKfDmR3884s-IeDQVqWfuPRBSdjMcqmxyc_hhMzlLtaG8G3VtlmZhF3qGl12v7o6D084YdHkR9bsnfeLG7yWtCOhP49H9rcmg6i8v9MPCcvGWARKiuny6MDyJ_tN7FW5lpI9Aj3fxoIdqTwcXHNgIlqj6J652Kx2mkYQ46BVuIP_diQ8GLv7snCuX3GB7VAOJilE79LaoqZ6aYG178PXZuaYBev_xHNne9V3LgV5cbz8OAwAEi5MFNUBFTi71jfefD3zjPIY')"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Stacked Chart & Interrupted Treatment -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+<!-- MTCT: HIV+ Presence -->
+<div class="bg-white p-lg rounded-xl shadow-sm border border-outline-variant">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-headline-sm text-headline-sm">MTCT: HIV+ Known Status Presence</h3>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-outline">help</span>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between gap-4">
+<!-- Stacked Bars -->
+<div class="w-full space-y-1">
+<div class="h-32 bg-primary rounded-t-sm" title="ANC"></div>
+<div class="h-16 bg-secondary-container" title="Delivery"></div>
+<div class="h-12 bg-tertiary-fixed rounded-b-sm" title="PNC"></div>
+</div>
+<div class="w-full space-y-1">
+<div class="h-24 bg-primary rounded-t-sm"></div>
+<div class="h-12 bg-secondary-container"></div>
+<div class="h-10 bg-tertiary-fixed rounded-b-sm"></div>
+</div>
+<div class="w-full space-y-1">
+<div class="h-28 bg-primary rounded-t-sm"></div>
+<div class="h-14 bg-secondary-container"></div>
+<div class="h-12 bg-tertiary-fixed rounded-b-sm"></div>
+</div>
+<div class="w-full space-y-1">
+<div class="h-36 bg-primary rounded-t-sm"></div>
+<div class="h-20 bg-secondary-container"></div>
+<div class="h-14 bg-tertiary-fixed rounded-b-sm"></div>
+</div>
+<div class="w-full space-y-1">
+<div class="h-30 bg-primary rounded-t-sm"></div>
+<div class="h-15 bg-secondary-container"></div>
+<div class="h-10 bg-tertiary-fixed rounded-b-sm"></div>
+</div>
+</div>
+<div class="mt-lg flex gap-md">
+<span class="flex items-center gap-xs text-label-md"><div class="w-2 h-2 bg-primary"></div> ANC</span>
+<span class="flex items-center gap-xs text-label-md"><div class="w-2 h-2 bg-secondary-container"></div> Delivery</span>
+<span class="flex items-center gap-xs text-label-md"><div class="w-2 h-2 bg-tertiary-fixed"></div> PNC</span>
+</div>
+</div>
+<!-- Interrupted Treatment -->
+<div class="bg-white p-lg rounded-xl shadow-sm border border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm mb-lg">HIV ART Clients Interrupted Treatment</h3>
+<div class="space-y-sm">
+<div class="p-md rounded-lg bg-error-container/20 border-l-4 border-error flex justify-between items-center">
+<div>
+<p class="text-body-md font-bold text-on-surface">Lost after treatment &gt; 3 months</p>
+<p class="text-label-md text-on-surface-variant">High risk category</p>
+</div>
+<span class="font-headline-md text-headline-md text-error">1,124</span>
+</div>
+<div class="p-md rounded-lg bg-surface-container-low flex justify-between items-center">
+<div>
+<p class="text-body-md font-bold text-on-surface">Transferred out</p>
+<p class="text-label-md text-on-surface-variant">Moved to other facilities</p>
+</div>
+<span class="font-headline-md text-headline-md text-primary">204</span>
+</div>
+<div class="p-md rounded-lg bg-surface-container-low flex justify-between items-center">
+<div>
+<p class="text-body-md font-bold text-on-surface">Lost after treatment &lt; 3 months</p>
+<p class="text-label-md text-on-surface-variant">Early interruption</p>
+</div>
+<span class="font-headline-md text-headline-md text-primary">85</span>
+</div>
+<div class="p-md rounded-lg bg-surface-container-low flex justify-between items-center">
+<div>
+<p class="text-body-md font-bold text-on-surface">Died</p>
+<p class="text-label-md text-on-surface-variant">Mortality records</p>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface-variant">52</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Shell -->
+<footer class="bg-surface-dim dark:bg-on-surface border-t border-outline-variant dark:border-on-surface-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin py-lg w-full max-w-max_width mx-auto">
+<div class="flex items-center gap-sm mb-md md:mb-0">
+<span class="font-label-md text-label-md text-on-surface-variant">© 2024 Ethiopian Ministry of Health. All rights reserved.</span>
+</div>
+<div class="flex gap-lg">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="#">Data Governance</a>
+</div>
+</div>
+</footer>
+<!-- FAB: Ask Health Intelligence -->
+<button class="fixed bottom-margin right-margin bg-primary text-white flex items-center gap-sm px-lg py-md rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-title-lg text-title-lg">Ask Health Intelligence</span>
+</button>
+<script>
+        // Simple interactivity for tabs and checkboxes
+        document.querySelectorAll('nav a, aside label').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if(e.target.tagName === 'A') {
+                    // Visual feedback only for demo
+                    console.log('Navigation clicked:', e.target.textContent);
+                }
+            });
+        });
+    </script>
+
+</body></html>
