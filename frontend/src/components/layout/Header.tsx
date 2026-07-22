@@ -175,14 +175,14 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
       className={`sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 w-full shrink-0 select-none relative ${className}`}
       style={{ boxShadow: '0 2px 8px -4px rgba(0,68,130,0.12)' }}
     >
-      <div className="flex items-center justify-between px-3 sm:px-5 h-[56px] w-full">
+      <div className="flex items-center justify-between px-2 sm:px-3 md:px-5 h-[52px] sm:h-[56px] w-full">
         {/* ── Left: Dual Logo + Navigation ────────────────────────── */}
-        <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
+        <div className="flex items-center gap-1.5 sm:gap-2 md:gap-4 lg:gap-6">
           {/* Dual Ethiopian Government & MOH Logos */}
-          <Link to="/" className="flex items-center gap-2 group shrink-0">
+          <Link to="/" className="flex items-center gap-1 sm:gap-2 group shrink-0">
             {/* Logo 1: FDRE Emblem */}
-            <div className="flex items-center gap-1.5">
-              <svg viewBox="0 0 100 100" className="w-7 h-7 sm:w-8 sm:h-8 transition-transform group-hover:scale-105 duration-300 shrink-0">
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <svg viewBox="0 0 100 100" className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 transition-transform group-hover:scale-105 duration-300 shrink-0">
                 <defs>
                   <radialGradient id="fdreGrad" cx="50%" cy="50%" r="50%">
                     <stop offset="0%" stopColor="#0284c7" />
@@ -205,11 +205,11 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             </div>
 
             {/* Divider */}
-            <div className="w-[1px] h-6 sm:h-7 bg-slate-200 mx-0.5"></div>
+            <div className="hidden sm:block w-[1px] h-5 sm:h-6 md:h-7 bg-slate-200 dark:bg-slate-700 mx-0.5"></div>
 
             {/* Logo 2: Ministry of Health Emblem */}
-            <div className="flex items-center gap-1.5">
-              <svg viewBox="0 0 100 100" className="w-7 h-7 sm:w-8 sm:h-8 transition-transform group-hover:scale-105 duration-300 shrink-0">
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <svg viewBox="0 0 100 100" className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 transition-transform group-hover:scale-105 duration-300 shrink-0">
                 <defs>
                   <linearGradient id="mohGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#0ea5e9" />
@@ -248,23 +248,23 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           {/* Global Command & Search Button (Desktop) */}
           <button
             onClick={() => setSearchModalOpen(true)}
-            className="hidden md:flex items-center gap-2 px-3 py-1 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-all text-xs font-semibold cursor-pointer"
+            className="hidden lg:flex items-center gap-2 px-2 sm:px-3 py-1 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-all text-xs font-semibold cursor-pointer"
           >
-            <span className="material-symbols-outlined text-[15px]">search</span>
-            <span className="text-[11px] text-slate-600 dark:text-slate-400">Search indicators...</span>
-            <kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-[9px] font-mono text-slate-500 dark:text-slate-400 shadow-2xs">Ctrl+K</kbd>
+            <span className="material-symbols-outlined text-[14px] sm:text-[15px]">search</span>
+            <span className="hidden xl:inline text-[11px] text-slate-600 dark:text-slate-400">Search indicators...</span>
+            <kbd className="hidden lg:inline px-1.5 py-0.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-[9px] font-mono text-slate-500 dark:text-slate-400 shadow-2xs">Ctrl+K</kbd>
           </button>
 
           {/* Primary Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 ml-1" aria-label="Primary navigation">
+          <nav className="hidden md:flex items-center gap-0.5 sm:gap-1 ml-0.5 sm:ml-1" aria-label="Primary navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-3 py-1 text-[13px] font-semibold transition-all rounded-md ${
+                className={`px-2 sm:px-3 py-1 text-[11px] sm:text-[12px] md:text-[13px] font-semibold transition-all rounded-md ${
                   isActive(link.to)
                     ? 'text-white font-bold bg-primary shadow-xs'
-                    : 'text-on-surface-variant hover:text-on-surface hover:bg-slate-50'
+                    : 'text-on-surface-variant hover:text-on-surface hover:bg-slate-50 dark:hover:bg-slate-700'
                 }`}
               >
                 {link.label}
@@ -274,26 +274,28 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
         </div>
 
         {/* ── Right: Theme, Settings, & Mobile Hamburger ──────── */}
-        <div className="flex items-center gap-2.5">
-          {/* User Status Badge */}
-          <div className="hidden sm:flex items-center gap-1 px-2.5 py-0.5 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700 rounded-full text-[10px] font-bold">
+        <div className="flex items-center gap-1.5 sm:gap-2.5">
+          {/* User Status Badge - hidden on very small screens */}
+          <div className="hidden sm:flex items-center gap-1 px-2 py-0.5 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700 rounded-full text-[9px] sm:text-[10px] font-bold">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            Federal Admin
+            <span className="hidden xs:inline">Federal Admin</span>
+            <span className="xs:hidden">Admin</span>
           </div>
 
           {/* Theme Toggle */}
           <ThemeToggle />
 
-          {/* Settings Dropdown Button */}
-          <div className="relative" ref={settingsRef}>
+          {/* Settings Dropdown Button - hidden on very small screens */}
+          <div className="relative hidden sm:block" ref={settingsRef}>
             <button
               onClick={() => setSettingsOpen(!settingsOpen)}
-              className={`flex items-center gap-1 px-2 py-1 rounded text-[13px] font-semibold transition-colors cursor-pointer ${
+              className={`flex items-center gap-1 px-2 py-1 rounded text-[12px] sm:text-[13px] font-semibold transition-colors cursor-pointer ${
                 settingsOpen ? 'text-blue-600 dark:text-blue-400' : 'text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40'
               }`}
             >
-              <span>Settings</span>
-              <span className="material-symbols-outlined text-[14px]">expand_more</span>
+              <span className="hidden xs:inline">Settings</span>
+              <span className="xs:hidden">Set</span>
+              <span className="material-symbols-outlined text-[13px] sm:text-[14px]">expand_more</span>
             </button>
 
             {settingsOpen && (
@@ -333,7 +335,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           <div className="relative" ref={menuRef}>
             <button
               onClick={() => setMoreMenuOpen(!moreMenuOpen)}
-              className="px-2.5 py-1 rounded-md text-primary hover:bg-blue-50 border border-blue-200 transition-all font-bold text-[13px] flex items-center justify-center cursor-pointer shadow-xs active:scale-95"
+              className="px-2 py-1 rounded-md text-primary hover:bg-blue-50 dark:hover:bg-blue-950/40 border border-blue-200 dark:border-blue-700 transition-all font-bold text-[12px] sm:text-[13px] flex items-center justify-center cursor-pointer shadow-xs active:scale-95"
               aria-label="More options"
               title="More options"
             >
@@ -361,12 +363,12 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                     <span>Download</span>
                     <div className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-[15px] text-slate-400 dark:text-slate-500">download</span>
-                      <span className="material-symbols-outlined text-[12px] text-slate-400">chevron_right</span>
+                      <span className="material-symbols-outlined text-[12px] text-slate-400">expand_more</span>
                     </div>
                   </button>
 
                   {downloadMenuOpen && (
-                    <div className="absolute left-full top-0 ml-1 w-48 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-2xl py-1 z-[60] text-[12.5px] font-medium text-slate-800 dark:text-slate-200 animate-in fade-in zoom-in-95 duration-150">
+                    <div className="absolute right-0 top-full mt-1 w-48 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-2xl py-1 z-[60] text-[12.5px] font-medium text-slate-800 dark:text-slate-200 animate-in fade-in zoom-in-95 duration-150">
                       <button
                         onClick={handleDownloadPDF}
                         className="w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
@@ -400,12 +402,12 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                     <span>Share</span>
                     <div className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-[15px] text-slate-400 dark:text-slate-500">share</span>
-                      <span className="material-symbols-outlined text-[12px] text-slate-400">chevron_right</span>
+                      <span className="material-symbols-outlined text-[12px] text-slate-400">expand_more</span>
                     </div>
                   </button>
 
                   {shareMenuOpen && (
-                    <div className="absolute left-full top-0 ml-1 w-48 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-2xl py-1 z-[60] text-[12.5px] font-medium text-slate-800 dark:text-slate-200 animate-in fade-in zoom-in-95 duration-150">
+                    <div className="absolute right-0 top-full mt-1 w-48 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-2xl py-1 z-[60] text-[12.5px] font-medium text-slate-800 dark:text-slate-200 animate-in fade-in zoom-in-95 duration-150">
                       <button
                         onClick={handleShareFacebook}
                         className="w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
