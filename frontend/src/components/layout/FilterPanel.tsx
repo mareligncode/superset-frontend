@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export interface FilterPanelProps {
@@ -39,6 +39,52 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   const [scopeOpen, setScopeOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 
+  const [width, setWidth] = useState(152);
+  const [isResizing, setIsResizing] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  const startResizing = useCallback((e: React.MouseEvent) => {
+    if (collapsed) return;
+    e.preventDefault();
+    setIsResizing(true);
+  }, [collapsed]);
+
+  const stopResizing = useCallback(() => {
+    setIsResizing(false);
+  }, []);
+
+  const resize = useCallback(
+    (e: MouseEvent) => {
+      if (isResizing && panelRef.current) {
+        const rect = panelRef.current.getBoundingClientRect();
+        const newWidth = e.clientX - rect.left;
+        if (newWidth >= 152 && newWidth <= 600) {
+          setWidth(newWidth);
+        }
+      }
+    },
+    [isResizing]
+  );
+
+  useEffect(() => {
+    window.addEventListener('mousemove', resize);
+    window.addEventListener('mouseup', stopResizing);
+    return () => {
+      window.removeEventListener('mousemove', resize);
+      window.removeEventListener('mouseup', stopResizing);
+    };
+  }, [resize, stopResizing]);
+
+  useEffect(() => {
+    if (isResizing) {
+      document.body.style.userSelect = 'none';
+      document.body.style.cursor = 'col-resize';
+    } else {
+      document.body.style.userSelect = '';
+      document.body.style.cursor = '';
+    }
+  }, [isResizing]);
+
   // Health Equity Specific States
   const [equityDimension, setEquityDimension] = useState('Region');
   const [equityIndicator, setEquityIndicator] = useState('MAT_Contraceptive Ac...');
@@ -66,27 +112,33 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         />
       )}
 
-      {/* Panel */}
-      <aside
-        className={`bg-white border-r border-outline-variant flex flex-col shrink-0 overflow-y-auto custom-scrollbar fixed md:relative h-full z-50 transition-all duration-200 ${
-          collapsed ? 'w-10' : 'w-[152px]'
-        } ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${className}`}
-        style={{ boxShadow: '2px 0 6px rgba(0,0,0,0.04)' }}
+      {/* Panel Wrapper */}
+      <div
+        ref={panelRef}
+        className={`shrink-0 fixed md:relative h-full z-50 transition-transform duration-200 ${
+          isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+        } ${className}`}
+        style={{ width: collapsed ? '40px' : `${width}px` }}
       >
+        <aside
+          className="bg-white border-r border-outline-variant flex flex-col w-full h-full overflow-y-auto custom-scrollbar"
+          style={{ boxShadow: '2px 0 6px rgba(0,0,0,0.04)' }}
+        >
         {/* Header row */}
         <div className="flex items-center justify-between px-3 pt-3 pb-2 shrink-0">
           {!collapsed && (
-            <span className="text-[12px] font-semibold text-on-surface">
+            <span className="text-[12px] font-semibold text-slate-800 tracking-wide">
               Filters and controls
             </span>
           )}
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="ml-auto text-on-surface-variant hover:text-on-surface transition-colors"
+            className="ml-auto w-6 h-6 flex items-center justify-center rounded bg-slate-50 text-slate-500 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 border border-slate-200 transition-all hover:shadow-sm"
             aria-label={collapsed ? 'Expand filters' : 'Collapse filters'}
+            title={collapsed ? 'Expand filters' : 'Collapse filters'}
           >
-            <span className="material-symbols-outlined text-[16px]">
-              {collapsed ? 'chevron_right' : 'remove'}
+            <span className={`material-symbols-outlined text-[16px] transition-transform duration-300 ${collapsed ? '' : 'rotate-0'}`}>
+              {collapsed ? 'chevron_right' : 'chevron_left'}
             </span>
           </button>
         </div>
@@ -356,7 +408,19 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             </button>
           </div>
         )}
-      </aside>
+        </aside>
+
+        {/* Resizer Handle */}
+        {!collapsed && (
+          <div
+            className={`absolute top-0 right-0 w-2 h-full cursor-col-resize z-[60] transition-colors ${
+              isResizing ? 'bg-blue-500' : 'bg-transparent hover:bg-blue-400/50'
+            }`}
+            style={{ right: '-2px' }}
+            onMouseDown={startResizing}
+          />
+        )}
+      </div>
     </>
   );
 };
