@@ -213,6 +213,27 @@ html {
   font-weight: 700;
 }
 
+/* ===== KPI RESPONSIVE GRID ===== */
+.kpi-responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 480px) {
+  .kpi-responsive-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .kpi-responsive-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
 /* ===== CHART GRID LAYOUT ===== */
 .chart-grid {
   display: grid;
