@@ -9,6 +9,7 @@ type ThemeMode = 'light' | 'dark' | 'system';
 
 const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [themeMenuOpen, setThemeMenuOpen] = useState(false);
