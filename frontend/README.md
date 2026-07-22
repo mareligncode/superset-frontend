@@ -1,73 +1,118 @@
-# React + TypeScript + Vite
+# Ethiopian Ministry of Health Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A production-ready React application for health intelligence and data visualization for the Ethiopian Ministry of Health.
 
-Currently, two official plugins are available:
+## 🌟 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ **Beautiful Dark Mode** - Perfect light/dark theme toggle with persistence
+- ✅ **17 Reusable Components** - Production-quality UI component library
+- ✅ **16+ Dashboard Pages** - Complete health intelligence modules
+- ✅ **Fully Responsive** - Mobile, tablet, and desktop support
+- ✅ **TypeScript** - Complete type safety with 140+ type definitions
+- ✅ **Accessible** - ARIA labels, keyboard navigation, semantic HTML
+- ✅ **Fast** - Lazy loading, code splitting, optimized performance
 
-## React Compiler
+## 🚀 Quick Start
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Install Dependencies
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Run Development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Open [http://localhost:5173](http://localhost:5173)
+
+### 3. Build for Production
+
+```bash
+npm run build
+```
+
+## 🎨 Design System
+
+Built with **Material Design 3** principles and **Tailwind CSS v4**:
+
+- **Colors**: Ethiopian health context (blue, teal, green)
+- **Typography**: Inter font with 8 variants
+- **Spacing**: 4px base unit system
+- **Dark Mode**: Perfect theme toggle with persistence
+
+## 📁 Project Structure
+
+```
+src/
+├── components/       # UI components
+│   ├── charts/      # Chart components
+│   ├── layout/      # Header, Footer, Sidebar
+│   └── ui/          # Reusable UI components
+├── pages/           # Page components
+│   ├── dashboards/  # Dashboard pages
+│   └── legal/       # Legal pages
+├── contexts/        # React contexts (Theme)
+├── routes/          # Router configuration
+├── types/           # TypeScript types
+└── constants/       # App constants
+```
+
+## 🌙 Dark Mode
+
+Click the theme toggle in the header to switch between light and dark modes. Your preference is automatically saved.
+
+See [DARK_MODE_GUIDE.md](./DARK_MODE_GUIDE.md) for implementation details.
+
+## 📊 Dashboard Pages
+
+- **Services Delivery**: Family Planning, Maternal, Neonatal, NCD, Malaria, HIV, TB
+- **Health Equity**: Health disparities analysis
+- **Health Workforce**: Healthcare worker distribution
+- **Health Financing**: Expenditure and financial metrics
+- **Supply & Logistics**: Medical supplies management
+- **Blood Donation**: Blood collection and transfusion
+- **PHEM**: Public Health Emergency Management
+- **Infrastructure**: Health facility resources
+- **PHC**: Primary Health Care metrics
+- **Digital Systems**: Health information systems
+
+## 🛠️ Tech Stack
+
+- **React 19** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **Tailwind CSS v4** - Styling
+- **React Router v7** - Routing
+- **Material Symbols** - Icons
+
+## 📝 Documentation
+
+- [SETUP_COMPLETE.md](./SETUP_COMPLETE.md) - Complete setup guide
+- [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) - Folder structure
+- [DARK_MODE_GUIDE.md](./DARK_MODE_GUIDE.md) - Dark mode guide
+
+## 🎯 NPM Scripts
+
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Run ESLint
+```
+
+## 🌐 Browser Support
+
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
+
+## 📄 License
+
+Ethiopian Ministry of Health © 2024
+
+---
+
+**Built with ❤️ for better health outcomes in Ethiopia**

@@ -7,14 +7,14 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
       {/* Hero Section */}
       <section className="py-12 sm:py-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 sm:mb-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6">
             Ethiopian Ministry of Health
           </h1>
-          <p className="text-base sm:text-lg lg:text-xl text-slate-600 mb-6 sm:mb-8 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-400 mb-6 sm:mb-8 max-w-3xl mx-auto">
             Comprehensive health intelligence system for data-driven decision making
             across all regions of Ethiopia
           </p>
@@ -38,9 +38,9 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Dashboard Categories */}
-      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-slate-100">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-slate-100 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 text-center">
             Dashboard Categories
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -52,10 +52,10 @@ const HomePage: React.FC = () => {
                 className="cursor-pointer"
               >
                 <div className="flex flex-col items-center text-center p-4 sm:p-6">
-                  <span className="material-symbols-outlined text-4xl sm:text-5xl text-blue-600 mb-2 sm:mb-3">
+                  <span className="material-symbols-outlined text-4xl sm:text-5xl text-blue-600 dark:text-blue-400 mb-2 sm:mb-3">
                     dashboard
                   </span>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100">
                     {category}
                   </h3>
                 </div>
@@ -71,40 +71,40 @@ const HomePage: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <Card variant="glass">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600 mb-2 sm:mb-3">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2 sm:mb-3">
                   14
                 </div>
-                <div className="text-sm sm:text-base text-slate-600">
+                <div className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
                   Regions Covered
                 </div>
               </div>
             </Card>
             <Card variant="glass">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-emerald-600 mb-2 sm:mb-3">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-2 sm:mb-3">
                   16
                 </div>
-                <div className="text-sm sm:text-base text-slate-600">
+                <div className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
                   Dashboard Categories
                 </div>
               </div>
             </Card>
             <Card variant="glass">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-800 mb-2 sm:mb-3">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-800 dark:text-green-600 mb-2 sm:mb-3">
                   120M+
                 </div>
-                <div className="text-sm sm:text-base text-slate-600">
+                <div className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
                   Population Served
                 </div>
               </div>
             </Card>
             <Card variant="glass">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600 mb-2 sm:mb-3">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2 sm:mb-3">
                   24/7
                 </div>
-                <div className="text-sm sm:text-base text-slate-600">
+                <div className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
                   Real-time Monitoring
                 </div>
               </div>

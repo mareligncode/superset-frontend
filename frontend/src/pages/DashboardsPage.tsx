@@ -23,17 +23,17 @@ const DashboardsPage: React.FC = () => {
   return (
     <div className="space-y-8 sm:space-y-12 pb-8 sm:pb-12">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2 sm:mb-3">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2 sm:mb-3">
           All Dashboards
         </h1>
-        <p className="text-base sm:text-lg text-slate-600">
+        <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
           Browse and access all available health intelligence dashboards
         </p>
       </div>
 
       {Object.entries(groupedDashboards).map(([category, dashboards]) => (
         <section key={category}>
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6">
             {category}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -46,14 +46,14 @@ const DashboardsPage: React.FC = () => {
               >
                 <div className="flex flex-col">
                   <div className="flex items-start justify-between mb-3 sm:mb-4">
-                    <span className="material-symbols-outlined text-3xl sm:text-4xl text-blue-600">
+                    <span className="material-symbols-outlined text-3xl sm:text-4xl text-blue-600 dark:text-blue-400">
                       monitoring
                     </span>
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 sm:mb-3">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 mb-2 sm:mb-3">
                     {dashboard.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-slate-600">
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
                     {dashboard.description}
                   </p>
                 </div>

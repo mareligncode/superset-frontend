@@ -21,34 +21,34 @@ export const ChartHeaderPills: React.FC<{
               style={{ backgroundColor: item.color }}
             ></span>
           )}
-          <span className="text-on-surface-variant font-medium">{item.label}</span>
+          <span className="text-slate-600 dark:text-slate-400 font-medium">{item.label}</span>
         </div>
       ))}
 
       {showAllInv && (
         <div className="flex items-center gap-1 ml-1">
-          <button className="px-2 py-0.5 rounded border border-outline-variant bg-white text-[10px] font-semibold text-primary shadow-xs hover:bg-surface-container transition-colors">
+          <button className="px-2 py-0.5 rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-[10px] font-semibold text-blue-600 dark:text-blue-400 shadow-xs hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors">
             All
           </button>
-          <button className="px-2 py-0.5 rounded border border-outline-variant bg-surface-container-low text-[10px] font-medium text-on-surface-variant hover:bg-surface-container transition-colors">
+          <button className="px-2 py-0.5 rounded border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 text-[10px] font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors">
             Inv
           </button>
         </div>
       )}
 
-      <div className="flex items-center gap-1 text-outline ml-1">
-        <button className="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container hover:text-primary transition-colors">
+      <div className="flex items-center gap-1 text-slate-400 dark:text-slate-500 ml-1">
+        <button className="w-6 h-6 rounded flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
           <span className="material-symbols-outlined text-[15px]">filter_list</span>
         </button>
-        <button className="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container hover:text-primary transition-colors relative">
+        <button className="w-6 h-6 rounded flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative">
           <span className="material-symbols-outlined text-[15px]">info</span>
           {infoBadge && (
-            <span className="absolute -top-1 -right-1 bg-primary text-white text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center shadow-xs">
+            <span className="absolute -top-1 -right-1 bg-blue-600 dark:bg-blue-500 text-white text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center shadow-xs">
               {infoBadge}
             </span>
           )}
         </button>
-        <button className="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container hover:text-primary transition-colors">
+        <button className="w-6 h-6 rounded flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
           <span className="material-symbols-outlined text-[15px]">more_vert</span>
         </button>
       </div>

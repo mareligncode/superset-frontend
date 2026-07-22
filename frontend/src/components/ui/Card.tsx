@@ -43,11 +43,11 @@ const Card: React.FC<CardProps> = ({
 }) => {
   const variantStyles: Record<string, string> = {
     default:
-      'bg-white border border-slate-200 rounded-lg shadow-sm',
+      'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm',
     elevated:
-      'bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer',
+      'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer',
     glass:
-      'glass border border-white/30 rounded-lg shadow-sm',
+      'glass dark:bg-slate-800/50 border border-white/30 dark:border-slate-700 rounded-lg shadow-sm',
   };
 
   const paddingStyles: Record<string, string> = {
@@ -70,12 +70,12 @@ const Card: React.FC<CardProps> = ({
         <div className="flex items-start justify-between mb-2 gap-2">
           <div className="flex flex-col min-w-0">
             {title && (
-              <h3 className="text-[13px] font-semibold text-on-surface leading-snug truncate">
+              <h3 className="text-[13px] font-semibold text-slate-900 dark:text-slate-100 leading-snug truncate">
                 {title}
               </h3>
             )}
             {subtitle && (
-              <p className="text-[11px] text-on-surface-variant mt-0.5">
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">
                 {subtitle}
               </p>
             )}

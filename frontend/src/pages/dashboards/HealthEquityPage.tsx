@@ -25,13 +25,13 @@ const HealthEquityPage: React.FC = () => {
       showSecondaryTabs={false}
     >
       {/* ── Sub-tabs navigation (Level 2) ─────────────────────────── */}
-      <div className="flex gap-1 border-b border-slate-200 mb-5 bg-white px-2 rounded-t-lg">
+      <div className="flex gap-1 border-b border-slate-200 dark:border-slate-700 mb-5 bg-white dark:bg-slate-800 px-2 rounded-t-lg">
         <button
           onClick={() => setActiveSubTab('simple')}
           className={`px-4 py-2.5 text-xs font-bold transition-all border-b-2 ${
             activeSubTab === 'simple'
-              ? 'text-primary border-primary font-bold'
-              : 'text-slate-500 border-transparent hover:text-slate-800'
+              ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400 font-bold'
+              : 'text-slate-500 dark:text-slate-400 border-transparent hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           Simple Measures
@@ -40,8 +40,8 @@ const HealthEquityPage: React.FC = () => {
           onClick={() => setActiveSubTab('order')}
           className={`px-4 py-2.5 text-xs font-bold transition-all border-b-2 ${
             activeSubTab === 'order'
-              ? 'text-primary border-primary font-bold'
-              : 'text-slate-500 border-transparent hover:text-slate-800'
+              ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400 font-bold'
+              : 'text-slate-500 dark:text-slate-400 border-transparent hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           Order Disproportionality

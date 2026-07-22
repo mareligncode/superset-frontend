@@ -72,7 +72,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       {/* Mobile Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-slate-900/20 backdrop-blur-xs z-40 md:hidden"
+          className="fixed inset-0 bg-slate-900/20 dark:bg-slate-900/60 backdrop-blur-xs z-40 md:hidden"
           onClick={onClose}
         />
       )}
@@ -85,13 +85,13 @@ const Sidebar: React.FC<SidebarProps> = ({
         style={{ width: `${width}px` }}
       >
         <aside
-          className="bg-white border-r border-slate-200 flex flex-col w-full h-full overflow-y-auto custom-scrollbar"
+          className="bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col w-full h-full overflow-y-auto custom-scrollbar"
           style={{ boxShadow: '2px 0 8px rgba(0,0,0,0.03)' }}
         >
           {/* Sidebar Mobile Header */}
-          <div className="p-4 border-b border-slate-100 md:hidden">
+          <div className="p-4 border-b border-slate-100 dark:border-slate-700 md:hidden">
             <div className="flex items-center justify-between">
-              <h2 className="text-[15px] font-bold text-slate-800">
+              <h2 className="text-[15px] font-bold text-slate-800 dark:text-slate-200">
                 Menu
               </h2>
               <IconButton
@@ -112,7 +112,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                   className={`flex items-center gap-3 w-full px-3 py-2 rounded-xl transition-all duration-200 cursor-pointer group text-left ${
                     link.active
                       ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold shadow-md shadow-blue-500/20'
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                      : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-200'
                   }`}
                 >
                   {/* Icon Container */}
@@ -120,7 +120,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                     className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
                       link.active
                         ? 'bg-white/20 text-white'
-                        : 'bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600 group-hover:scale-105'
+                        : 'bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 group-hover:text-blue-600 group-hover:scale-105'
                     }`}
                   >
                     <span className="material-symbols-outlined text-[18px]">
@@ -137,14 +137,14 @@ const Sidebar: React.FC<SidebarProps> = ({
           </div>
 
           {/* Sidebar Footer Section */}
-          <div className="p-3 border-t border-slate-100 bg-slate-50/50">
+          <div className="p-3 border-t border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50">
             <div className="space-y-1">
               {footerLinks.map((link) => (
                 <button
                   key={link.label}
-                  className="flex items-center gap-3 w-full px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all duration-200 cursor-pointer group text-left"
+                  className="flex items-center gap-3 w-full px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-200 transition-all duration-200 cursor-pointer group text-left"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-slate-100/80 text-slate-500 flex items-center justify-center group-hover:bg-blue-50 group-hover:text-blue-600 group-hover:scale-105 transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-slate-100/80 dark:bg-slate-700 text-slate-500 dark:text-slate-400 flex items-center justify-center group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 group-hover:text-blue-600 group-hover:scale-105 transition-all">
                     <span className="material-symbols-outlined text-[18px]">
                       {link.icon}
                     </span>

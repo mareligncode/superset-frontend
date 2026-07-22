@@ -16,6 +16,7 @@ export { default as Select } from './Select';
 export { default as Skeleton } from './Skeleton';
 export { default as Spinner } from './Spinner';
 export { default as Tabs } from './Tabs';
+export { default as ThemeToggle } from './ThemeToggle';
 export { default as Toast } from './Toast';
 export { default as Tooltip } from './Tooltip';
 
@@ -36,5 +37,6 @@ export type { SelectProps, SelectOption } from './Select';
 export type { SkeletonProps } from './Skeleton';
 export type { SpinnerProps } from './Spinner';
 export type { TabsProps, Tab } from './Tabs';
+export type { ThemeToggleProps } from './ThemeToggle';
 export type { ToastProps } from './Toast';
 export type { TooltipProps } from './Tooltip';

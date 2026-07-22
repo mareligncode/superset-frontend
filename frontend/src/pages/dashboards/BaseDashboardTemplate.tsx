@@ -74,7 +74,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
     <div className="flex flex-col h-full">
       {/* ── Primary category tab bar ─────────────────────────── */}
       {showPrimaryTabs && (
-        <div className="bg-white border-b border-outline-variant overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none relative">
+        <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none relative">
           {/* Mobile scroll cue indicators */}
           <div className="scroll-cue-left md:hidden" />
           <div className="scroll-cue-right md:hidden" />
@@ -88,8 +88,8 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
                   onClick={() => navigate(PRIMARY_TAB_PATHS[tab] || '/dashboards')}
                   className={`relative px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium shrink-0 transition-colors border-b-2 touch-target ${
                     active
-                      ? 'text-primary border-primary font-semibold'
-                      : 'text-on-surface-variant border-transparent hover:text-on-surface hover:border-outline-variant'
+                      ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400 font-semibold'
+                      : 'text-slate-600 dark:text-slate-400 border-transparent hover:text-slate-900 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600'
                   }`}
                 >
                   {tab}
@@ -102,7 +102,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
 
       {/* ── Secondary sub-category tab bar (Services Delivery) ── */}
       {showSecondaryTabs && (
-        <div className="bg-white border-b border-outline-variant overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none relative">
+        <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none relative">
           {/* Mobile scroll cue indicators */}
           <div className="scroll-cue-left md:hidden" />
           <div className="scroll-cue-right md:hidden" />
@@ -116,8 +116,8 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
                   onClick={() => navigate(path)}
                   className={`relative px-2.5 sm:px-3 py-2 sm:py-2.5 text-[11.5px] sm:text-[12.5px] font-medium shrink-0 transition-colors border-b-2 touch-target ${
                     active
-                      ? 'text-primary border-primary font-semibold'
-                      : 'text-on-surface-variant border-transparent hover:text-on-surface'
+                      ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400 font-semibold'
+                      : 'text-slate-500 dark:text-slate-400 border-transparent hover:text-slate-900 dark:hover:text-slate-200'
                   }`}
                 >
                   {label}
@@ -132,9 +132,9 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
       <div className="flex-1 p-4 overflow-y-auto custom-scrollbar">
         {/* Optional data source note */}
         {dataSourceNote && (
-          <p className="text-[12px] text-on-surface-variant mb-3">
+          <p className="text-[12px] text-slate-600 dark:text-slate-400 mb-3">
             The data source is{' '}
-            <span className="font-semibold text-on-surface">{dataSourceNote}</span>
+            <span className="font-semibold text-slate-900 dark:text-slate-200">{dataSourceNote}</span>
           </p>
         )}
 

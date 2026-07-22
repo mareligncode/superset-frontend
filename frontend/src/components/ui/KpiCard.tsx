@@ -60,7 +60,7 @@ const KpiCard: React.FC<KpiCardProps> = ({
 
   return (
     <div
-      className={`relative bg-white border border-slate-200/80 rounded-xl p-3 sm:p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:border-blue-300 group ${className}`}
+      className={`relative bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 rounded-xl p-3 sm:p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 group ${className}`}
       style={{ boxShadow: '0 4px 16px -4px rgba(0,68,130,0.05)' }}
     >
       {/* Visual top bar glow accent */}
@@ -73,7 +73,7 @@ const KpiCard: React.FC<KpiCardProps> = ({
       <div>
         {/* Top row: label (left) + icons (right) */}
         <div className="flex items-start justify-between gap-2 mb-1">
-          <span className="text-[10.5px] text-slate-500 font-bold uppercase tracking-wider leading-snug">
+          <span className="text-[10.5px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider leading-snug">
             {label}
           </span>
           {showIcons && (
@@ -109,8 +109,8 @@ const KpiCard: React.FC<KpiCardProps> = ({
         {/* Large KPI number & Sparkline side-by-side */}
         <div className="flex items-baseline justify-between gap-2 mt-1">
           <div
-            className="text-2xl sm:text-3xl font-black tracking-tight"
-            style={{ color: '#004482', fontVariantNumeric: 'tabular-nums' }}
+            className="text-2xl sm:text-3xl font-black tracking-tight text-blue-900 dark:text-blue-300"
+            style={{ fontVariantNumeric: 'tabular-nums' }}
           >
             {displayValue}
           </div>
@@ -133,13 +133,13 @@ const KpiCard: React.FC<KpiCardProps> = ({
 
       {/* Bottom status row: trend and target benchmark */}
       {(trend || target) && (
-        <div className="flex items-center justify-between gap-2 mt-2 pt-2 border-t border-slate-100 text-[10px] font-semibold">
+        <div className="flex items-center justify-between gap-2 mt-2 pt-2 border-t border-slate-100 dark:border-slate-700 text-[10px] font-semibold">
           {trend && (
             <span
               className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md font-bold ${
                 trendIsPositive
-                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-200/60'
-                  : 'bg-rose-50 text-rose-700 border border-rose-200/60'
+                  ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-700/60'
+                  : 'bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border border-rose-200/60 dark:border-rose-700/60'
               }`}
             >
               <span className="material-symbols-outlined font-black" style={{ fontSize: '12px' }}>
@@ -149,8 +149,8 @@ const KpiCard: React.FC<KpiCardProps> = ({
             </span>
           )}
           {target && (
-            <span className="text-slate-400 ml-auto">
-              Target: <span className="text-slate-700 font-bold">{target}</span>
+            <span className="text-slate-400 dark:text-slate-500 ml-auto">
+              Target: <span className="text-slate-700 dark:text-slate-300 font-bold">{target}</span>
             </span>
           )}
         </div>

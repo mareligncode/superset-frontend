@@ -21,12 +21,12 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     },
     ref
   ) => {
-    const baseStyles = 'rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed relative';
+    const baseStyles = 'rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed relative';
     
     const variantStyles = {
-      default: 'hover:bg-surface-container text-on-surface-variant focus:ring-outline',
-      primary: 'hover:bg-primary-container text-primary focus:ring-primary',
-      ghost: 'hover:bg-surface-container-high text-on-surface-variant focus:ring-outline',
+      default: 'hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 focus:ring-slate-400',
+      primary: 'hover:bg-blue-50 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 focus:ring-blue-500',
+      ghost: 'hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 focus:ring-slate-400',
     };
 
     const sizeStyles = {

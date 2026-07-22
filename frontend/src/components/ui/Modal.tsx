@@ -62,21 +62,21 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/20 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/20 dark:bg-slate-900/60 backdrop-blur-sm"
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal="true"
       aria-labelledby={title ? 'modal-title' : undefined}
     >
       <div
-        className={`bg-white rounded-xl shadow-2xl border border-slate-200 w-full ${sizeStyles[size]} max-h-[90vh] flex flex-col animate-fadeIn`}
+        className={`bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 w-full ${sizeStyles[size]} max-h-[90vh] flex flex-col animate-fadeIn`}
       >
         {(title || showCloseButton) && (
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-6 border-b border-slate-200 gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-6 border-b border-slate-200 dark:border-slate-700 gap-3">
             {title && (
               <h2
                 id="modal-title"
-                className="text-base sm:text-lg font-bold text-slate-900"
+                className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100"
               >
                 {title}
               </h2>
@@ -84,10 +84,10 @@ const Modal: React.FC<ModalProps> = ({
             {showCloseButton && (
               <button
                 onClick={onClose}
-                className="w-10 h-10 sm:w-8 sm:h-8 rounded-full hover:bg-slate-100 transition-colors ml-auto flex items-center justify-center touch-target"
+                className="w-10 h-10 sm:w-8 sm:h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors ml-auto flex items-center justify-center touch-target"
                 aria-label="Close modal"
               >
-                <span className="material-symbols-outlined text-slate-600 text-[20px] sm:text-[18px]">
+                <span className="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[20px] sm:text-[18px]">
                   close
                 </span>
               </button>
@@ -98,7 +98,7 @@ const Modal: React.FC<ModalProps> = ({
           {children}
         </div>
         {footer && (
-          <div className="p-4 sm:p-6 border-t border-slate-200">
+          <div className="p-4 sm:p-6 border-t border-slate-200 dark:border-slate-700">
             {footer}
           </div>
         )}

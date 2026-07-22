@@ -68,28 +68,28 @@ const OrgUnitTreeSelector: React.FC<OrgUnitTreeSelectorProps> = ({
           </button>
         </div>
       </div>
-      <div className="bg-white border border-slate-200 rounded-lg overflow-hidden flex flex-col shadow-2xs">
+      <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden flex flex-col shadow-2xs">
         {/* Search input inside Org Unit tree */}
-        <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-50 border-b border-slate-100">
-          <span className="material-symbols-outlined text-[13px] text-slate-400">search</span>
+        <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-50 dark:bg-slate-700/50 border-b border-slate-100 dark:border-slate-700">
+          <span className="material-symbols-outlined text-[13px] text-slate-400 dark:text-slate-500">search</span>
           <input
             type="text"
             placeholder="Filter regions..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-transparent border-none outline-none text-[10.5px] text-slate-700 placeholder-slate-400 p-0 focus:ring-0 focus:outline-none"
+            className="w-full bg-transparent border-none outline-none text-[10.5px] text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 p-0 focus:ring-0 focus:outline-none"
           />
         </div>
-        <div className="overflow-y-auto overflow-x-hidden custom-scrollbar max-h-48 space-y-0.5 p-1 bg-white">
+        <div className="overflow-y-auto overflow-x-hidden custom-scrollbar max-h-48 space-y-0.5 p-1 bg-white dark:bg-slate-800">
           {filtered.length === 0 ? (
-            <div className="text-[10px] text-slate-400 text-center py-4">No regions found</div>
+            <div className="text-[10px] text-slate-400 dark:text-slate-500 text-center py-4">No regions found</div>
           ) : (
             filtered.map(({ name: region, index: i }) => (
               <label
                 key={region}
-                className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 cursor-pointer"
+                className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer"
               >
-                <span className="material-symbols-outlined text-[10px] text-slate-500 mt-[3px] shrink-0 bg-slate-100 border border-slate-200 rounded-[2px] leading-none h-[12px] w-[12px] flex items-center justify-center font-bold">
+                <span className="material-symbols-outlined text-[10px] text-slate-500 dark:text-slate-400 mt-[3px] shrink-0 bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-[2px] leading-none h-[12px] w-[12px] flex items-center justify-center font-bold">
                   add
                 </span>
                 <span className="flex items-start gap-1.5">
@@ -99,7 +99,7 @@ const OrgUnitTreeSelector: React.FC<OrgUnitTreeSelectorProps> = ({
                     onChange={() => toggleRegion(i)}
                     className="w-3.5 h-3.5 shrink-0 mt-[1px] rounded border-slate-300 accent-primary"
                   />
-                  <span className="text-[10.5px] text-slate-700 leading-tight">
+                  <span className="text-[10.5px] text-slate-700 dark:text-slate-300 leading-tight">
                     {region}
                   </span>
                 </span>
@@ -109,9 +109,9 @@ const OrgUnitTreeSelector: React.FC<OrgUnitTreeSelectorProps> = ({
         </div>
         {/* Horizontal scroll indicators if showArrows is true */}
         {showArrows && (
-          <div className="flex justify-between items-center px-6 py-1 bg-slate-50 border-t border-slate-100 select-none">
-            <span className="material-symbols-outlined text-[18px] text-slate-400 cursor-pointer hover:text-slate-600 transition-colors">arrow_left</span>
-            <span className="material-symbols-outlined text-[18px] text-slate-400 cursor-pointer hover:text-slate-600 transition-colors">arrow_right</span>
+          <div className="flex justify-between items-center px-6 py-1 bg-slate-50 dark:bg-slate-700/50 border-t border-slate-100 dark:border-slate-700 select-none">
+            <span className="material-symbols-outlined text-[18px] text-slate-400 dark:text-slate-500 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors">arrow_left</span>
+            <span className="material-symbols-outlined text-[18px] text-slate-400 dark:text-slate-500 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors">arrow_right</span>
           </div>
         )}
       </div>
@@ -207,7 +207,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       {/* Mobile overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden animate-fadeIn"
+          className="fixed inset-0 bg-black/20 dark:bg-black/60 backdrop-blur-sm z-40 md:hidden animate-fadeIn"
           onClick={onClose}
         />
       )}
@@ -221,14 +221,14 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         style={{ width: collapsed ? '40px' : `min(${width}px, 85vw)` }}
       >
         <aside
-          className="bg-white border-r border-slate-200 flex flex-col w-full h-full overflow-y-auto custom-scrollbar"
+          className="bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col w-full h-full overflow-y-auto custom-scrollbar"
           style={{ boxShadow: '4px 0 20px -8px rgba(0,68,130,0.06)' }}
         >
         {/* Header row */}
-        <div className="flex items-center justify-between px-3 pt-3 pb-2 shrink-0 border-b border-slate-100 mb-1">
+        <div className="flex items-center justify-between px-3 pt-3 pb-2 shrink-0 border-b border-slate-100 dark:border-slate-700 mb-1">
           {!collapsed && (
-            <span className="text-[12px] font-bold text-slate-800 tracking-wide flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[16px] text-blue-600">tune</span>
+            <span className="text-[12px] font-bold text-slate-800 dark:text-slate-200 tracking-wide flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-[16px] text-blue-600 dark:text-blue-400">tune</span>
               Filters and controls
             </span>
           )}
@@ -238,7 +238,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             {onClose && (
               <button
                 onClick={onClose}
-                className="md:hidden px-3 py-2 text-[11px] font-bold text-slate-600 hover:text-red-600 bg-slate-100 hover:bg-red-50 border border-slate-200 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer touch-target shadow-sm"
+                className="md:hidden px-3 py-2 text-[11px] font-bold text-slate-600 dark:text-slate-300 hover:text-red-600 bg-slate-100 dark:bg-slate-700 hover:bg-red-50 dark:hover:bg-red-900/30 border border-slate-200 dark:border-slate-600 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer touch-target shadow-sm"
                 aria-label="Close filters"
                 title="Close filters drawer"
               >
@@ -250,7 +250,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             {/* Desktop Collapse Button (≥ md) */}
             <button
               onClick={() => setCollapsed(!collapsed)}
-              className="hidden md:flex w-6 h-6 items-center justify-center rounded bg-slate-50 text-slate-500 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 border border-slate-200 transition-all hover:shadow-sm"
+              className="hidden md:flex w-6 h-6 items-center justify-center rounded bg-slate-50 dark:bg-slate-700 text-slate-500 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-600 border border-slate-200 dark:border-slate-600 transition-all hover:shadow-sm"
               aria-label={collapsed ? 'Expand filters' : 'Collapse filters'}
               title={collapsed ? 'Expand filters' : 'Collapse filters'}
             >
@@ -1138,7 +1138,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                       {REGIONS.map((region, i) => (
                         <label
                           key={region}
-                          className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 cursor-pointer"
+                          className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer"
                         >
                           <span className="material-symbols-outlined text-[10px] text-slate-600 mt-[3px] shrink-0 bg-slate-100 border border-slate-300 rounded-[2px] leading-none h-[12px] w-[12px] flex items-center justify-center font-bold">
                             add
