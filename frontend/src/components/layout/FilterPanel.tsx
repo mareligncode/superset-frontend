@@ -26,6 +26,99 @@ const REGIONS = [
 
 const YEARS = ['2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017'];
 
+interface OrgUnitTreeSelectorProps {
+  labelSize?: string;
+  labelColor?: string;
+  buttonColor?: string;
+  showArrows?: boolean;
+  checkedRegions: Set<number>;
+  toggleRegion: (i: number) => void;
+  selectAll: () => void;
+  clearAll: () => void;
+}
+
+const OrgUnitTreeSelector: React.FC<OrgUnitTreeSelectorProps> = ({
+  labelSize = 'text-[10px]',
+  labelColor = 'text-slate-500',
+  buttonColor = 'text-blue-600',
+  showArrows = false,
+  checkedRegions,
+  toggleRegion,
+  selectAll,
+  clearAll,
+}) => {
+  const [search, setSearch] = useState('');
+  
+  const filtered = REGIONS
+    .map((name, index) => ({ name, index }))
+    .filter(r => r.name.toLowerCase().includes(search.toLowerCase()));
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-1.5">
+        <label className={`${labelSize} font-bold uppercase tracking-wider ${labelColor}`}>
+          Org Unit
+        </label>
+        <div className="flex gap-2">
+          <button onClick={selectAll} className={`text-[10px] ${buttonColor} hover:underline font-medium cursor-pointer`}>
+            Select all
+          </button>
+          <button onClick={clearAll} className="text-[10px] text-slate-400 hover:underline cursor-pointer">
+            Clear
+          </button>
+        </div>
+      </div>
+      <div className="bg-white border border-slate-200 rounded-lg overflow-hidden flex flex-col shadow-2xs">
+        {/* Search input inside Org Unit tree */}
+        <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-50 border-b border-slate-100">
+          <span className="material-symbols-outlined text-[13px] text-slate-400">search</span>
+          <input
+            type="text"
+            placeholder="Filter regions..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full bg-transparent border-none outline-none text-[10.5px] text-slate-700 placeholder-slate-400 p-0 focus:ring-0 focus:outline-none"
+          />
+        </div>
+        <div className="overflow-y-auto overflow-x-hidden custom-scrollbar max-h-48 space-y-0.5 p-1 bg-white">
+          {filtered.length === 0 ? (
+            <div className="text-[10px] text-slate-400 text-center py-4">No regions found</div>
+          ) : (
+            filtered.map(({ name: region, index: i }) => (
+              <label
+                key={region}
+                className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 cursor-pointer"
+              >
+                <span className="material-symbols-outlined text-[10px] text-slate-500 mt-[3px] shrink-0 bg-slate-100 border border-slate-200 rounded-[2px] leading-none h-[12px] w-[12px] flex items-center justify-center font-bold">
+                  add
+                </span>
+                <span className="flex items-start gap-1.5">
+                  <input
+                    type="checkbox"
+                    checked={checkedRegions.has(i)}
+                    onChange={() => toggleRegion(i)}
+                    className="w-3.5 h-3.5 shrink-0 mt-[1px] rounded border-slate-300 accent-primary"
+                  />
+                  <span className="text-[10.5px] text-slate-700 leading-tight">
+                    {region}
+                  </span>
+                </span>
+              </label>
+            ))
+          )}
+        </div>
+        {/* Horizontal scroll indicators if showArrows is true */}
+        {showArrows && (
+          <div className="flex justify-between items-center px-6 py-1 bg-slate-50 border-t border-slate-100 select-none">
+            <span className="material-symbols-outlined text-[18px] text-slate-400 cursor-pointer hover:text-slate-600 transition-colors">arrow_left</span>
+            <span className="material-symbols-outlined text-[18px] text-slate-400 cursor-pointer hover:text-slate-600 transition-colors">arrow_right</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const FilterPanel: React.FC<FilterPanelProps> = ({
   isOpen = true,
   onClose,
@@ -292,44 +385,13 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                       </div>
 
                       {/* Org Unit tree */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <label className="text-[10px] font-semibold text-slate-500">
-                            Org Unit
-                          </label>
-                          <div className="flex gap-2">
-                            <button onClick={selectAll} className="text-[10px] text-blue-600 hover:underline font-medium">
-                              Select all
-                            </button>
-                            <button onClick={clearAll} className="text-[10px] text-slate-400 hover:underline">
-                              Clear
-                            </button>
-                          </div>
-                        </div>
-                        <div className="bg-white border border-slate-300 rounded overflow-y-auto custom-scrollbar max-h-48 space-y-0.5 p-1">
-                          {REGIONS.map((region, i) => (
-                            <label
-                              key={region}
-                              className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 cursor-pointer"
-                            >
-                              <span className="material-symbols-outlined text-[10px] text-slate-600 mt-[3px] shrink-0 bg-slate-100 border border-slate-300 rounded-[2px] leading-none h-[12px] w-[12px] flex items-center justify-center font-bold">
-                                add
-                              </span>
-                              <span className="flex items-start gap-1.5">
-                                <input
-                                  type="checkbox"
-                                  checked={checkedRegions.has(i)}
-                                  onChange={() => toggleRegion(i)}
-                                  className="w-3 h-3 shrink-0 mt-[2px] rounded border-slate-300"
-                                />
-                                <span className="text-[10px] text-slate-700 leading-tight">
-                                  {region}
-                                </span>
-                              </span>
-                            </label>
-                          ))}
-                        </div>
-                      </div>
+                      <OrgUnitTreeSelector
+                        checkedRegions={checkedRegions}
+                        toggleRegion={toggleRegion}
+                        selectAll={selectAll}
+                        clearAll={clearAll}
+                        showArrows={false}
+                      />
 
                       {/* Calendar Year */}
                       <div>
@@ -450,44 +512,13 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                       </div>
 
                       {/* Org Unit tree */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <label className="text-[10px] font-semibold text-slate-500">
-                            Org Unit
-                          </label>
-                          <div className="flex gap-2">
-                            <button onClick={selectAll} className="text-[10px] text-blue-600 hover:underline font-medium">
-                              Select all
-                            </button>
-                            <button onClick={clearAll} className="text-[10px] text-slate-400 hover:underline">
-                              Clear
-                            </button>
-                          </div>
-                        </div>
-                        <div className="bg-white border border-slate-300 rounded overflow-y-auto custom-scrollbar max-h-48 space-y-0.5 p-1">
-                          {REGIONS.map((region, i) => (
-                            <label
-                              key={region}
-                              className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 cursor-pointer"
-                            >
-                              <span className="material-symbols-outlined text-[10px] text-slate-600 mt-[3px] shrink-0 bg-slate-100 border border-slate-300 rounded-[2px] leading-none h-[12px] w-[12px] flex items-center justify-center font-bold">
-                                add
-                              </span>
-                              <span className="flex items-start gap-1.5">
-                                <input
-                                  type="checkbox"
-                                  checked={checkedRegions.has(i)}
-                                  onChange={() => toggleRegion(i)}
-                                  className="w-3 h-3 shrink-0 mt-[2px] rounded border-slate-300"
-                                />
-                                <span className="text-[10px] text-slate-700 leading-tight">
-                                  {region}
-                                </span>
-                              </span>
-                            </label>
-                          ))}
-                        </div>
-                      </div>
+                      <OrgUnitTreeSelector
+                        checkedRegions={checkedRegions}
+                        toggleRegion={toggleRegion}
+                        selectAll={selectAll}
+                        clearAll={clearAll}
+                        showArrows={false}
+                      />
 
                       {/* Equity Year */}
                       <div>
@@ -648,51 +679,13 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                       </div>
 
                       {/* Org Unit tree */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <label className="text-[10px] font-semibold text-slate-500">
-                            Org Unit
-                          </label>
-                          <div className="flex gap-2">
-                            <button onClick={selectAll} className="text-[10px] text-blue-600 hover:underline font-medium">
-                              Select all
-                            </button>
-                            <button onClick={clearAll} className="text-[10px] text-slate-400 hover:underline">
-                              Clear
-                            </button>
-                          </div>
-                        </div>
-                        <div className="bg-white border border-slate-300 rounded overflow-hidden flex flex-col">
-                          <div className="overflow-y-auto overflow-x-hidden custom-scrollbar max-h-48 space-y-0.5 p-1">
-                            {REGIONS.map((region, i) => (
-                              <label
-                                key={region}
-                                className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 cursor-pointer"
-                              >
-                                <span className="material-symbols-outlined text-[10px] text-slate-600 mt-[3px] shrink-0 bg-slate-100 border border-slate-300 rounded-[2px] leading-none h-[12px] w-[12px] flex items-center justify-center font-bold">
-                                  add
-                                </span>
-                                <span className="flex items-start gap-1.5">
-                                  <input
-                                    type="checkbox"
-                                    checked={checkedRegions.has(i)}
-                                    onChange={() => toggleRegion(i)}
-                                    className="w-3 h-3 shrink-0 mt-[2px] rounded border-slate-300"
-                                  />
-                                  <span className="text-[10px] text-slate-700 leading-tight">
-                                    {region}
-                                  </span>
-                                </span>
-                              </label>
-                            ))}
-                          </div>
-                          {/* Horizontal scroll indicators */}
-                          <div className="flex justify-between items-center px-6 py-1 bg-white border-t border-slate-200">
-                            <span className="material-symbols-outlined text-[20px] text-slate-400 cursor-pointer hover:text-slate-600">arrow_left</span>
-                            <span className="material-symbols-outlined text-[20px] text-slate-400 cursor-pointer hover:text-slate-600">arrow_right</span>
-                          </div>
-                        </div>
-                      </div>
+                      <OrgUnitTreeSelector
+                        checkedRegions={checkedRegions}
+                        toggleRegion={toggleRegion}
+                        selectAll={selectAll}
+                        clearAll={clearAll}
+                        showArrows={true}
+                      />
 
                       {/* Equity Year */}
                       <div>
@@ -833,51 +826,13 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                       </div>
 
                       {/* Org Unit tree */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <label className="text-[10px] font-semibold text-slate-500">
-                            Org Unit
-                          </label>
-                          <div className="flex gap-2">
-                            <button onClick={selectAll} className="text-[10px] text-blue-600 hover:underline font-medium">
-                              Select all
-                            </button>
-                            <button onClick={clearAll} className="text-[10px] text-slate-400 hover:underline">
-                              Clear
-                            </button>
-                          </div>
-                        </div>
-                        <div className="bg-white border border-slate-300 rounded overflow-hidden flex flex-col">
-                          <div className="overflow-y-auto overflow-x-hidden custom-scrollbar max-h-48 space-y-0.5 p-1">
-                            {REGIONS.map((region, i) => (
-                              <label
-                                key={region}
-                                className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 cursor-pointer"
-                              >
-                                <span className="material-symbols-outlined text-[10px] text-slate-600 mt-[3px] shrink-0 bg-slate-100 border border-slate-300 rounded-[2px] leading-none h-[12px] w-[12px] flex items-center justify-center font-bold">
-                                  add
-                                </span>
-                                <span className="flex items-start gap-1.5">
-                                  <input
-                                    type="checkbox"
-                                    checked={checkedRegions.has(i)}
-                                    onChange={() => toggleRegion(i)}
-                                    className="w-3 h-3 shrink-0 mt-[2px] rounded border-slate-300"
-                                  />
-                                  <span className="text-[10px] text-slate-700 leading-tight">
-                                    {region}
-                                  </span>
-                                </span>
-                              </label>
-                            ))}
-                          </div>
-                          {/* Horizontal scroll indicators */}
-                          <div className="flex justify-between items-center px-6 py-1 bg-white border-t border-slate-200">
-                            <span className="material-symbols-outlined text-[20px] text-slate-400 cursor-pointer hover:text-slate-600">arrow_left</span>
-                            <span className="material-symbols-outlined text-[20px] text-slate-400 cursor-pointer hover:text-slate-600">arrow_right</span>
-                          </div>
-                        </div>
-                      </div>
+                      <OrgUnitTreeSelector
+                        checkedRegions={checkedRegions}
+                        toggleRegion={toggleRegion}
+                        selectAll={selectAll}
+                        clearAll={clearAll}
+                        showArrows={true}
+                      />
 
                       {/* Equity Year */}
                       <div>
@@ -1018,51 +973,13 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                       </div>
 
                       {/* Org Unit tree */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <label className="text-[10px] font-semibold text-slate-500">
-                            Org Unit
-                          </label>
-                          <div className="flex gap-2">
-                            <button onClick={selectAll} className="text-[10px] text-blue-600 hover:underline font-medium">
-                              Select all
-                            </button>
-                            <button onClick={clearAll} className="text-[10px] text-slate-400 hover:underline">
-                              Clear
-                            </button>
-                          </div>
-                        </div>
-                        <div className="bg-white border border-slate-300 rounded overflow-hidden flex flex-col">
-                          <div className="overflow-y-auto overflow-x-hidden custom-scrollbar max-h-48 space-y-0.5 p-1">
-                            {REGIONS.map((region, i) => (
-                              <label
-                                key={region}
-                                className="flex items-start gap-1.5 px-1 py-1 rounded hover:bg-slate-50 cursor-pointer"
-                              >
-                                <span className="material-symbols-outlined text-[10px] text-slate-600 mt-[3px] shrink-0 bg-slate-100 border border-slate-300 rounded-[2px] leading-none h-[12px] w-[12px] flex items-center justify-center font-bold">
-                                  add
-                                </span>
-                                <span className="flex items-start gap-1.5">
-                                  <input
-                                    type="checkbox"
-                                    checked={checkedRegions.has(i)}
-                                    onChange={() => toggleRegion(i)}
-                                    className="w-3 h-3 shrink-0 mt-[2px] rounded border-slate-300"
-                                  />
-                                  <span className="text-[10px] text-slate-700 leading-tight">
-                                    {region}
-                                  </span>
-                                </span>
-                              </label>
-                            ))}
-                          </div>
-                          {/* Horizontal scroll indicators */}
-                          <div className="flex justify-between items-center px-6 py-1 bg-white border-t border-slate-200">
-                            <span className="material-symbols-outlined text-[20px] text-slate-400 cursor-pointer hover:text-slate-600">arrow_left</span>
-                            <span className="material-symbols-outlined text-[20px] text-slate-400 cursor-pointer hover:text-slate-600">arrow_right</span>
-                          </div>
-                        </div>
-                      </div>
+                      <OrgUnitTreeSelector
+                        checkedRegions={checkedRegions}
+                        toggleRegion={toggleRegion}
+                        selectAll={selectAll}
+                        clearAll={clearAll}
+                        showArrows={true}
+                      />
 
                       {/* Equity Year */}
                       <div>
@@ -1385,45 +1302,15 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                 </div>
 
                 {/* Org Unit tree */}
-                <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <label className="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">
-                      Org Unit
-                    </label>
-                    <div className="flex gap-2">
-                      <button onClick={selectAll} className="text-[10px] text-primary hover:underline font-medium">
-                        Select all
-                      </button>
-                      <button onClick={clearAll} className="text-[10px] text-on-surface-variant hover:underline">
-                        Clear
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="bg-surface-container-low border border-outline-variant rounded overflow-y-auto custom-scrollbar max-h-52 space-y-0.5 p-1">
-                    {REGIONS.map((region, i) => (
-                      <label
-                        key={region}
-                        className="flex items-start gap-1.5 px-1 py-0.5 rounded hover:bg-surface-container cursor-pointer"
-                      >
-                        <span className="material-symbols-outlined text-[13px] text-outline mt-0.5 shrink-0">
-                          {checkedRegions.has(i) ? 'indeterminate_check_box' : 'add_box'}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <input
-                            type="checkbox"
-                            checked={checkedRegions.has(i)}
-                            onChange={() => toggleRegion(i)}
-                            className="w-3 h-3 shrink-0 mt-0.5"
-                          />
-                          <span className="text-[11px] text-on-surface leading-tight">
-                            {region}
-                          </span>
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
+                <OrgUnitTreeSelector
+                  labelSize="text-[11px]"
+                  labelColor="text-on-surface-variant"
+                  buttonColor="text-primary"
+                  checkedRegions={checkedRegions}
+                  toggleRegion={toggleRegion}
+                  selectAll={selectAll}
+                  clearAll={clearAll}
+                />
 
                 {/* Filters out of scope */}
                 <div className="border-t border-outline-variant pt-2">

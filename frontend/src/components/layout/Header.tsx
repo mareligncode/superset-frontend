@@ -58,10 +58,26 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   };
 
   const [liveTime, setLiveTime] = useState(new Date());
+  const [showGregorian, setShowGregorian] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setLiveTime(new Date()), 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchModalOpen(prev => !prev);
+      }
+      if (e.key === 'Escape') {
+        setSearchModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const formatEATTime = (date: Date) => {
@@ -75,9 +91,16 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   };
 
   const getEthiopianDate = (date: Date) => {
-    // Exact translation helper for July 22, 2026 -> Hamle 15, 2018 E.C.
     const yearEC = date.getFullYear() - 8;
     return `ሐምሌ 15, ${yearEC} E.C.`;
+  };
+
+  const getGregorianDate = (date: Date) => {
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
   };
 
   return (
@@ -136,21 +159,36 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               <path d="M42,34 Q54,42 42,50 T58,66" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
             </svg>
             <div className="flex flex-col leading-none">
-              <span className="text-[9px] font-bold text-slate-800 tracking-tight">ጤና ሚኒስቴር</span>
+              <span className="text-[9px] font-bold text-slate-800 tracking-tight">የጤና ሚኒስቴር - ኢትዮጵያ</span>
               <span className="text-[8.5px] font-black text-emerald-700 tracking-wider">MINISTRY OF HEALTH</span>
             </div>
           </div>
         </Link>
 
-        {/* Live Clock / Calendar Widget */}
-        <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-slate-50 border border-slate-200/80 rounded-full text-[11px] text-slate-600 font-medium">
+        {/* Live Clock / Calendar Widget with EC/GC Toggle */}
+        <div
+          onClick={() => setShowGregorian(!showGregorian)}
+          className="hidden lg:flex items-center gap-2 px-3 py-1 bg-slate-50 border border-slate-200/80 rounded-full text-[11px] text-slate-600 font-medium cursor-pointer hover:bg-slate-100 transition-colors select-none"
+          title="Click to toggle between Ethiopian and Gregorian Calendar"
+        >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span className="font-mono text-slate-800">{formatEATTime(liveTime)}</span>
           <span className="text-slate-300">|</span>
-          <span>EAT (East Africa Time)</span>
+          <span>EAT</span>
           <span className="text-slate-300">|</span>
-          <span className="text-slate-700 font-semibold">{getEthiopianDate(liveTime)}</span>
+          <span className="text-slate-700 font-semibold">{showGregorian ? getGregorianDate(liveTime) : getEthiopianDate(liveTime)}</span>
+          <span className="text-[10px] text-slate-400 font-normal hover:text-slate-600">⇄ Toggle</span>
         </div>
+
+        {/* Global Command & Search Button */}
+        <button
+          onClick={() => setSearchModalOpen(true)}
+          className="hidden md:flex items-center gap-2 px-3 py-1 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-400 hover:text-slate-600 transition-all text-xs font-semibold cursor-pointer"
+        >
+          <span className="material-symbols-outlined text-[15px]">search</span>
+          <span className="text-[11px] text-slate-600">Search indicators...</span>
+          <kbd className="px-1.5 py-0.2 bg-white border border-slate-200 rounded text-[9px] font-mono text-slate-500 shadow-2xs">Ctrl+K</kbd>
+        </button>
 
         {/* Primary Navigation Links */}
         <nav className="flex items-center gap-1.5 ml-2" aria-label="Primary navigation">
@@ -171,7 +209,13 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
       </div>
 
       {/* ── Right: Theme, Settings, & More Options Dropdown ──────── */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
+        {/* User Status Badge */}
+        <div className="hidden sm:flex items-center gap-1 px-2.5 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-[10px] font-bold">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          Federal Admin
+        </div>
+
         {/* Light / Dark / System Theme Dropdown */}
         <div className="relative" ref={themeRef}>
           <button
@@ -362,6 +406,81 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           )}
         </div>
       </div>
+
+      {/* ── Global Search Modal (Cmd + K) ── */}
+      {searchModalOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-start justify-center pt-[10vh] z-[100] animate-in fade-in duration-200"
+          onClick={() => setSearchModalOpen(false)}
+        >
+          <div 
+            className="bg-white border border-slate-200 w-full max-w-lg rounded-xl shadow-2xl overflow-hidden flex flex-col p-4 animate-in slide-in-from-top-4 duration-200 font-sans"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Search Input */}
+            <div className="flex items-center gap-2 pb-3 border-b border-slate-100">
+              <span className="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+              <input
+                type="text"
+                placeholder="Search indicators, regions, or modules..."
+                className="w-full text-[13px] text-slate-800 placeholder-slate-400 bg-transparent border-none outline-none focus:ring-0 focus:outline-none"
+                autoFocus
+                onKeyDown={(e) => { if (e.key === 'Escape') setSearchModalOpen(false); }}
+              />
+              <button 
+                onClick={() => setSearchModalOpen(false)}
+                className="text-[10px] text-slate-400 hover:text-slate-600 border border-slate-200 rounded px-1.5 py-0.5 bg-slate-50 cursor-pointer"
+              >
+                ESC
+              </button>
+            </div>
+
+            {/* Popular Indicators */}
+            <div className="pt-3">
+              <span className="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider">Popular Indicators</span>
+              <div className="flex flex-col gap-1 mt-1.5">
+                {[
+                  { name: 'Maternal Mortality Ratio (MMR)', category: 'Maternal Health' },
+                  { name: 'Neonatal Mortality Rate (NMR)', category: 'Neonatal Health' },
+                  { name: 'ANC4 Coverage %', category: 'Services Delivery' },
+                  { name: 'PHEM Outbreak Suspected Cases', category: 'PHEM' },
+                  { name: 'Blood Bank Units Reactive', category: 'Blood Donation' },
+                ].map((item, idx) => (
+                  <button 
+                    key={idx}
+                    onClick={() => setSearchModalOpen(false)}
+                    className="flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 text-[12px] text-slate-700 hover:text-primary transition-all text-left cursor-pointer"
+                  >
+                    <span>{item.name}</span>
+                    <span className="text-[10px] bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded font-medium">{item.category}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="pt-3 border-t border-slate-100 mt-2.5">
+              <span className="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider">Quick Dashboard Links</span>
+              <div className="grid grid-cols-2 gap-1.5 mt-1.5">
+                {[
+                  { name: 'Services Delivery', path: '/dashboards/services-delivery' },
+                  { name: 'Health Equity', path: '/dashboards/health-equity' },
+                  { name: 'Health Workforce', path: '/dashboards/health-workforce' },
+                  { name: 'PHC Status', path: '/dashboards/phc' },
+                ].map((item, idx) => (
+                  <button 
+                    key={idx}
+                    onClick={() => setSearchModalOpen(false)}
+                    className="p-2 rounded-lg hover:bg-slate-50 text-[11.5px] text-slate-700 hover:text-primary border border-slate-100 hover:border-blue-100 transition-all text-left cursor-pointer font-medium"
+                  >
+                    {item.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

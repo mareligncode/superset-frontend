@@ -52,16 +52,16 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
   if (variant === 'primary') {
     return (
       <div
-        className={`bg-white border-b border-slate-200 overflow-x-auto scrollbar-hide shrink-0 ${className}`}
+        className={`bg-white border-b border-slate-200 overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none ${className}`}
       >
-        <div className="flex whitespace-nowrap min-w-max">
+        <div className="flex flex-nowrap min-w-max">
           {tabs.map((tab) => {
             const active = tab === resolvedActive;
             return (
               <button
                 key={tab}
                 onClick={() => handleTabClick(tab)}
-                className={`relative px-5 py-3.5 text-[13px] font-semibold transition-all duration-200 ${
+                className={`relative px-3.5 sm:px-5 py-2.5 sm:py-3.5 text-xs sm:text-[13px] font-semibold shrink-0 transition-all duration-200 ${
                   active
                     ? 'text-primary tab-active bg-blue-50/20 font-bold'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50/60'
@@ -82,16 +82,16 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
   ─────────────────────────────────────────────────────────────────── */
   return (
     <div
-      className={`border-b border-slate-200 overflow-x-auto scrollbar-hide ${className}`}
+      className={`border-b border-slate-200 overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none ${className}`}
     >
-      <div className="flex whitespace-nowrap min-w-max px-2">
+      <div className="flex flex-nowrap min-w-max px-2">
         {tabs.map((tab) => {
           const active = tab === resolvedActive;
           return (
             <button
               key={tab}
               onClick={() => handleTabClick(tab)}
-              className={`relative px-4 py-2.5 text-[12.5px] font-semibold transition-all duration-200 ${
+              className={`relative px-3 sm:px-4 py-2 sm:py-2.5 text-[11.5px] sm:text-[12.5px] font-semibold shrink-0 transition-all duration-200 ${
                 active
                   ? 'text-primary tab-active font-bold'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50/60 rounded-t-md'
