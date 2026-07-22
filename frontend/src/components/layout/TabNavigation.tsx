@@ -52,7 +52,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
   if (variant === 'primary') {
     return (
       <div
-        className={`bg-white border-b border-outline-variant overflow-x-auto scrollbar-hide shrink-0 ${className}`}
+        className={`bg-white border-b border-slate-200 overflow-x-auto scrollbar-hide shrink-0 ${className}`}
       >
         <div className="flex whitespace-nowrap min-w-max">
           {tabs.map((tab) => {
@@ -61,10 +61,10 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
               <button
                 key={tab}
                 onClick={() => handleTabClick(tab)}
-                className={`relative px-4 py-3 text-[13px] font-medium transition-colors border-b-2 ${
+                className={`relative px-5 py-3.5 text-[13px] font-semibold transition-all duration-200 ${
                   active
-                    ? 'text-primary border-primary font-semibold'
-                    : 'text-on-surface-variant border-transparent hover:text-on-surface hover:border-outline-variant'
+                    ? 'text-primary tab-active bg-blue-50/20 font-bold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50/60'
                 }`}
               >
                 {tab}
@@ -82,19 +82,19 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
   ─────────────────────────────────────────────────────────────────── */
   return (
     <div
-      className={`border-b border-outline-variant overflow-x-auto scrollbar-hide ${className}`}
+      className={`border-b border-slate-200 overflow-x-auto scrollbar-hide ${className}`}
     >
-      <div className="flex whitespace-nowrap min-w-max px-1">
+      <div className="flex whitespace-nowrap min-w-max px-2">
         {tabs.map((tab) => {
           const active = tab === resolvedActive;
           return (
             <button
               key={tab}
               onClick={() => handleTabClick(tab)}
-              className={`relative px-3 py-2 text-[12px] font-medium transition-colors border-b-2 ${
+              className={`relative px-4 py-2.5 text-[12.5px] font-semibold transition-all duration-200 ${
                 active
-                  ? 'text-primary border-primary font-semibold'
-                  : 'text-on-surface-variant border-transparent hover:text-on-surface'
+                  ? 'text-primary tab-active font-bold'
+                  : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50/60 rounded-t-md'
               }`}
             >
               {tab}

@@ -57,60 +57,111 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     }
   };
 
+  const [liveTime, setLiveTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setLiveTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatEATTime = (date: Date) => {
+    return date.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZone: 'Africa/Nairobi'
+    });
+  };
+
+  const getEthiopianDate = (date: Date) => {
+    // Exact translation helper for July 22, 2026 -> Hamle 15, 2018 E.C.
+    const yearEC = date.getFullYear() - 8;
+    return `ሐምሌ 15, ${yearEC} E.C.`;
+  };
+
   return (
     <header
-      className={`sticky top-0 z-50 bg-white border-b border-outline-variant flex items-center justify-between w-full px-4 h-[50px] shrink-0 select-none ${className}`}
-      style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}
+      className={`sticky top-0 z-50 bg-white border-b border-slate-200 flex items-center justify-between w-full px-5 h-[56px] shrink-0 select-none ${className}`}
+      style={{ boxShadow: '0 2px 8px -4px rgba(0,68,130,0.12)' }}
     >
       {/* ── Left: Dual Logo + Navigation ────────────────────────── */}
       <div className="flex items-center gap-6">
         {/* Dual Ethiopian Government & MOH Logos */}
-        <Link to="/" className="flex items-center gap-2 group">
+        <Link to="/" className="flex items-center gap-3 group">
           {/* Logo 1: FDRE Emblem */}
-          <div className="flex items-center gap-1.5">
-            <svg viewBox="0 0 100 100" className="w-7 h-7">
-              <circle cx="50" cy="50" r="48" fill="#0284c7" />
+          <div className="flex items-center gap-2">
+            <svg viewBox="0 0 100 100" className="w-8 h-8 transition-transform group-hover:scale-105 duration-300">
+              <defs>
+                <radialGradient id="fdreGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#0284c7" />
+                  <stop offset="100%" stopColor="#075985" />
+                </radialGradient>
+              </defs>
+              <circle cx="50" cy="50" r="48" fill="url(#fdreGrad)" stroke="#facc15" strokeWidth="2" />
               {/* Star */}
               <polygon
-                points="50,15 61,38 85,38 66,53 73,77 50,62 27,77 34,53 15,38 39,38"
+                points="50,14 62,38 87,38 67,53 74,78 50,62 26,78 33,53 13,38 38,38"
                 fill="#facc15"
+                stroke="#075985"
+                strokeWidth="1.5"
               />
+              <circle cx="50" cy="50" r="8" fill="#0284c7" stroke="#facc15" strokeWidth="1.5" />
             </svg>
             <div className="flex flex-col leading-none">
-              <span className="text-[8.5px] font-bold text-slate-800 tracking-tight">የኢ.ፌ.ዲ.ሪ</span>
-              <span className="text-[8px] font-extrabold text-blue-700 tracking-wider">FDRE</span>
+              <span className="text-[9px] font-bold text-slate-800 tracking-tight">የኢ.ፌ.ዲ.ሪ</span>
+              <span className="text-[8.5px] font-black text-sky-700 tracking-wider">FDRE</span>
             </div>
           </div>
 
           {/* Divider */}
-          <div className="w-[1px] h-6 bg-slate-200 mx-0.5"></div>
+          <div className="w-[1px] h-7 bg-slate-200 mx-0.5"></div>
 
           {/* Logo 2: Ministry of Health Emblem */}
-          <div className="flex items-center gap-1.5">
-            <svg viewBox="0 0 100 100" className="w-7 h-7">
-              <circle cx="50" cy="50" r="48" fill="#0284c7" />
-              {/* Globe grid + cross */}
-              <circle cx="50" cy="50" r="34" fill="none" stroke="#ffffff" strokeWidth="4" />
-              <line x1="16" y1="50" x2="84" y2="50" stroke="#ffffff" strokeWidth="4" />
-              <line x1="50" y1="16" x2="50" y2="84" stroke="#ffffff" strokeWidth="4" />
+          <div className="flex items-center gap-2">
+            <svg viewBox="0 0 100 100" className="w-8 h-8 transition-transform group-hover:scale-105 duration-300">
+              <defs>
+                <linearGradient id="mohGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#0ea5e9" />
+                  <stop offset="100%" stopColor="#0369a1" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="48" fill="url(#mohGrad)" stroke="#10b981" strokeWidth="2" />
+              {/* Globe grid */}
+              <circle cx="50" cy="50" r="32" fill="none" stroke="#ffffff" strokeWidth="3" strokeOpacity="0.8" />
+              <line x1="18" y1="50" x2="82" y2="50" stroke="#ffffff" strokeWidth="3" strokeOpacity="0.8" />
+              <line x1="50" y1="18" x2="50" y2="82" stroke="#ffffff" strokeWidth="3" strokeOpacity="0.8" />
+              {/* Caduceus / Rod of Asclepius & Serpent */}
+              <path d="M50,22 L50,78" stroke="#facc15" strokeWidth="4" strokeLinecap="round" />
+              <path d="M42,34 Q54,42 42,50 T58,66" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
             </svg>
             <div className="flex flex-col leading-none">
-              <span className="text-[8.5px] font-bold text-slate-800 tracking-tight">ጤና ሚኒስቴር</span>
-              <span className="text-[8px] font-extrabold text-blue-900 tracking-wider">MINISTRY OF HEALTH</span>
+              <span className="text-[9px] font-bold text-slate-800 tracking-tight">ጤና ሚኒስቴር</span>
+              <span className="text-[8.5px] font-black text-emerald-700 tracking-wider">MINISTRY OF HEALTH</span>
             </div>
           </div>
         </Link>
 
+        {/* Live Clock / Calendar Widget */}
+        <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-slate-50 border border-slate-200/80 rounded-full text-[11px] text-slate-600 font-medium">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span className="font-mono text-slate-800">{formatEATTime(liveTime)}</span>
+          <span className="text-slate-300">|</span>
+          <span>EAT (East Africa Time)</span>
+          <span className="text-slate-300">|</span>
+          <span className="text-slate-700 font-semibold">{getEthiopianDate(liveTime)}</span>
+        </div>
+
         {/* Primary Navigation Links */}
-        <nav className="flex items-center gap-1 ml-2" aria-label="Primary navigation">
+        <nav className="flex items-center gap-1.5 ml-2" aria-label="Primary navigation">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`px-3 py-1 text-[13px] font-semibold transition-colors rounded ${
+              className={`px-3 py-1 text-[13px] font-semibold transition-all rounded-md ${
                 isActive(link.to)
-                  ? 'text-primary font-bold bg-surface-container-low'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
+                  ? 'text-white font-bold bg-primary shadow-xs'
+                  : 'text-on-surface-variant hover:text-on-surface hover:bg-slate-50'
               }`}
             >
               {link.label}

@@ -128,8 +128,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         style={{ width: collapsed ? '40px' : `${width}px` }}
       >
         <aside
-          className="bg-white border-r border-outline-variant flex flex-col w-full h-full overflow-y-auto custom-scrollbar"
-          style={{ boxShadow: '2px 0 6px rgba(0,0,0,0.04)' }}
+          className="bg-white border-r border-slate-200 flex flex-col w-full h-full overflow-y-auto custom-scrollbar"
+          style={{ boxShadow: '4px 0 20px -8px rgba(0,68,130,0.06)' }}
         >
         {/* Header row */}
         <div className="flex items-center justify-between px-3 pt-3 pb-2 shrink-0">
@@ -1473,12 +1473,14 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         {/* Resizer Handle */}
         {!collapsed && (
           <div
-            className={`absolute top-0 right-0 w-2 h-full cursor-col-resize z-[60] transition-colors ${
-              isResizing ? 'bg-blue-500' : 'bg-transparent hover:bg-blue-400/50'
+            className={`absolute top-0 right-0 w-[5px] h-full cursor-col-resize z-[60] transition-all flex items-center justify-center ${
+              isResizing ? 'bg-primary' : 'bg-transparent hover:bg-slate-200'
             }`}
-            style={{ right: '-2px' }}
+            style={{ right: '-2.5px' }}
             onMouseDown={startResizing}
-          />
+          >
+            <div className="w-[1.5px] h-12 bg-slate-300 rounded-full"></div>
+          </div>
         )}
       </div>
     </>
