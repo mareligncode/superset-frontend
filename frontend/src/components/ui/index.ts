@@ -16,10 +16,10 @@ export { default as Select } from './Select';
 export { default as Skeleton } from './Skeleton';
 export { default as Spinner } from './Spinner';
 export { default as Tabs } from './Tabs';
-export { default as ThemeToggle } from './ThemeToggle';
+export { default as ThemeToggle } from './ThemeToggle.tsx';
 export { default as Toast } from './Toast';
 export { default as Tooltip } from './Tooltip';
-export { default as EthiopiaRegionalMap } from './EthiopiaRegionalMap';
+export { default as EthiopiaRegionalMap } from './EthiopiaRegionalMap.tsx';
 
 // Export types
 export type { AvatarProps } from './Avatar';
