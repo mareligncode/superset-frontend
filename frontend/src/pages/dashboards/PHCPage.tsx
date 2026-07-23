@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import KpiCard from '../../components/ui/KpiCard';
-import EthiopiaRegionalMap from '../../components/ui/EthiopiaRegionalMap';
+import { EthiopiaRegionalMap } from '../../components/ui';
 import { ChartContainer } from '../../components/charts/ChartContainer';
 import { getLocalizedRegionName } from '@/utils/regionUtils';
 

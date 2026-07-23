@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ThemeToggle from '@/components/ui/ThemeToggle';
+import { ThemeToggle } from '@/components/ui';
 import mohLogo from '@/assets/logog.webp';
 
 export interface HeaderProps {
