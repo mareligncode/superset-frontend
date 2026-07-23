@@ -1,5 +1,3 @@
-// API and Data Fetching Types
-
 export interface ApiResponse<T = any> {
   success: boolean;
   data: T;

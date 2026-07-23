@@ -23,7 +23,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return 'light';
   });
 
-  // Resolved theme is what's actually applied
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(() => {
     const saved = localStorage.getItem('theme') as ThemeMode | null;
     if (saved === 'system') return getSystemPreference();
@@ -31,7 +30,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return 'light';
   });
 
-  // Apply theme to <html> and persist
   useEffect(() => {
     const applyTheme = (mode: ThemeMode) => {
       const resolved: 'light' | 'dark' = mode === 'system' ? getSystemPreference() : mode;
@@ -47,7 +45,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     applyTheme(theme);
     localStorage.setItem('theme', theme);
 
-    // If system, also watch for OS preference changes
     if (theme === 'system') {
       const mq = window.matchMedia('(prefers-color-scheme: dark)');
       const handler = () => applyTheme('system');

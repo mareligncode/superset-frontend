@@ -1,5 +1,6 @@
 import React, { type ReactNode, useRef, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { PRIMARY_CATEGORIES, SERVICES_DELIVERY_TABS } from '@/constants';
 
 export interface BaseDashboardTemplateProps {
@@ -13,7 +14,6 @@ export interface BaseDashboardTemplateProps {
   dataSourceNote?: string;
   /** Override for the active primary category key */
   activePrimaryTab?: string;
-  /** Override for the active secondary tab key */
   activeSecondaryTab?: string;
 }
 
@@ -31,7 +31,6 @@ const PRIMARY_TAB_PATHS: Record<string, string> = {
   'Digital Systems Monitoring':'/dashboards/digital-systems',
 };
 
-// Path map for services delivery secondary tabs
 const SECONDARY_TAB_PATHS: Record<string, string> = {
   'Family Planning': '/dashboards/family-planning',
   'Maternal':        '/dashboards/maternal-health',
@@ -51,6 +50,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
   activePrimaryTab,
   activeSecondaryTab,
 }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -116,7 +116,16 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
     return found ? found[0] : PRIMARY_CATEGORIES[0];
   })();
 
-  // Resolve which secondary tab is active from the URL
+  const translatedPrimaryCategories = PRIMARY_CATEGORIES.map((cat) => {
+    const key = cat.toLowerCase().replace(/ /g, '');
+    return t(key) || cat;
+  });
+
+  const translatedSecondaryTabs = SERVICES_DELIVERY_TABS.map((tab) => ({
+    ...tab,
+    translatedLabel: t(tab.label.toLowerCase().replace(/ /g, '')) || tab.label,
+  }));
+
   const resolvedSecondary = activeSecondaryTab || (() => {
     const found = Object.entries(SECONDARY_TAB_PATHS).find(([, p]) =>
       location.pathname === p || location.pathname.startsWith(p + '/'),
@@ -128,13 +137,13 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
     <div className="flex flex-col h-full">
       {/* ── Primary category tab bar ─────────────────────────── */}
       {showPrimaryTabs && (
-        <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 relative shrink-0 select-none">
+        <div className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 relative shrink-0 select-none">
           {/* Left scroll arrow */}
           {showLeftPrimary && (
             <button
               onClick={() => scrollPrimary('left')}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-700 shadow-lg border border-slate-200 dark:border-slate-600 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
-              aria-label="Scroll left"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
+              aria-label={t('scrollLeft')}
             >
               <span className="material-symbols-outlined text-[22px] text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">chevron_left</span>
             </button>
@@ -144,8 +153,8 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
           {showRightPrimary && (
             <button
               onClick={() => scrollPrimary('right')}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-700 shadow-lg border border-slate-200 dark:border-slate-600 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
-              aria-label="Scroll right"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
+              aria-label={t('scrollRight')}
             >
               <span className="material-symbols-outlined text-[22px] text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">chevron_right</span>
             </button>
@@ -157,7 +166,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             <div className="flex flex-nowrap min-w-max px-2">
-              {PRIMARY_CATEGORIES.map((tab) => {
+              {PRIMARY_CATEGORIES.map((tab, index) => {
                 const active = tab === resolvedPrimary;
                 return (
                   <button
@@ -169,7 +178,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
                         : 'text-slate-600 dark:text-slate-400 border-transparent hover:text-slate-900 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600'
                     }`}
                   >
-                    {tab}
+                    {translatedPrimaryCategories[index]}
                   </button>
                 );
               })}
@@ -180,13 +189,13 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
 
       {/* ── Secondary sub-category tab bar (Services Delivery) ── */}
       {showSecondaryTabs && (
-        <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 relative shrink-0 select-none">
+        <div className="bg-slate-50/50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 relative shrink-0 select-none">
           {/* Left scroll arrow */}
           {showLeftSecondary && (
             <button
               onClick={() => scrollSecondary('left')}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-700 shadow-lg border border-slate-200 dark:border-slate-600 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
-              aria-label="Scroll left"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
+              aria-label={t('scrollLeft')}
             >
               <span className="material-symbols-outlined text-[22px] text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">chevron_left</span>
             </button>
@@ -196,8 +205,8 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
           {showRightSecondary && (
             <button
               onClick={() => scrollSecondary('right')}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-700 shadow-lg border border-slate-200 dark:border-slate-600 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
-              aria-label="Scroll right"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
+              aria-label={t('scrollRight')}
             >
               <span className="material-symbols-outlined text-[22px] text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">chevron_right</span>
             </button>
@@ -209,7 +218,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             <div className="flex flex-nowrap min-w-max px-2">
-              {SERVICES_DELIVERY_TABS.map(({ label, path }) => {
+              {SERVICES_DELIVERY_TABS.map(({ label, path }, index) => {
                 const active = label === resolvedSecondary;
                 return (
                   <button
@@ -221,7 +230,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
                         : 'text-slate-500 dark:text-slate-400 border-transparent hover:text-slate-900 dark:hover:text-slate-200'
                     }`}
                   >
-                    {label}
+                    {translatedSecondaryTabs[index].translatedLabel}
                   </button>
                 );
               })}
@@ -231,17 +240,19 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
       )}
 
       {/* ── Page content ─────────────────────────────────────── */}
-      <div className="flex-1 p-4 overflow-y-auto custom-scrollbar">
+      <div className="flex-1 p-3 sm:p-4 md:p-5 lg:p-6 overflow-y-auto custom-scrollbar">
         {/* Optional data source note */}
         {dataSourceNote && (
-          <p className="text-[12px] text-slate-600 dark:text-slate-400 mb-3">
-            The data source is{' '}
+          <p className="text-[11px] sm:text-[12px] text-slate-600 dark:text-slate-400 mb-3 sm:mb-4">
+            {t('dataSource')}:{' '}
             <span className="font-semibold text-slate-900 dark:text-slate-200">{dataSourceNote}</span>
           </p>
         )}
 
         {/* Dashboard content */}
-        {children}
+        <div className="max-w-[1920px] mx-auto">
+          {children}
+        </div>
       </div>
     </div>
   );

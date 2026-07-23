@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import { Card } from '@/components/ui';
 import KpiCard from '@/components/ui/KpiCard';
@@ -10,6 +11,7 @@ import {
 } from '@/components/charts/DashboardCharts';
 
 const HealthFinancingPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <BaseDashboardTemplate
       category="Health Financing"
@@ -17,21 +19,21 @@ const HealthFinancingPage: React.FC = () => {
       showSecondaryTabs={false}
     >
       <div className="kpi-grid mb-4">
-        <KpiCard value="$48" label="Per Capita Health Expenditure (USD)" />
-        <KpiCard value="5.2%" label="Health Expenditure as % of GDP" />
-        <KpiCard value="62%" label="Government Health Spending Share" />
+        <KpiCard value="$48" label={t('perCapitaHealthExpenditure')} />
+        <KpiCard value="5.2%" label={t('healthExpenditureGDP')} />
+        <KpiCard value="62%" label={t('governmentHealthSpending')} />
       </div>
       <div className="chart-grid">
-        <Card title="Health Expenditure Trends" showCardIcons>
+        <Card title={t('healthExpenditureTrends')} showCardIcons>
           <MaternalANCLineChart />
         </Card>
-        <Card title="Health Financing Sources" showCardIcons>
+        <Card title={t('healthFinancingSources')} showCardIcons>
           <MaternalHealthBarChart />
         </Card>
-        <Card title="Out-of-Pocket Expenditure by Region" showCardIcons>
+        <Card title={t('outOfPocketExpenditure')} showCardIcons>
           <BloodTTIBars />
         </Card>
-        <Card title="Financial Protection Indicators" showCardIcons>
+        <Card title={t('financialProtectionIndicators')} showCardIcons>
           <NCDSexMetricTable />
         </Card>
       </div>

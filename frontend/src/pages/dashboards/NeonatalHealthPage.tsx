@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import { Card } from '@/components/ui';
 import {
@@ -9,6 +10,7 @@ import {
 import { AcceptorsByMethodTreemap } from '@/components/charts/FamilyPlanningCharts';
 
 const NeonatalHealthPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <BaseDashboardTemplate
       category="Services Delivery"
@@ -18,32 +20,32 @@ const NeonatalHealthPage: React.FC = () => {
     >
       {/* Top row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <Card title="Institutional and Community Neonatal Deaths from DHIS2" showCardIcons>
+        <Card title={t('institutionalCommunityNeonatalDeaths')} showCardIcons>
           <MaternalANCLineChart />
         </Card>
-        <Card title="Comparison of Neonatal Deaths for 2016" showCardIcons>
+        <Card title={t('comparisonNeonatalDeaths')} showCardIcons>
           <MaternalHealthBarChart />
         </Card>
-        <Card title="Community Early Neonatal Death by time from DHIS2" showCardIcons>
+        <Card title={t('communityEarlyNeonatalDeathTime')} showCardIcons>
           <BloodGlucoseSexDonut />
         </Card>
       </div>
 
       {/* Second row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <Card title="Community Early Neonatal Death by time" showCardIcons>
+        <Card title={t('communityEarlyNeonatalDeath')} showCardIcons>
           <BloodGlucoseSexDonut />
         </Card>
-        <Card title="Institutional Early Neonatal Death from DHIS2" showCardIcons>
+        <Card title={t('institutionalEarlyNeonatalDeathDHIS2')} showCardIcons>
           <AcceptorsByMethodTreemap />
         </Card>
-        <Card title="Institutional Early Neonatal Death from HHIS" showCardIcons>
+        <Card title={t('institutionalEarlyNeonatalDeathHHIS')} showCardIcons>
           <MaternalHealthBarChart />
         </Card>
       </div>
 
       {/* Full-width control chart */}
-      <Card title="% of Neonatal Deaths control chart" showCardIcons>
+      <Card title={t('neonatalDeathsControlChart')} showCardIcons>
         <MaternalANCLineChart />
       </Card>
     </BaseDashboardTemplate>

@@ -4,23 +4,19 @@ import { DashboardLayout, MainLayout } from '@/layouts';
 import { Spinner } from '@/components/ui';
 import { ROUTES } from '@/constants';
 
-// Lazy load pages for code splitting
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const DashboardsPage = lazy(() => import('@/pages/DashboardsPage'));
 const ChartsPage = lazy(() => import('@/pages/ChartsPage'));
 
-// Services Delivery Dashboards
 const FamilyPlanningPage = lazy(() => import('@/pages/dashboards/FamilyPlanningPage'));
 const MaternalHealthPage = lazy(() => import('@/pages/dashboards/MaternalHealthPage'));
 const NeonatalHealthPage = lazy(() => import('@/pages/dashboards/NeonatalHealthPage'));
 
-// Disease-Specific Dashboards
 const NCDPage = lazy(() => import('@/pages/dashboards/NCDPage'));
 const MalariaPage = lazy(() => import('@/pages/dashboards/MalariaPage'));
 const HIVPage = lazy(() => import('@/pages/dashboards/HIVPage'));
 const TBPage = lazy(() => import('@/pages/dashboards/TBPage'));
 
-// System Dashboards
 const HealthEquityPage = lazy(() => import('@/pages/dashboards/HealthEquityPage'));
 const HealthWorkforcePage = lazy(() => import('@/pages/dashboards/HealthWorkforcePage'));
 const HealthFinancingPage = lazy(() => import('@/pages/dashboards/HealthFinancingPage'));
@@ -32,22 +28,18 @@ const PHCPage = lazy(() => import('@/pages/dashboards/PHCPage'));
 const DigitalSystemsPage = lazy(() => import('@/pages/dashboards/DigitalSystemsPage'));
 const ServicesDeliveryPage = lazy(() => import('@/pages/dashboards/ServicesDeliveryPage'));
 
-// Legal Pages
 const PrivacyPage = lazy(() => import('@/pages/legal/PrivacyPage'));
 const TermsPage = lazy(() => import('@/pages/legal/TermsPage'));
 const DataGovernancePage = lazy(() => import('@/pages/legal/DataGovernancePage'));
 
-// Error Pages
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
-// Loading component
 const PageLoader = () => (
   <div className="flex items-center justify-center h-screen">
     <Spinner size="xl" color="primary" />
   </div>
 );
 
-// Wrapper for suspense
 const SuspenseWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Suspense fallback={<PageLoader />}>{children}</Suspense>
 );
@@ -112,7 +104,6 @@ export const router = createBrowserRouter([
           </SuspenseWrapper>
         ),
       },
-      // Services Delivery
       {
         path: 'services-delivery',
         element: (
@@ -145,7 +136,6 @@ export const router = createBrowserRouter([
           </SuspenseWrapper>
         ),
       },
-      // Diseases
       {
         path: 'ncd',
         element: (
@@ -178,7 +168,6 @@ export const router = createBrowserRouter([
           </SuspenseWrapper>
         ),
       },
-      // Systems
       {
         path: 'health-equity',
         element: (
@@ -267,7 +256,6 @@ export const router = createBrowserRouter([
   },
 ]);
 
-// Router component
 export const AppRouter: React.FC = () => {
   return <RouterProvider router={router} />;
 };

@@ -1,21 +1,17 @@
-// Application route constants
 export const ROUTES = {
   HOME: '/',
   DASHBOARDS: '/dashboards',
   CHARTS: '/charts',
   
-  // Services Delivery Dashboards
   FAMILY_PLANNING: '/dashboards/family-planning',
   MATERNAL_HEALTH: '/dashboards/maternal-health',
   NEONATAL_HEALTH: '/dashboards/neonatal-health',
   
-  // Disease-Specific Dashboards
   NCD: '/dashboards/ncd',
   MALARIA: '/dashboards/malaria',
   HIV: '/dashboards/hiv',
   TB: '/dashboards/tb',
   
-  // System Dashboards
   HEALTH_EQUITY: '/dashboards/health-equity',
   HEALTH_WORKFORCE: '/dashboards/health-workforce',
   HEALTH_FINANCING: '/dashboards/health-financing',
@@ -27,7 +23,6 @@ export const ROUTES = {
   DIGITAL_SYSTEMS: '/dashboards/digital-systems',
   SERVICES_DELIVERY: '/dashboards/services-delivery',
   
-  // Legal Pages
   PRIVACY: '/privacy',
   TERMS: '/terms',
   DATA_GOVERNANCE: '/data-governance',

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import { Card } from '@/components/ui';
 import KpiCard from '@/components/ui/KpiCard';
@@ -10,6 +11,7 @@ import {
 } from '@/components/charts/DashboardCharts';
 
 const BloodDonationPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <BaseDashboardTemplate
       category="Blood Donation"
@@ -18,30 +20,30 @@ const BloodDonationPage: React.FC = () => {
     >
       {/* KPI Row */}
       <div className="kpi-grid mb-4">
-        <KpiCard value="423k" label="Total Tests" />
-        <KpiCard value="21.1k" label="Total Positive" />
-        <KpiCard value="4.99" label="Overall Reactivity Rate" />
+        <KpiCard value="423k" label={t('totalTests')} />
+        <KpiCard value="21.1k" label={t('totalPositive')} />
+        <KpiCard value="4.99" label={t('overallReactivityRate')} />
       </div>
 
       {/* Chart grid */}
       <div className="chart-grid">
-        <Card title="National Blood TTI Testing Status and Results, 2017 EFY" showCardIcons>
+        <Card title={t('nationalBloodTTITesting')} showCardIcons>
           <BloodTTIBars />
         </Card>
-        <Card title="Trends of total blood unit collected (2006 – 2017 EFY)" showCardIcons>
+        <Card title={t('trendsBloodUnitCollected')} showCardIcons>
           <BloodUnitsTrendLine />
         </Card>
-        <Card title="Blood Donation By Region" showCardIcons>
+        <Card title={t('bloodDonationByRegion')} showCardIcons>
           <MaternalHealthBarChart />
         </Card>
-        <Card title="Top 10 Blood Collection Sites, 2017 EFY" showCardIcons>
+        <Card title={t('top10BloodCollectionSites')} showCardIcons>
           <TopHighRiskWoredasBar />
         </Card>
       </div>
 
       {/* Full-width table card */}
       <div className="mt-4">
-        <Card title="Blood Donation by Centers" showCardIcons>
+        <Card title={t('bloodDonationByCenters')} showCardIcons>
           <BloodTTIBars />
         </Card>
       </div>

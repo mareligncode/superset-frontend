@@ -1,11 +1,17 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { getLocalizedRegionName } from '@/utils/regionUtils';
+import { getLocalizedMonthWithNumber } from '@/utils/monthUtils';
+
 
 // ─────────────────────────────────────────────────────────────
 // 1. MATERNAL HEALTH CHARTS
 // ─────────────────────────────────────────────────────────────
 
 export const MaternalHealthBarChart: React.FC = () => {
-  const months = ['01-Hamle', '03-Meskerem', '05-Hidar', '07-Tir', '09-Megabit', '11-Ginbot'];
+  const { t } = useTranslation();
+  const monthKeys = ['01-hamle', '03-meskerem', '05-hidar', '07-tir', '09-megabit', '11-ginbot'];
+  const months = monthKeys.map(m => getLocalizedMonthWithNumber(m, t));
   const data = [
     { pnc: 34, sba: 34.2, cs: 1.8 },
     { pnc: 37.1, sba: 36.5, cs: 2.1 },
@@ -54,9 +60,11 @@ export const MaternalHealthBarChart: React.FC = () => {
 };
 
 export const MaternalANCLineChart: React.FC = () => {
+  const { t } = useTranslation();
   const anc4 = [65, 62, 68, 65, 74, 66, 67, 75, 71];
   const anc8 = [22, 23, 24, 23.5, 25.2, 24, 23, 25, 30];
-  const months = ['01-Hamle', '03-Meskerem', '05-Hidar', '07-Tir', '09-Megabit', '11-Ginbot'];
+  const monthKeys = ['01-hamle', '03-meskerem', '05-hidar', '07-tir', '09-megabit', '11-ginbot'];
+  const months = monthKeys.map(m => getLocalizedMonthWithNumber(m, t));
 
   const width = 540;
   const height = 220;
@@ -438,6 +446,7 @@ export const WorkforceDensityBar: React.FC = () => {
 // ─────────────────────────────────────────────────────────────
 
 export const SimpleMeasureHorizontalBarChart: React.FC = () => {
+  const { t } = useTranslation();
   const data = [
     { name: 'Tigray', val: 0.37 },
     { name: 'South West Ethiopia', val: 0.65 },
@@ -473,9 +482,10 @@ export const SimpleMeasureHorizontalBarChart: React.FC = () => {
         {data.map((d, i) => {
           const y = 15 + i * 20;
           const w = d.val * 380;
+          const localized = getLocalizedRegionName(d.name, t);
           return (
             <g key={d.name}>
-              <text x="100" y={y + 10} textAnchor="end" className="text-[10px] fill-on-surface font-semibold">{d.name}</text>
+              <text x="100" y={y + 10} textAnchor="end" className="text-[10px] fill-on-surface font-semibold">{localized}</text>
               <rect x="110" y={y} width={w} height="13" fill="#2563eb" rx="2" className="hover:brightness-105 transition-all cursor-pointer" />
             </g>
           );
@@ -486,6 +496,7 @@ export const SimpleMeasureHorizontalBarChart: React.FC = () => {
 };
 
 export const RatioToMinVerticalBarChart: React.FC = () => {
+  const { t } = useTranslation();
   const data = [
     { name: 'Addis Ababa', val: 3.1 },
     { name: 'Afar', val: 1.8 },
@@ -521,10 +532,11 @@ export const RatioToMinVerticalBarChart: React.FC = () => {
         {data.map((d, i) => {
           const x = 42 + i * 34;
           const h = (d.val / 8) * 240;
+          const localized = getLocalizedRegionName(d.name, t);
           return (
             <g key={d.name}>
               <rect x={x} y={280 - h} width="20" height={h} fill="#2563eb" rx="2" className="hover:brightness-105 transition-all cursor-pointer" />
-              <text x={x + 10} y="292" textAnchor="end" transform={`rotate(-45, ${x + 10}, 292)`} className="text-[8.5px] fill-on-surface font-semibold truncate w-16">{d.name}</text>
+              <text x={x + 10} y="292" textAnchor="end" transform={`rotate(-45, ${x + 10}, 292)`} className="text-[8.5px] fill-on-surface font-semibold truncate w-16">{localized}</text>
             </g>
           );
         })}

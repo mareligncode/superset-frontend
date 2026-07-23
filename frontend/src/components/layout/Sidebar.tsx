@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IconButton } from '@/components/ui';
 
 export interface SidebarProps {
@@ -55,16 +56,18 @@ const Sidebar: React.FC<SidebarProps> = ({
     }
   }, [isResizing]);
 
+  const { t } = useTranslation();
+
   const sidebarLinks = [
-    { label: 'Dashboard', icon: 'dashboard', active: true },
-    { label: 'Analytics', icon: 'monitoring', active: false },
-    { label: 'Reports', icon: 'description', active: false },
-    { label: 'Data Sources', icon: 'folder', active: false },
+    { label: t('dashboards'), icon: 'dashboard', active: true },
+    { label: t('analytics'), icon: 'monitoring', active: false },
+    { label: t('reports'), icon: 'description', active: false },
+    { label: t('dataSources'), icon: 'folder', active: false },
   ];
 
   const footerLinks = [
-    { label: 'Settings', icon: 'settings' },
-    { label: 'Help Center', icon: 'help' },
+    { label: t('settings'), icon: 'settings' },
+    { label: t('helpCenter'), icon: 'help' },
   ];
 
   return (
@@ -92,7 +95,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <div className="p-4 border-b border-slate-100 dark:border-slate-700 md:hidden">
             <div className="flex items-center justify-between">
               <h2 className="text-[15px] font-bold text-slate-800 dark:text-slate-200">
-                Menu
+                {t('menu')}
               </h2>
               <IconButton
                 icon="close"

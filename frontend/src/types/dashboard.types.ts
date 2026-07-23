@@ -1,5 +1,3 @@
-// Dashboard Types
-
 export type DashboardCategory =
   | 'Services Delivery'
   | 'Health Equity'

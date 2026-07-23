@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import KpiCard from '@/components/ui/KpiCard';
 import { ChartContainer } from '@/components/charts/ChartContainer';
@@ -10,6 +11,7 @@ import {
 } from '@/components/charts/DashboardCharts';
 
 const HealthEquityPage: React.FC = () => {
+  const { t } = useTranslation();
   const [activeSubTab, setActiveSubTab] = useState<'simple' | 'order'>('simple');
 
   const equityData = [
@@ -34,7 +36,7 @@ const HealthEquityPage: React.FC = () => {
               : 'text-slate-500 dark:text-slate-400 border-transparent hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
-          Simple Measures
+          {t('simpleMeasures')}
         </button>
         <button
           onClick={() => setActiveSubTab('order')}
@@ -44,7 +46,7 @@ const HealthEquityPage: React.FC = () => {
               : 'text-slate-500 dark:text-slate-400 border-transparent hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
-          Order Disproportionality
+          {t('orderDisproportionality')}
         </button>
       </div>
 
@@ -54,43 +56,43 @@ const HealthEquityPage: React.FC = () => {
           <div className="kpi-responsive-grid">
             <KpiCard
               value="0.72"
-              label="Difference (D)"
+              label={t('difference')}
               trend="+2.4%"
               trendIsPositive={true}
               target="0.65"
-              tooltipText="Absolute difference between highest and lowest regional equity estimates."
+              tooltipText={t('absoluteDifferenceRegional')}
             />
             <KpiCard
               value="0.49"
-              label="Estimates (E)"
+              label={t('estimates')}
               trend="-1.1%"
               trendIsPositive={false}
               target="0.50"
-              tooltipText="National mean coverage estimate across all sub-groups."
+              tooltipText={t('nationalMeanCoverage')}
             />
             <KpiCard
               value="7.32"
-              label="Ratio (R)"
+              label={t('ratio')}
               trend="+4.8%"
               trendIsPositive={false}
               target="5.00"
-              tooltipText="Relative ratio of highest performing group to lowest performing group."
+              tooltipText={t('relativeRatioHighestLowest')}
             />
           </div>
 
           {/* ── Charts Grid: Simple Measures ───────────────────────── */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             <ChartContainer
-              title="Simple Measure Distribution"
-              subtitle="Horizontal breakdown of coverage estimates across equity strata."
+              title={t('simpleMeasureDistribution')}
+              subtitle={t('simpleMeasureDistributionSubtitle')}
               tableData={equityData}
             >
               <SimpleMeasureHorizontalBarChart />
             </ChartContainer>
 
             <ChartContainer
-              title="Ratio to the Minimum"
-              subtitle="Relative disparity ratio calculated against the lowest performing Kebele benchmark."
+              title={t('ratioToMinimum')}
+              subtitle={t('ratioToMinimumSubtitle')}
             >
               <RatioToMinVerticalBarChart />
             </ChartContainer>
@@ -102,34 +104,34 @@ const HealthEquityPage: React.FC = () => {
           <div className="kpi-responsive-grid">
             <KpiCard
               value="0.3471"
-              label="Absolute Concentration Index"
+              label={t('absoluteConcentrationIndex')}
               trend="-0.02"
               trendIsPositive={true}
               target="0.30"
-              tooltipText="Measures the extent to which a health indicator is concentrated among disadvantaged populations."
+              tooltipText={t('measuresHealthIndicator')}
             />
             <KpiCard
               value="0.5185"
-              label="Relative Concentration Index"
+              label={t('relativeConcentrationIndex')}
               trend="-0.04"
               trendIsPositive={true}
               target="0.45"
-              tooltipText="Relative concentration index measuring economic inequality across quintiles."
+              tooltipText={t('relativeConcentrationEconomic')}
             />
           </div>
 
           {/* ── Charts Grid: Order Disproportionality ──────────────── */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             <ChartContainer
-              title="Absolute Concentration Index"
-              subtitle="Vertical bar distribution showing absolute concentration values."
+              title={t('absoluteConcentrationIndex')}
+              subtitle={t('absoluteConcentrationIndexSubtitle')}
             >
               <AbsoluteConcentrationIndexVerticalBarChart />
             </ChartContainer>
 
             <ChartContainer
-              title="Relative Concentration Index"
-              subtitle="Scatter plot comparing relative estimate averages against the red equality baseline."
+              title={t('relativeConcentrationIndex')}
+              subtitle={t('relativeConcentrationIndexSubtitle')}
             >
               <RelativeConcentrationIndexScatterPlot />
             </ChartContainer>

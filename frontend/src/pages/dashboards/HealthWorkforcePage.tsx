@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import { Card } from '@/components/ui';
 import KpiCard from '@/components/ui/KpiCard';
@@ -10,6 +11,7 @@ import {
 import { ChartHeaderPills } from '@/components/charts/FamilyPlanningCharts';
 
 const HealthWorkforcePage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <BaseDashboardTemplate
       category="Health Work Force"
@@ -18,24 +20,24 @@ const HealthWorkforcePage: React.FC = () => {
     >
       {/* KPI Row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-        <KpiCard value="492,181" label="Total Work Force" showIcons={true} />
-        <KpiCard value="167,171" label="Total Administrative Staff" showIcons={true} />
-        <KpiCard value="325,010" label="Total Health Professionals" showIcons={true} />
+        <KpiCard value="492,181" label={t('totalWorkForce')} showIcons={true} />
+        <KpiCard value="167,171" label={t('totalAdministrativeStaff')} showIcons={true} />
+        <KpiCard value="325,010" label={t('totalHealthProfessionals')} showIcons={true} />
       </div>
 
       {/* Chart grid */}
       <div className="chart-grid">
         <Card
-          title="Health Workforce Category"
+          title={t('healthWorkforceCategory')}
           headerAction={<ChartHeaderPills showAllInv={false} />}
         >
           <HealthWorkforceCategoryTreemap />
         </Card>
         <Card
-          title="Health Work Force Density Per 1000"
+          title={t('healthWorkforceDensity')}
           headerAction={
             <ChartHeaderPills
-              legendItems={[{ label: 'Density', color: '#2563eb' }]}
+              legendItems={[{ label: t('density'), color: '#2563eb' }]}
               showAllInv={false}
             />
           }
@@ -47,12 +49,12 @@ const HealthWorkforcePage: React.FC = () => {
       {/* Full-width chart */}
       <div className="mt-4">
         <Card
-          title="Number of health professionals and administrative staff"
+          title={t('numberOfHealthProfessionals')}
           headerAction={
             <ChartHeaderPills
               legendItems={[
-                { label: 'health professionals', color: '#2563eb' },
-                { label: 'administrative staff', color: '#ea580c' },
+                { label: t('healthProfessionals'), color: '#2563eb' },
+                { label: t('administrativeStaff'), color: '#ea580c' },
               ]}
               showAllInv={false}
             />

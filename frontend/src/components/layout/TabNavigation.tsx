@@ -52,7 +52,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
   if (variant === 'primary') {
     return (
       <div
-        className={`bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none relative ${className}`}
+        className={`bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none relative ${className}`}
       >
         {/* Mobile scroll cue indicators */}
         <div className="scroll-cue-left md:hidden" />
@@ -67,8 +67,8 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
                 onClick={() => handleTabClick(tab)}
                 className={`relative px-3.5 sm:px-5 py-2.5 sm:py-3.5 text-xs sm:text-[13px] font-semibold shrink-0 transition-all duration-200 touch-target ${
                   active
-                    ? 'text-blue-600 dark:text-blue-400 tab-active bg-blue-50/20 dark:bg-blue-900/20 font-bold'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50/60 dark:hover:bg-slate-700/60'
+                    ? 'text-blue-600 dark:text-blue-400 tab-active bg-blue-50/20 dark:bg-blue-950/40 font-bold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50/60 dark:hover:bg-slate-800/60'
                 }`}
               >
                 {tab}
@@ -86,7 +86,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
   ─────────────────────────────────────────────────────────────────── */
   return (
     <div
-      className={`border-b border-slate-200 dark:border-slate-700 overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none relative ${className}`}
+      className={`bg-slate-50/50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 overflow-x-auto custom-scrollbar touch-pan-x shrink-0 select-none relative ${className}`}
     >
       {/* Mobile scroll cue indicators */}
       <div className="scroll-cue-left md:hidden" />
@@ -102,7 +102,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
               className={`relative px-3 sm:px-4 py-2 sm:py-2.5 text-[11.5px] sm:text-[12.5px] font-semibold shrink-0 transition-all duration-200 touch-target ${
                 active
                   ? 'text-blue-600 dark:text-blue-400 tab-active font-bold'
-                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-50/60 dark:hover:bg-slate-700/60 rounded-t-md'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100/60 dark:hover:bg-slate-800/60 rounded-t-md'
               }`}
             >
               {tab}

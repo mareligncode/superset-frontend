@@ -1,5 +1,3 @@
-// Filter Types
-
 export interface FilterState {
   year: string;
   quarter?: string;
@@ -114,17 +112,17 @@ export const ETHIOPIAN_REGIONS: string[] = [
 ];
 
 export const ETHIOPIAN_MONTHS: string[] = [
-  'Meskerem',
-  'Tikimt',
-  'Hidar',
-  'Tahsas',
-  'Tir',
-  'Yekatit',
-  'Megabit',
-  'Miazia',
-  'Ginbot',
-  'Sene',
-  'Hamle',
-  'Nehase',
-  'Pagume',
+  'meskerem',
+  'tikimt',
+  'hidar',
+  'tahsas',
+  'tir',
+  'yekatit',
+  'megabit',
+  'miazia',
+  'ginbot',
+  'sene',
+  'hamle',
+  'nehase',
+  'pagume',
 ];

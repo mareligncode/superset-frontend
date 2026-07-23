@@ -5,31 +5,52 @@ export interface CardProps {
   title?: string;
   subtitle?: string;
   headerAction?: React.ReactNode;
-  /** 'default' = standard chart card (white, 1px border)
-   *  'elevated' = dashboard list card (hover lift)
-   *  'glass'    = glassmorphism card */
-  variant?: 'default' | 'elevated' | 'glass';
-  padding?: 'none' | 'sm' | 'md' | 'lg';
+  /** Premium card variants:
+   *  'default'  = standard white card with subtle shadows
+   *  'elevated' = interactive card with hover lift
+   *  'glass'    = glassmorphism with backdrop blur
+   *  'gradient' = premium gradient background
+   *  'outlined' = minimal outlined style */
+  variant?: 'default' | 'elevated' | 'glass' | 'gradient' | 'outlined';
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
   onClick?: () => void;
   /** Show filter/info/more icon trio in the card header */
   showCardIcons?: boolean;
+  /** Optional badge for the card header */
+  badge?: React.ReactNode;
 }
 
+/**
+ * CardIcons — Premium action icons for card header
+ */
 const CardIcons = () => (
   <div className="flex items-center gap-1 shrink-0">
-    <button className="w-7 h-7 sm:w-6 sm:h-6 flex items-center justify-center rounded text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors touch-target" aria-label="Filter">
-      <span className="material-symbols-outlined text-[14px] sm:text-[14px]">filter_list</span>
+    <button 
+      className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200 active:scale-95" 
+      aria-label="Filter"
+    >
+      <span className="material-symbols-outlined text-[16px]">filter_list</span>
     </button>
-    <button className="w-7 h-7 sm:w-6 sm:h-6 flex items-center justify-center rounded text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors touch-target" aria-label="Info">
-      <span className="material-symbols-outlined text-[14px] sm:text-[14px]">info</span>
+    <button 
+      className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200 active:scale-95" 
+      aria-label="Info"
+    >
+      <span className="material-symbols-outlined text-[16px]">info</span>
     </button>
-    <button className="w-7 h-7 sm:w-6 sm:h-6 flex items-center justify-center rounded text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors touch-target" aria-label="More options">
-      <span className="material-symbols-outlined text-[14px] sm:text-[14px]">more_vert</span>
+    <button 
+      className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200 active:scale-95" 
+      aria-label="More options"
+    >
+      <span className="material-symbols-outlined text-[16px]">more_vert</span>
     </button>
   </div>
 );
 
+/**
+ * Card — Premium container component with elegant variants and refined styling
+ * Features: Multiple variants, backdrop blur, gradient backgrounds, smooth interactions
+ */
 const Card: React.FC<CardProps> = ({
   children,
   title,
@@ -40,24 +61,30 @@ const Card: React.FC<CardProps> = ({
   className = '',
   onClick,
   showCardIcons = false,
+  badge,
 }) => {
   const variantStyles: Record<string, string> = {
     default:
-      'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm',
+      'bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border border-slate-200/80 dark:border-slate-700/80 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300',
     elevated:
-      'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer',
+      'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer active:scale-[0.99]',
     glass:
-      'glass dark:bg-slate-800/50 border border-white/30 dark:border-slate-700 rounded-lg shadow-sm',
+      'bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/60 dark:border-slate-700/60 rounded-2xl shadow-lg',
+    gradient:
+      'bg-gradient-to-br from-blue-50 to-sky-50 dark:from-slate-800 dark:to-slate-900 border border-blue-200/50 dark:border-slate-700 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300',
+    outlined:
+      'bg-transparent border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 rounded-2xl hover:shadow-md transition-all duration-200',
   };
 
   const paddingStyles: Record<string, string> = {
     none: '',
-    sm:   'p-2 sm:p-3',
-    md:   'p-3 sm:p-4',
-    lg:   'p-4 sm:p-5',
+    sm:   'p-3 sm:p-4',
+    md:   'p-4 sm:p-5',
+    lg:   'p-5 sm:p-6',
+    xl:   'p-6 sm:p-8',
   };
 
-  const hasHeader = title || subtitle || headerAction || showCardIcons;
+  const hasHeader = title || subtitle || headerAction || showCardIcons || badge;
 
   return (
     <div
@@ -67,20 +94,25 @@ const Card: React.FC<CardProps> = ({
       tabIndex={onClick ? 0 : undefined}
     >
       {hasHeader && (
-        <div className="flex items-start justify-between mb-2 gap-2">
-          <div className="flex flex-col min-w-0">
-            {title && (
-              <h3 className="text-[13px] font-semibold text-slate-900 dark:text-slate-100 leading-snug truncate">
-                {title}
-              </h3>
-            )}
+        <div className="flex items-start justify-between mb-4 gap-3">
+          <div className="flex flex-col min-w-0 flex-1">
+            <div className="flex items-center gap-2 flex-wrap">
+              {title && (
+                <h3 className="text-[14px] font-extrabold text-slate-800 dark:text-slate-100 leading-snug tracking-tight">
+                  {title}
+                </h3>
+              )}
+              {badge && (
+                <span className="inline-flex">{badge}</span>
+              )}
+            </div>
             {subtitle && (
-              <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">
+              <p className="text-[12px] font-medium text-slate-600 dark:text-slate-400 mt-1.5 leading-relaxed">
                 {subtitle}
               </p>
             )}
           </div>
-          <div className="flex items-center gap-1 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             {headerAction}
             {showCardIcons && <CardIcons />}
           </div>

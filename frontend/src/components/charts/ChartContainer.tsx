@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ChartContainerProps {
   title: string;
@@ -15,6 +16,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
   tableData,
   className = '',
 }) => {
+  const { t } = useTranslation();
   const [viewMode, setViewMode] = useState<'chart' | 'table'>('chart');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [downloadMenuOpen, setDownloadMenuOpen] = useState(false);
@@ -101,72 +103,72 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
   return (
     <>
       <div
-        className={`bg-white dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 rounded-xl p-4 flex flex-col justify-between transition-all duration-200 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-600 relative group ${className}`}
+        className={`bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border border-slate-200/80 dark:border-slate-700/80 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:border-blue-200 dark:hover:border-blue-700 hover:-translate-y-0.5 relative group ${className}`}
       >
-        {/* Header toolbar */}
-        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 pb-3 mb-3 border-b border-slate-100 dark:border-slate-700">
-          <div>
-            <h3 className="text-xs font-bold text-slate-800 dark:text-slate-200 tracking-tight leading-tight flex items-center gap-1.5">
-              <span className="w-1.5 h-3.5 rounded-full bg-blue-600 inline-block" />
+        {/* Premium Header toolbar */}
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 mb-4 border-b border-slate-200/60 dark:border-slate-700/60">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-[14px] font-extrabold text-slate-800 dark:text-slate-200 tracking-tight leading-tight flex items-center gap-2">
+              <span className="w-1 h-5 rounded-full bg-gradient-to-b from-blue-600 to-sky-600 inline-block shadow-sm" />
               {title}
             </h3>
             {subtitle && (
-              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5 pl-3">
+              <p className="text-[12px] text-slate-600 dark:text-slate-400 font-semibold mt-1.5 pl-3">
                 {subtitle}
               </p>
             )}
           </div>
 
-          <div className="flex items-center gap-1 shrink-0 bg-slate-50 dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200/60 dark:border-slate-600">
+          <div className="flex items-center gap-1.5 shrink-0 bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 p-1 rounded-xl border border-slate-200/60 dark:border-slate-600/60 shadow-sm">
             {tableData && tableData.length > 0 && (
               <button
                 onClick={() => setViewMode(viewMode === 'chart' ? 'table' : 'chart')}
-                className={`px-2 py-1 text-[10px] font-semibold rounded flex items-center gap-1 transition-all ${
+                className={`px-3 py-1.5 text-[11px] font-bold rounded-lg flex items-center gap-1.5 transition-all duration-200 active:scale-95 ${
                   viewMode === 'table'
-                    ? 'bg-white dark:bg-slate-600 text-blue-700 dark:text-blue-300 shadow-2xs font-bold'
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                    ? 'bg-white dark:bg-slate-600 text-blue-700 dark:text-blue-300 shadow-md border-2 border-blue-200 dark:border-blue-700'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-600/60'
                 }`}
-                title={viewMode === 'chart' ? 'View as Data Table' : 'View as Chart'}
+                title={viewMode === 'chart' ? t('view') : t('charts')}
               >
-                <span className="material-symbols-outlined text-[13px]">
+                <span className="material-symbols-outlined text-[14px]">
                   {viewMode === 'chart' ? 'table_chart' : 'bar_chart'}
                 </span>
-                <span>{viewMode === 'chart' ? 'Table' : 'Chart'}</span>
+                <span className="uppercase tracking-wider">{viewMode === 'chart' ? t('table') : t('charts')}</span>
               </button>
             )}
 
             <div className="relative" ref={downloadRef}>
               <button
                 onClick={() => setDownloadMenuOpen(!downloadMenuOpen)}
-                className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-white dark:hover:bg-slate-600 rounded transition-all"
-                title="Download Chart"
+                className="p-1.5 text-slate-400 dark:text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-all duration-200 active:scale-95"
+                title={t('download')}
               >
-                <span className="material-symbols-outlined text-[14px]">download</span>
+                <span className="material-symbols-outlined text-[15px]">download</span>
               </button>
 
               {downloadMenuOpen && (
-                <div className="absolute right-0 top-full mt-1 w-40 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-2xl py-1 z-50 text-[11.5px] font-medium text-slate-800 dark:text-slate-200 animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute right-0 top-full mt-2 w-48 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl border-2 border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl py-1.5 z-50 text-[12px] font-semibold text-slate-800 dark:text-slate-200 animate-slideIn">
                   <button
                     onClick={handleDownloadPDF}
-                    className="w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
+                    className="w-full text-left px-4 py-2.5 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50 dark:hover:from-slate-700 dark:hover:to-slate-700 flex items-center gap-2.5 transition-all duration-150 active:scale-98"
                   >
-                    <span className="material-symbols-outlined text-[14px] text-slate-400 dark:text-slate-500">picture_as_pdf</span>
-                    <span>PDF</span>
+                    <span className="material-symbols-outlined text-[16px] text-red-500 dark:text-red-400">picture_as_pdf</span>
+                    <span>{t('downloadPDF')}</span>
                   </button>
                   <button
                     onClick={handleDownloadImage}
-                    className="w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
+                    className="w-full text-left px-4 py-2.5 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50 dark:hover:from-slate-700 dark:hover:to-slate-700 flex items-center gap-2.5 transition-all duration-150 active:scale-98"
                   >
-                    <span className="material-symbols-outlined text-[14px] text-slate-400 dark:text-slate-500">image</span>
-                    <span>Image</span>
+                    <span className="material-symbols-outlined text-[16px] text-green-500 dark:text-green-400">image</span>
+                    <span>{t('downloadImage')}</span>
                   </button>
                   {tableData && (
                     <button
                       onClick={handleDownloadCSV}
-                      className="w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
+                      className="w-full text-left px-4 py-2.5 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50 dark:hover:from-slate-700 dark:hover:to-slate-700 flex items-center gap-2.5 transition-all duration-150 active:scale-98"
                     >
-                      <span className="material-symbols-outlined text-[14px] text-slate-400 dark:text-slate-500">table_chart</span>
-                      <span>CSV</span>
+                      <span className="material-symbols-outlined text-[16px] text-blue-500 dark:text-blue-400">table_chart</span>
+                      <span>{t('downloadCSV')}</span>
                     </button>
                   )}
                 </div>
@@ -176,34 +178,34 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
             <div className="relative" ref={shareRef}>
               <button
                 onClick={() => setShareMenuOpen(!shareMenuOpen)}
-                className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-white dark:hover:bg-slate-600 rounded transition-all"
-                title="Share Chart"
+                className="p-1.5 text-slate-400 dark:text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-all duration-200 active:scale-95"
+                title={t('share')}
               >
-                <span className="material-symbols-outlined text-[14px]">share</span>
+                <span className="material-symbols-outlined text-[15px]">share</span>
               </button>
 
               {shareMenuOpen && (
-                <div className="absolute right-0 top-full mt-1 w-40 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-2xl py-1 z-50 text-[11.5px] font-medium text-slate-800 dark:text-slate-200 animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute right-0 top-full mt-2 w-48 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl border-2 border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl py-1.5 z-50 text-[12px] font-semibold text-slate-800 dark:text-slate-200 animate-slideIn">
                   <button
                     onClick={handleShareFacebook}
-                    className="w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
+                    className="w-full text-left px-4 py-2.5 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50 dark:hover:from-slate-700 dark:hover:to-slate-700 flex items-center gap-2.5 transition-all duration-150 active:scale-98"
                   >
-                    <span className="material-symbols-outlined text-[14px] text-blue-600">facebook</span>
-                    <span>Facebook</span>
+                    <span className="material-symbols-outlined text-[16px] text-blue-600 dark:text-blue-400">facebook</span>
+                    <span>{t('shareFacebook')}</span>
                   </button>
                   <button
                     onClick={handleShareEmail}
-                    className="w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
+                    className="w-full text-left px-4 py-2.5 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50 dark:hover:from-slate-700 dark:hover:to-slate-700 flex items-center gap-2.5 transition-all duration-150 active:scale-98"
                   >
-                    <span className="material-symbols-outlined text-[14px] text-slate-400 dark:text-slate-500">email</span>
-                    <span>Email</span>
+                    <span className="material-symbols-outlined text-[16px] text-slate-500 dark:text-slate-400">email</span>
+                    <span>{t('shareEmail')}</span>
                   </button>
                   <button
                     onClick={handleCopyLink}
-                    className="w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors"
+                    className="w-full text-left px-4 py-2.5 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50 dark:hover:from-slate-700 dark:hover:to-slate-700 flex items-center gap-2.5 transition-all duration-150 active:scale-98"
                   >
-                    <span className="material-symbols-outlined text-[14px] text-slate-400 dark:text-slate-500">link</span>
-                    <span>Copy Link</span>
+                    <span className="material-symbols-outlined text-[16px] text-emerald-500 dark:text-emerald-400">link</span>
+                    <span>{t('copyLink')}</span>
                   </button>
                 </div>
               )}
@@ -211,10 +213,10 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
 
             <button
               onClick={() => setIsFullscreen(true)}
-              className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-white dark:hover:bg-slate-600 rounded transition-all"
-              title="Expand Fullscreen"
+              className="p-1.5 text-slate-400 dark:text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-all duration-200 active:scale-95"
+              title={t('enterFullscreen')}
             >
-              <span className="material-symbols-outlined text-[14px]">fullscreen</span>
+              <span className="material-symbols-outlined text-[15px]">fullscreen</span>
             </button>
           </div>
         </div>
@@ -224,22 +226,22 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
           {viewMode === 'chart' ? (
             children
           ) : tableData && tableData.length > 0 ? (
-            <div className="w-full overflow-x-auto max-h-[240px] custom-scrollbar">
-              <table className="w-full text-[10.5px] text-left border-collapse">
-                <thead>
-                  <tr className="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider">
+            <div className="w-full overflow-x-auto max-h-[280px] rounded-xl border border-slate-200 dark:border-slate-700 custom-scrollbar">
+              <table className="w-full text-[11px] text-left border-collapse">
+                <thead className="sticky top-0 z-10">
+                  <tr className="bg-gradient-to-r from-blue-50 to-sky-50 dark:from-slate-700 dark:to-slate-800 border-b-2 border-blue-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-extrabold uppercase tracking-wider">
                     {Object.keys(tableData[0]).map((key) => (
-                      <th key={key} className="px-3 py-2">
+                      <th key={key} className="px-4 py-3 text-left">
                         {key}
                       </th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
+                <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                   {tableData.map((row, idx) => (
-                    <tr key={idx} className="hover:bg-blue-50/40 dark:hover:bg-blue-900/20">
+                    <tr key={idx} className="hover:bg-gradient-to-r hover:from-blue-50/40 hover:to-sky-50/40 dark:hover:from-blue-950/20 dark:hover:to-sky-950/20 transition-colors duration-150">
                       {Object.values(row).map((val, i) => (
-                        <td key={i} className="px-3 py-1.5 text-slate-700 dark:text-slate-300 font-medium">
+                        <td key={i} className="px-4 py-2.5 text-slate-700 dark:text-slate-300 font-semibold">
                           {val}
                         </td>
                       ))}
@@ -254,29 +256,33 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
         </div>
       </div>
 
-      {/* Fullscreen Dialog Modal */}
+      {/* Premium Fullscreen Dialog Modal */}
       {isFullscreen && (
-        <div className="fixed inset-0 z-50 bg-slate-900/80 dark:bg-slate-900/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 animate-fadeIn">
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 w-full max-w-5xl h-[85vh] md:h-[85vh] flex flex-col overflow-hidden chart-fullscreen-mobile">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700/50 gap-3">
-              <div>
-                <h2 className="text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                  <span className="w-2 h-4 rounded-full bg-blue-600" />
+        <div className="fixed inset-0 z-50 bg-slate-900/90 dark:bg-slate-900/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl border-2 border-slate-200 dark:border-slate-700 w-full max-w-6xl h-[88vh] flex flex-col overflow-hidden">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between px-6 py-4 border-b-2 border-slate-200 dark:border-slate-700 bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 gap-3">
+              <div className="flex-1 min-w-0">
+                <h2 className="text-[15px] font-extrabold text-slate-900 dark:text-slate-100 flex items-center gap-2.5 tracking-tight">
+                  <span className="w-1.5 h-6 rounded-full bg-gradient-to-b from-blue-600 to-sky-600 shadow-md" />
                   {title}
                 </h2>
-                {subtitle && <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">{subtitle}</p>}
+                {subtitle && (
+                  <p className="text-[12px] text-slate-600 dark:text-slate-400 mt-1 font-semibold pl-4">
+                    {subtitle}
+                  </p>
+                )}
               </div>
 
               <button
                 onClick={() => setIsFullscreen(false)}
-                className="w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all cursor-pointer touch-target"
+                className="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
               >
-                <span className="material-symbols-outlined text-[20px] sm:text-[18px]">close</span>
+                <span className="material-symbols-outlined text-[22px]">close</span>
               </button>
             </div>
 
-            <div className="flex-1 p-4 sm:p-6 overflow-auto flex items-center justify-center bg-slate-50/50 dark:bg-slate-900/50">
-              <div className="w-full h-full max-w-4xl flex items-center justify-center bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-xs">
+            <div className="flex-1 p-6 overflow-auto flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950">
+              <div className="w-full h-full max-w-5xl flex items-center justify-center bg-white dark:bg-slate-800 p-6 rounded-2xl border-2 border-slate-200 dark:border-slate-700 shadow-xl">
                 {children}
               </div>
             </div>

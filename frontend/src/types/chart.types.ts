@@ -1,5 +1,3 @@
-// Chart-Specific Types
-
 export interface LineChartData {
   type: 'line';
   labels: string[];

@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button, Card } from '@/components/ui';
 import { ROUTES, PRIMARY_CATEGORIES } from '@/constants';
 
 const HomePage: React.FC = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -12,11 +14,10 @@ const HomePage: React.FC = () => {
       <section className="py-12 sm:py-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6">
-            Ethiopian Ministry of Health
+            {t('ethiopianMinistryOfHealth')}
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-400 mb-6 sm:mb-8 max-w-3xl mx-auto">
-            Comprehensive health intelligence system for data-driven decision making
-            across all regions of Ethiopia
+            {t('comprehensiveHealthIntelligence')}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-xs sm:max-w-none mx-auto">
             <Button
@@ -24,14 +25,14 @@ const HomePage: React.FC = () => {
               size="lg"
               onClick={() => navigate(ROUTES.DASHBOARDS)}
             >
-              View Dashboards
+              {t('viewDashboards')}
             </Button>
             <Button
               variant="secondary"
               size="lg"
               onClick={() => navigate(ROUTES.CHARTS)}
             >
-              Explore Charts
+              {t('exploreCharts')}
             </Button>
           </div>
         </div>
@@ -41,26 +42,29 @@ const HomePage: React.FC = () => {
       <section className="py-12 sm:py-16 px-4 sm:px-6 bg-slate-100 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 text-center">
-            Dashboard Categories
+            {t('dashboardCategories')}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {PRIMARY_CATEGORIES.map((category) => (
-              <Card
-                key={category}
-                variant="elevated"
-                onClick={() => navigate(ROUTES.DASHBOARDS)}
-                className="cursor-pointer"
-              >
-                <div className="flex flex-col items-center text-center p-4 sm:p-6">
-                  <span className="material-symbols-outlined text-4xl sm:text-5xl text-blue-600 dark:text-blue-400 mb-2 sm:mb-3">
-                    dashboard
-                  </span>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100">
-                    {category}
-                  </h3>
-                </div>
-              </Card>
-            ))}
+            {PRIMARY_CATEGORIES.map((category) => {
+              const key = category.toLowerCase().replace(/ /g, '');
+              return (
+                <Card
+                  key={category}
+                  variant="elevated"
+                  onClick={() => navigate(ROUTES.DASHBOARDS)}
+                  className="cursor-pointer"
+                >
+                  <div className="flex flex-col items-center text-center p-4 sm:p-6">
+                    <span className="material-symbols-outlined text-4xl sm:text-5xl text-blue-600 dark:text-blue-400 mb-2 sm:mb-3">
+                      dashboard
+                    </span>
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100">
+                      {t(key) || category}
+                    </h3>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -75,7 +79,7 @@ const HomePage: React.FC = () => {
                   14
                 </div>
                 <div className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-                  Regions Covered
+                  {t('regionsCovered')}
                 </div>
               </div>
             </Card>
@@ -85,7 +89,7 @@ const HomePage: React.FC = () => {
                   16
                 </div>
                 <div className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-                  Dashboard Categories
+                  {t('dashboardCategoriesCount')}
                 </div>
               </div>
             </Card>
@@ -95,7 +99,7 @@ const HomePage: React.FC = () => {
                   120M+
                 </div>
                 <div className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-                  Population Served
+                  {t('populationServed')}
                 </div>
               </div>
             </Card>
@@ -105,7 +109,7 @@ const HomePage: React.FC = () => {
                   24/7
                 </div>
                 <div className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-                  Real-time Monitoring
+                  {t('realtimeMonitoring')}
                 </div>
               </div>
             </Card>

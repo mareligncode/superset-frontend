@@ -1,4 +1,3 @@
-// TypeScript type definitions
 export * from './dashboard.types';
 export * from './filter.types';
 export * from './user.types';

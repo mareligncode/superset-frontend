@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import KpiCard from '@/components/ui/KpiCard';
 import { ChartContainer } from '@/components/charts/ChartContainer';
@@ -7,16 +8,23 @@ import {
   MaternalANCLineChart,
   MaternalMortalityBarChart,
 } from '@/components/charts/DashboardCharts';
+import { getLocalizedMonthWithNumber } from '@/utils/monthUtils';
 
 const MaternalHealthPage: React.FC = () => {
-  const pncTableData = [
-    { Month: '01-Hamle', PNC_Coverage: '34.0%', SBA_Rate: '34.2%', CS_Rate: '1.8%' },
-    { Month: '03-Meskerem', PNC_Coverage: '37.1%', SBA_Rate: '36.5%', CS_Rate: '2.1%' },
-    { Month: '05-Hidar', PNC_Coverage: '39.5%', SBA_Rate: '35.0%', CS_Rate: '2.3%' },
-    { Month: '07-Tir', PNC_Coverage: '37.8%', SBA_Rate: '36.6%', CS_Rate: '2.0%' },
-    { Month: '09-Megabit', PNC_Coverage: '37.2%', SBA_Rate: '35.4%', CS_Rate: '2.2%' },
-    { Month: '11-Ginbot', PNC_Coverage: '32.1%', SBA_Rate: '33.8%', CS_Rate: '1.9%' },
+  const { t } = useTranslation();
+  const monthKeys = ['01-hamle', '03-meskerem', '05-hidar', '07-tir', '09-megabit', '11-ginbot'];
+  const coverageData = [
+    { PNC_Coverage: '34.0%', SBA_Rate: '34.2%', CS_Rate: '1.8%' },
+    { PNC_Coverage: '37.1%', SBA_Rate: '36.5%', CS_Rate: '2.1%' },
+    { PNC_Coverage: '39.5%', SBA_Rate: '35.0%', CS_Rate: '2.3%' },
+    { PNC_Coverage: '37.8%', SBA_Rate: '36.6%', CS_Rate: '2.0%' },
+    { PNC_Coverage: '37.2%', SBA_Rate: '35.4%', CS_Rate: '2.2%' },
+    { PNC_Coverage: '32.1%', SBA_Rate: '33.8%', CS_Rate: '1.9%' },
   ];
+  const pncTableData = monthKeys.map((key, idx) => ({
+    Month: getLocalizedMonthWithNumber(key, t),
+    ...coverageData[idx]
+  }));
 
   return (
     <BaseDashboardTemplate
@@ -25,70 +33,70 @@ const MaternalHealthPage: React.FC = () => {
       showSecondaryTabs={true}
       activeSecondaryTab="Maternal"
     >
-      <div className="space-y-5 animate-fadeIn">
+      <div className="space-y-4 sm:space-y-5 lg:space-y-6 animate-fadeIn">
         {/* KPI Executive Summary Grid */}
         <div className="kpi-responsive-grid">
           <KpiCard
-            label="Maternal Mortality Ratio"
+            label={t('maternalMortalityRatio')}
             value="267 / 100k"
             trend="-3.4%"
             trendIsPositive={true}
             target="200"
-            tooltipText="Maternal deaths per 100,000 live births from EDHS report."
+            tooltipText={t('maternalDeathsPer100k')}
           />
           <KpiCard
-            label="ANC4+ Coverage Rate"
+            label={t('anc4CoverageRate')}
             value="74.2%"
             trend="+4.1%"
             trendIsPositive={true}
             target="80.0%"
-            tooltipText="Percentage of pregnant women attending at least 4 antenatal care visits."
+            tooltipText={t('percentagePregnantWomen')}
           />
           <KpiCard
-            label="Skilled Birth Attendance"
+            label={t('skilledBirthAttendance')}
             value="68.5%"
             trend="+2.8%"
             trendIsPositive={true}
             target="75.0%"
-            tooltipText="Deliveries attended by skilled health personnel in facilities."
+            tooltipText={t('deliveriesSkilledPersonnel')}
           />
           <KpiCard
-            label="Postnatal Care (PNC) Rate"
+            label={t('postnatalCareCoverage')}
             value="34.2%"
             trend="+1.9%"
             trendIsPositive={true}
             target="50.0%"
-            tooltipText="Mothers receiving postnatal checkup within 48 hours of delivery."
+            tooltipText={t('mothersPostnatalCheckup')}
           />
         </div>
 
         {/* Responsive Chart Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
           <ChartContainer
-            title="Maternal Health (SBA, CS, PNC) from DHIS2"
-            subtitle="Monthly coverage comparison for PNC, Skilled Birth Attendance, and Caesarean Sections."
+            title={t('maternalHealthSBA')}
+            subtitle={t('maternalHealthSBASubtitle')}
             tableData={pncTableData}
           >
             <MaternalHealthBarChart />
           </ChartContainer>
 
           <ChartContainer
-            title="Maternal Health (ANC4 & ANC8) from DHIS2"
-            subtitle="Trend analysis of Antenatal Care 4+ vs ANC 8+ visits."
+            title={t('maternalHealthANC')}
+            subtitle={t('maternalHealthANCSubtitle')}
           >
             <MaternalANCLineChart />
           </ChartContainer>
 
           <ChartContainer
-            title="Institutional Maternal Deaths from DHIS2"
-            subtitle="Reported facility-based maternal mortality count."
+            title={t('institutionalMaternalDeaths')}
+            subtitle={t('institutionalMaternalDeathsSubtitle')}
           >
             <MaternalHealthBarChart />
           </ChartContainer>
 
           <ChartContainer
-            title="Maternal Mortality Ratio (Per 100,000 Live Births)"
-            subtitle="Historical trend benchmarks from Demographic and Health Surveys (EDHS)."
+            title={t('maternalMortalityRatioPer100k')}
+            subtitle={t('maternalMortalityRatioSubtitle')}
           >
             <MaternalMortalityBarChart />
           </ChartContainer>

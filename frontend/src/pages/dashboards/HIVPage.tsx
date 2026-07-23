@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import { Card } from '@/components/ui';
 import {
@@ -9,6 +10,7 @@ import {
 } from '@/components/charts/DashboardCharts';
 
 const HIVPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <BaseDashboardTemplate
       category="Services Delivery"
@@ -17,16 +19,16 @@ const HIVPage: React.FC = () => {
       activeSecondaryTab="HIV"
     >
       <div className="chart-grid">
-        <Card title="HIV Testing and Counseling" showCardIcons>
+        <Card title={t('hivTestingCounseling')} showCardIcons>
           <MaternalHealthBarChart />
         </Card>
-        <Card title="ART Coverage and Viral Load Suppression" showCardIcons>
+        <Card title={t('artCoverageViralLoad')} showCardIcons>
           <MaternalANCLineChart />
         </Card>
-        <Card title="PMTCT Coverage" showCardIcons>
+        <Card title={t('pmtctCoverage')} showCardIcons>
           <BloodTTIBars />
         </Card>
-        <Card title="HIV Prevalence by Region" showCardIcons>
+        <Card title={t('hivPrevalenceByRegion')} showCardIcons>
           <NCDSexMetricTable />
         </Card>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import { Card } from '@/components/ui';
 import KpiCard from '@/components/ui/KpiCard';
@@ -10,6 +11,7 @@ import {
 } from '@/components/charts/DashboardCharts';
 
 const SupplyLogisticsPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <BaseDashboardTemplate
       category="Supply and Logistics"
@@ -18,22 +20,22 @@ const SupplyLogisticsPage: React.FC = () => {
     >
       {/* KPI Row */}
       <div className="kpi-grid mb-4">
-        <KpiCard value="0.68" label="Pharmaceuticals wastage rate" />
-        <KpiCard value="201" label="Average procurement lead time (Days)" />
+        <KpiCard value="0.68" label={t('pharmaceuticalsWastageRate')} />
+        <KpiCard value="201" label={t('averageProcurementLeadTime')} />
       </div>
 
       {/* Chart grid */}
       <div className="chart-grid">
-        <Card title="Supply Vs Distributed (In Billion ETB) Yearly Trend" showCardIcons>
+        <Card title={t('supplyVsDistributed')} showCardIcons>
           <SupplyVsDistributedLineChart />
         </Card>
-        <Card title="Inventory Management and Supplier Fill Rates" showCardIcons>
+        <Card title={t('inventoryManagement')} showCardIcons>
           <InventoryFillRatesBar />
         </Card>
-        <Card title="Procurement & Supply Chain Lead Times" showCardIcons>
+        <Card title={t('procurementSupplyChain')} showCardIcons>
           <BloodTTIBars />
         </Card>
-        <Card title="Pharmaceuticals and Medical Supplies Procurement" showCardIcons>
+        <Card title={t('pharmaceuticalsProcurement')} showCardIcons>
           <NCDSexMetricTable />
         </Card>
       </div>

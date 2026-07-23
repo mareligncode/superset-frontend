@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import KpiCard from '../../components/ui/KpiCard';
 import { EthiopiaRegionalMap } from '../../components/ui/EthiopiaRegionalMap';
 import { ChartContainer } from '../../components/charts/ChartContainer';
+import { getLocalizedRegionName } from '@/utils/regionUtils';
 
 const PHCPage: React.FC = () => {
+  const { t } = useTranslation();
   const [viewMode, setViewMode] = useState<'mockup' | 'interactive'>('mockup');
 
   const phcTableData = [
@@ -27,10 +30,10 @@ const PHCPage: React.FC = () => {
           <div>
             <h1 className="text-sm font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              Primary Health Care (PHC) Executive Scorecard
+              {t('phcExecutiveScorecard')}
             </h1>
             <p className="text-[11px] text-slate-500 font-medium">
-              National Health Extension Program (HEP) & Primary Care Unit Performance
+              {t('nationalHealthExtensionProgram')}
             </p>
           </div>
 
@@ -44,7 +47,7 @@ const PHCPage: React.FC = () => {
               }`}
             >
               <span className="material-symbols-outlined text-[15px]">dashboard</span>
-              Official Mockup View
+              {t('officialMockupView')}
             </button>
             <button
               onClick={() => setViewMode('interactive')}
@@ -55,7 +58,7 @@ const PHCPage: React.FC = () => {
               }`}
             >
               <span className="material-symbols-outlined text-[15px]">analytics</span>
-              Interactive Scorecard
+              {t('interactiveMapView')}
             </button>
           </div>
         </div>
@@ -64,7 +67,7 @@ const PHCPage: React.FC = () => {
           <div className="w-full bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm flex items-center justify-center p-2">
             <img 
               src="/phc-mock.png" 
-              alt="PHC Dashboard Mockup" 
+              alt={t('phcDashboardMockup')} 
               className="w-full h-auto object-contain max-h-[85vh] rounded"
             />
           </div>
@@ -73,36 +76,36 @@ const PHCPage: React.FC = () => {
             {/* KPI Metric Summary Grid */}
             <div className="kpi-responsive-grid">
               <KpiCard
-                label="Primary Health Care Units"
+                label={t('primaryHealthCareUnits')}
                 value="17,542"
                 trend="+5.4%"
                 trendIsPositive={true}
                 target="18,000"
-                tooltipText="Total operational Health Extension Posts and Health Centers across Ethiopia."
+                tooltipText={t('totalOperationalHealthExtension')}
               />
               <KpiCard
-                label="Active Health Extension Workers"
+                label={t('activeHealthExtensionWorkers')}
                 value="39,820"
                 trend="+3.1%"
                 trendIsPositive={true}
                 target="42,000"
-                tooltipText="Certified HEWs providing household health services in agrarian and pastoralist Kebeles."
+                tooltipText={t('certifiedHEWs')}
               />
               <KpiCard
-                label="Universal PHC Coverage"
+                label={t('universalPHCCoverage')}
                 value="74.2%"
                 trend="+4.8%"
                 trendIsPositive={true}
                 target="85.0%"
-                tooltipText="Percentage of rural households with access to essential PHC packages within 5km."
+                tooltipText={t('percentageRuralHouseholds')}
               />
               <KpiCard
-                label="Keble Household Visit Rate"
+                label={t('kebleHouseholdVisitRate')}
                 value="68.9%"
                 trend="-1.2%"
                 trendIsPositive={false}
                 target="75.0%"
-                tooltipText="Proportion of targeted rural households visited monthly by Health Extension Workers."
+                tooltipText={t('proportionTargetedRural')}
               />
             </div>
 
@@ -113,8 +116,8 @@ const PHCPage: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
               <div className="lg:col-span-12">
                 <ChartContainer
-                  title="Primary Care Kebele Coverage Trend by Region"
-                  subtitle="Quarterly performance analysis comparing urban vs agrarian Kebele outreach."
+                  title={t('primaryCareKebeleCoverage')}
+                  subtitle={t('quarterlyPerformanceAnalysis')}
                   tableData={phcTableData}
                 >
                   <div className="w-full p-4 flex flex-col items-center justify-center min-h-[220px]">
@@ -145,8 +148,8 @@ const PHCPage: React.FC = () => {
                               backgroundColor: item.val >= 75 ? '#059669' : item.val >= 60 ? '#D97706' : '#BA1A1A',
                             }}
                           />
-                          <span className="text-[9px] font-semibold text-slate-500 truncate max-w-[40px]" title={item.label}>
-                            {item.label}
+                          <span className="text-[9px] font-semibold text-slate-500 truncate max-w-[40px]" title={getLocalizedRegionName(item.label, t)}>
+                            {getLocalizedRegionName(item.label, t)}
                           </span>
                         </div>
                       ))}

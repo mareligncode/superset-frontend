@@ -1,2 +1,2 @@
-// Utils exports placeholder
-export {};
+export * from './regionUtils';
+

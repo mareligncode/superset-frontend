@@ -1,5 +1,3 @@
-// Health-Specific Types for Ethiopian Ministry of Health
-
 export interface HealthIndicator {
   id: string;
   name: string;

@@ -1,18 +1,20 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, EmptyState } from '@/components/ui';
 
 const ChartsPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen p-lg">
       <div className="max-w-max_width mx-auto">
         <h1 className="text-headline-lg font-bold text-on-surface mb-lg">
-          Charts Library
+          {t('chartsLibrary')}
         </h1>
         <Card>
           <EmptyState
             icon="bar_chart"
-            title="Charts Library Coming Soon"
-            description="Comprehensive chart library with all visualization types will be available here."
+            title={t('chartsLibraryComingSoon')}
+            description={t('chartsLibraryDescription')}
           />
         </Card>
       </div>

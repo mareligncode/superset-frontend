@@ -1,59 +1,88 @@
-// Chart color palettes optimized for accessibility
+// Premium chart color palettes optimized for accessibility and government branding
 export const CHART_COLORS = {
-  primary: '#004482',
-  secondary: '#006a60',
-  tertiary: '#005011',
-  error: '#ba1a1a',
-  warning: '#f59e0b',
-  success: '#10b981',
-  info: '#0ea5e9',
-  purple: '#8b5cf6',
-  pink: '#ec4899',
-  orange: '#f97316',
+  primary: '#005CB8',      
+  secondary: '#00796B',    
+  tertiary: '#00701A',     
+  error: '#C62828',        
+  warning: '#F57C00',      
+  success: '#2E7D32',     
+  info: '#0288D1',         
+  purple: '#8b5cf6',      
+  pink: '#ec4899',        
+  orange: '#f97316',      
+  indigo: '#4f46e5',      
+  cyan: '#06b6d4',        
 } as const;
 
-// Categorical palette for data visualization (6 colors)
+// Enhanced categorical palette for data visualization (12 colors)
 export const CATEGORICAL_PALETTE = [
-  '#005cab', // Blue
-  '#006a60', // Teal
-  '#005011', // Green
-  '#f59e0b', // Amber
-  '#f97316', // Orange
-  '#8b5cf6', // Purple
+  '#005CB8', 
+  '#00796B', 
+  '#00701A', 
+  '#F57C00', 
+  '#8b5cf6', 
+  '#0288D1', 
+  '#C62828',
+  '#ec4899', 
+  '#2E7D32', 
+  '#4f46e5',
+  '#f97316', 
+  '#06b6d4', 
 ] as const;
 
-// Sequential palette for heatmaps and gradients
+// Professional sequential palettes for heatmaps and gradients
 export const SEQUENTIAL_PALETTE = {
-  blue: ['#e0f2fe', '#bae6fd', '#7dd3fc', '#38bdf8', '#0ea5e9', '#0284c7', '#0369a1', '#075985', '#0c4a6e'],
-  green: ['#d1fae5', '#a7f3d0', '#6ee7b7', '#34d399', '#10b981', '#059669', '#047857', '#065f46', '#064e3b'],
-  red: ['#fee2e2', '#fecaca', '#fca5a5', '#f87171', '#ef4444', '#dc2626', '#b91c1c', '#991b1b', '#7f1d1d'],
+  blue: ['#e3f2fd', '#bbdefb', '#90caf9', '#64b5f6', '#42a5f5', '#2196f3', '#1e88e5', '#1976d2', '#1565c0'],
+  green: ['#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#388e3c', '#2e7d32'],
+  red: ['#ffebee', '#ffcdd2', '#ef9a9a', '#e57373', '#ef5350', '#f44336', '#e53935', '#d32f2f', '#c62828'],
+  teal: ['#e0f2f1', '#b2dfdb', '#80cbc4', '#4db6ac', '#26a69a', '#009688', '#00897b', '#00796b', '#00695c'],
+  purple: ['#f3e5f5', '#e1bee7', '#ce93d8', '#ba68c8', '#ab47bc', '#9c27b0', '#8e24aa', '#7b1fa2', '#6a1b9a'],
 } as const;
 
-// Diverging palette for comparison data
+// Enhanced diverging palette for comparison data
 export const DIVERGING_PALETTE = [
-  '#ba1a1a', // Negative (Red)
-  '#f87171',
-  '#fca5a5',
-  '#e5e7eb', // Neutral (Gray)
-  '#6ee7b7',
-  '#34d399',
-  '#10b981', // Positive (Green)
+  '#C62828', 
+  '#e57373',
+  '#ef9a9a',
+  '#e0e0e0', 
+  '#81c784',
+  '#66bb6a',
+  '#2E7D32', 
 ] as const;
 
-// Regional color mapping for Ethiopian regions
+// Regional color mapping for Ethiopian regions — refined and distinct
 export const REGIONAL_COLORS = {
-  'Addis Ababa': '#004482',
-  'Afar': '#006a60',
-  'Amhara': '#005011',
-  'Benishangul Gumuz': '#8b5cf6',
-  'Central Ethiopia': '#f59e0b',
-  'Dire Dawa': '#ec4899',
-  'Gambela': '#0ea5e9',
-  'Harari': '#f97316',
-  'Oromia': '#10b981',
-  'Sidama': '#ba1a1a',
-  'Somali': '#7c3aed',
-  'South West': '#14b8a6',
-  'Southern Nations': '#f59e0b',
-  'Tigray': '#3b82f6',
+  'Addis Ababa': '#005CB8',      
+  'Afar': '#00796B',              
+  'Amhara': '#2E7D32',            
+  'Benishangul Gumuz': '#8b5cf6', 
+  'Central Ethiopia': '#F57C00',  
+  'Dire Dawa': '#ec4899',         
+  'Gambela': '#0288D1',          
+  'Harari': '#f97316',            
+  'Oromia': '#4caf50',            
+  'Sidama': '#C62828',            
+  'Somali': '#4f46e5',            
+  'South West': '#14b8a6',        
+  'Southern Nations': '#fbbf24',  
+  'Tigray': '#3b82f6',            
+} as const;
+
+// Status colors for badges and indicators
+export const STATUS_COLORS = {
+  success: '#2E7D32',
+  warning: '#F57C00',
+  error: '#C62828',
+  info: '#0288D1',
+  neutral: '#6B7280',
+} as const;
+
+// Gradient definitions for premium visual effects
+export const GRADIENTS = {
+  primaryBlue: 'linear-gradient(135deg, #005CB8 0%, #0288D1 100%)',
+  healthGreen: 'linear-gradient(135deg, #2E7D32 0%, #4caf50 100%)',
+  warningAmber: 'linear-gradient(135deg, #F57C00 0%, #fbbf24 100%)',
+  errorRed: 'linear-gradient(135deg, #C62828 0%, #ef5350 100%)',
+  purpleViolet: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)',
+  oceanTeal: 'linear-gradient(135deg, #00796B 0%, #14b8a6 100%)',
 } as const;

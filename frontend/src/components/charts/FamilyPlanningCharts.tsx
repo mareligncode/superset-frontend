@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { getLocalizedMonthWithNumber } from '@/utils/monthUtils';
 
 // ── Shared Card Header Pill Controls ─────────────────────────
 export const ChartHeaderPills: React.FC<{
@@ -78,12 +80,14 @@ function getSmoothPath(points: { x: number; y: number }[]): string {
 
 // ── 1. Line Chart: Contraceptive Acceptance Rate ──────────────
 export const AcceptanceRateLineChart: React.FC = () => {
+  const { t } = useTranslation();
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(10); // default focus on latest month
 
-  const months = [
-    '01-Hamle', '02-Nehase', '03-Meskerem', '04-Tikimt', '05-Hidar',
-    '06-Tahsas', '07-Tir', '08-Yekatit', '09-Megabit', '10-Miazia', '11-Ginbot'
+  const monthKeys = [
+    '01-hamle', '02-nehase', '03-meskerem', '04-tikimt', '05-hidar',
+    '06-tahsas', '07-tir', '08-yekatit', '09-megabit', '10-miazia', '11-ginbot'
   ];
+  const months = monthKeys.map(m => getLocalizedMonthWithNumber(m, t));
   const values = [25.5, 26.8, 27.2, 27.5, 26.9, 29.5, 28.0, 29.0, 27.8, 30.2, 28.6];
 
   const width = 560;

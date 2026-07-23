@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import { Card } from '@/components/ui';
 import {
@@ -9,6 +10,7 @@ import {
 } from '@/components/charts/DashboardCharts';
 
 const DigitalSystemsPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <BaseDashboardTemplate
       category="Digital Systems Monitoring"
@@ -16,16 +18,16 @@ const DigitalSystemsPage: React.FC = () => {
       showSecondaryTabs={false}
     >
       <div className="chart-grid">
-        <Card title="DHIS2 Reporting Rate & Timeliness" showCardIcons>
+        <Card title={t('dhis2ReportingRate')} showCardIcons>
           <MaternalANCLineChart />
         </Card>
-        <Card title="eCHIS Adoption & Active Users" showCardIcons>
+        <Card title={t('echisAdoption')} showCardIcons>
           <MaternalHealthBarChart />
         </Card>
-        <Card title="System Connectivity & Server Uptime" showCardIcons>
+        <Card title={t('systemConnectivity')} showCardIcons>
           <BloodTTIBars />
         </Card>
-        <Card title="Data Quality & Completeness Index" showCardIcons>
+        <Card title={t('dataQualityIndex')} showCardIcons>
           <NCDSexMetricTable />
         </Card>
       </div>
