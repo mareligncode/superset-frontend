@@ -19,6 +19,7 @@ export { default as Tabs } from './Tabs';
 export { default as ThemeToggle } from './ThemeToggle';
 export { default as Toast } from './Toast';
 export { default as Tooltip } from './Tooltip';
+export { default as EthiopiaRegionalMap } from './EthiopiaRegionalMap';
 
 // Export types
 export type { AvatarProps } from './Avatar';
@@ -40,3 +41,4 @@ export type { TabsProps, Tab } from './Tabs';
 export type { ThemeToggleProps } from './ThemeToggle';
 export type { ToastProps } from './Toast';
 export type { TooltipProps } from './Tooltip';
+export type { RegionData } from './EthiopiaRegionalMap';

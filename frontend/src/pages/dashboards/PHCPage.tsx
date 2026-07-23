@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import BaseDashboardTemplate from './BaseDashboardTemplate';
 import KpiCard from '../../components/ui/KpiCard';
-import { EthiopiaRegionalMap } from '../../components/ui/EthiopiaRegionalMap';
+import EthiopiaRegionalMap from '../../components/ui/EthiopiaRegionalMap';
 import { ChartContainer } from '../../components/charts/ChartContainer';
 import { getLocalizedRegionName } from '@/utils/regionUtils';
 
-const PHCPage: React.FC = () => {
+const PHCPage: React.FC = () => { 
   const { t } = useTranslation();
   const [viewMode, setViewMode] = useState<'mockup' | 'interactive'>('mockup');
 
