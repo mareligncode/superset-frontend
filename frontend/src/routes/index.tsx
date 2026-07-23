@@ -116,7 +116,7 @@ export const router = createBrowserRouter([
         path: 'family-planning',
         element: (
           <SuspenseWrapper>
-            <FamilyPlanningPage />
+            <FamilyPlanningPage key="family-planning" />
           </SuspenseWrapper>
         ),
       },
@@ -124,7 +124,7 @@ export const router = createBrowserRouter([
         path: 'maternal-health',
         element: (
           <SuspenseWrapper>
-            <MaternalHealthPage />
+            <MaternalHealthPage key="maternal-health" />
           </SuspenseWrapper>
         ),
       },
@@ -132,7 +132,7 @@ export const router = createBrowserRouter([
         path: 'neonatal-health',
         element: (
           <SuspenseWrapper>
-            <NeonatalHealthPage />
+            <NeonatalHealthPage key="neonatal-health" />
           </SuspenseWrapper>
         ),
       },
@@ -140,7 +140,7 @@ export const router = createBrowserRouter([
         path: 'ncd',
         element: (
           <SuspenseWrapper>
-            <NCDPage />
+            <NCDPage key="ncd" />
           </SuspenseWrapper>
         ),
       },
@@ -148,7 +148,7 @@ export const router = createBrowserRouter([
         path: 'malaria',
         element: (
           <SuspenseWrapper>
-            <MalariaPage />
+            <MalariaPage key="malaria" />
           </SuspenseWrapper>
         ),
       },
@@ -156,7 +156,7 @@ export const router = createBrowserRouter([
         path: 'hiv',
         element: (
           <SuspenseWrapper>
-            <HIVPage />
+            <HIVPage key="hiv" />
           </SuspenseWrapper>
         ),
       },
@@ -164,7 +164,7 @@ export const router = createBrowserRouter([
         path: 'tb',
         element: (
           <SuspenseWrapper>
-            <TBPage />
+            <TBPage key="tb" />
           </SuspenseWrapper>
         ),
       },

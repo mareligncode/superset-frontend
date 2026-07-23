@@ -48,9 +48,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   }, []);
 
   const navLinks = [
-    { label: t('home'), to: '/' },
     { label: t('dashboards'), to: '/dashboards' },
-    { label: t('charts'), to: '/charts' },
   ];
 
   const isActive = (to: string) => {
@@ -216,10 +214,6 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                 </svg>
                 <div className="absolute inset-0 bg-sky-400/20 rounded-full blur-xl group-hover:bg-sky-400/30 transition-all duration-300 -z-10"></div>
               </div>
-              <div className="hidden sm:flex flex-col leading-none">
-                <span className="text-[10px] font-extrabold text-slate-800 dark:text-slate-200 tracking-tight">የኢ.ፌ.ዲ.ሪ</span>
-                <span className="text-[9.5px] font-black text-sky-700 dark:text-sky-400 tracking-wider mt-0.5">FDRE</span>
-              </div>
             </div>
 
             {/* Elegant Divider */}
@@ -235,38 +229,33 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                 />
                 <div className="absolute inset-0 bg-emerald-400/20 rounded-full blur-xl group-hover:bg-emerald-400/30 transition-all duration-300 -z-10"></div>
               </div>
-              <div className="hidden sm:flex flex-col leading-none">
-                <span className="text-[10px] font-extrabold text-slate-800 dark:text-slate-200 tracking-tight">የጤና ሚኒስቴር</span>
-                <span className="text-[9.5px] font-black text-emerald-700 dark:text-emerald-400 tracking-wider mt-0.5">MINISTRY OF HEALTH</span>
-              </div>
             </div>
           </Link>
 
           {/* Premium Live Clock / Calendar Widget with EC/GC Toggle */}
           <div
             onClick={() => setShowGregorian(!showGregorian)}
-            className="hidden xl:flex items-center gap-2.5 px-4 py-2 bg-gradient-to-r from-slate-50/80 to-slate-100/60 dark:from-slate-800/80 dark:to-slate-700/60 border border-slate-200/80 dark:border-slate-600/60 rounded-xl text-[11.5px] text-slate-600 dark:text-slate-300 font-semibold cursor-pointer hover:border-emerald-300 dark:hover:border-emerald-600 hover:shadow-sm transition-all duration-200 select-none group"
+            className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 bg-gradient-to-r from-slate-50/80 to-slate-100/60 dark:from-slate-800/80 dark:to-slate-700/60 border border-slate-200/80 dark:border-slate-600/60 rounded-lg text-[9.5px] sm:text-[10.5px] text-slate-600 dark:text-slate-300 font-semibold cursor-pointer hover:border-emerald-300 dark:hover:border-emerald-600 hover:shadow-sm transition-all duration-200 select-none group shrink-0"
             title="Click to toggle between Ethiopian and Gregorian Calendar"
           >
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-sm shadow-emerald-400"></span>
-              <span className="font-mono text-[13px] font-bold text-slate-900 dark:text-slate-100 tracking-tight">{formatEATTime(liveTime)}</span>
+            <div className="flex items-center gap-0.5 sm:gap-1">
+              <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-emerald-500 animate-pulse shadow-sm shadow-emerald-400"></span>
+              <span className="font-mono text-[10px] sm:text-[12px] font-bold text-slate-900 dark:text-slate-100 tracking-tight">{formatEATTime(liveTime)}</span>
             </div>
-            <div className="w-[1px] h-4 bg-slate-300 dark:bg-slate-600"></div>
-            <span className="text-[10.5px] text-slate-500 dark:text-slate-400">EAT</span>
-            <div className="w-[1px] h-4 bg-slate-300 dark:bg-slate-600"></div>
-            <span className="text-slate-800 dark:text-slate-200 font-bold tracking-tight">{showGregorian ? getGregorianDate(liveTime) : getEthiopianDate(liveTime)}</span>
-            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold opacity-0 group-hover:opacity-100 transition-opacity">⇄</span>
+            <div className="hidden sm:block w-[1px] h-3 sm:h-4 bg-slate-300 dark:bg-slate-600"></div>
+            <span className="hidden sm:inline text-[9.5px] sm:text-[10.5px] text-slate-500 dark:text-slate-400">EAT</span>
+            <div className="hidden sm:block w-[1px] h-3 sm:h-4 bg-slate-300 dark:bg-slate-600"></div>
+            <span className="text-slate-800 dark:text-slate-200 font-bold tracking-tight text-[9px] sm:text-[10px]">{showGregorian ? getGregorianDate(liveTime) : getEthiopianDate(liveTime)}</span>
           </div>
 
           {/* Premium Global Command & Search Button (Desktop) */}
           <button
             onClick={() => setSearchModalOpen(true)}
-            className="hidden lg:flex items-center gap-2.5 px-4 py-2 bg-white dark:bg-slate-800 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50 dark:hover:from-blue-950/40 dark:hover:to-sky-950/40 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 rounded-xl text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 text-[13px] font-semibold cursor-pointer shadow-sm hover:shadow-md group"
+            className="flex items-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-4 py-2 bg-white dark:bg-slate-800 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50 dark:hover:from-blue-950/40 dark:hover:to-sky-950/40 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 rounded-xl text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 text-[12px] sm:text-[13px] font-semibold cursor-pointer shadow-sm hover:shadow-md group"
           >
-            <span className="material-symbols-outlined text-[16px] group-hover:scale-110 transition-transform">search</span>
-            <span className="hidden xl:inline text-[12px] text-slate-600 dark:text-slate-300 font-medium">Quick Search</span>
-            <kbd className="hidden lg:inline px-2 py-1 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-md text-[10px] font-mono text-slate-500 dark:text-slate-400 shadow-sm">⌘K</kbd>
+            <span className="material-symbols-outlined text-[14px] sm:text-[16px] group-hover:scale-110 transition-transform">search</span>
+            <span className="hidden sm:inline lg:inline text-[11px] sm:text-[12px] text-slate-600 dark:text-slate-300 font-medium">Quick Search</span>
+            <kbd className="hidden sm:inline md:inline px-1.5 sm:px-2 py-0.5 sm:py-1 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-md text-[9px] sm:text-[10px] font-mono text-slate-500 dark:text-slate-400 shadow-sm">⌘K</kbd>
           </button>
 
           {/* Premium Primary Navigation Links */}
@@ -289,12 +278,6 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
         {/* ── Right: Premium Theme, Settings, & Actions ──────── */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Premium User Status Badge */}
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/30 dark:to-teal-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-700/60 rounded-xl text-[11px] font-bold shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-sm shadow-emerald-400"></span>
-            <span className="hidden md:inline">{t('federalAdmin')}</span>
-            <span className="md:hidden">Admin</span>
-          </div>
 
           {/* Theme Toggle */}
           <ThemeToggle />
@@ -309,8 +292,8 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                   : 'text-blue-600 dark:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-950/40 border border-transparent hover:border-blue-200 dark:hover:border-blue-700'
               }`}
             >
-              <span className="hidden lg:inline">Settings</span>
-              <span className="lg:hidden">Set</span>
+              <span className="hidden sm:inline lg:inline">Settings</span>
+              <span className="lg:hidden sm:inline">Set</span>
               <span className="material-symbols-outlined text-[15px] transition-transform duration-200" style={{ transform: settingsOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>expand_more</span>
             </button>
 
