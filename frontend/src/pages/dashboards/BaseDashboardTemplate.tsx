@@ -134,15 +134,15 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
   })();
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full w-full overflow-x-hidden">
       {/* ── Primary category tab bar ─────────────────────────── */}
       {showPrimaryTabs && (
-        <div className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 relative shrink-0 select-none">
+        <div className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 relative shrink-0 select-none w-full overflow-hidden">
           {/* Left scroll arrow */}
           {showLeftPrimary && (
             <button
               onClick={() => scrollPrimary('left')}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group min-h-[44px] min-w-[44px]"
               aria-label={t('scrollLeft')}
             >
               <span className="material-symbols-outlined text-[22px] text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">chevron_left</span>
@@ -153,7 +153,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
           {showRightPrimary && (
             <button
               onClick={() => scrollPrimary('right')}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group min-h-[44px] min-w-[44px]"
               aria-label={t('scrollRight')}
             >
               <span className="material-symbols-outlined text-[22px] text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">chevron_right</span>
@@ -172,7 +172,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
                   <button
                     key={tab}
                     onClick={() => navigate(PRIMARY_TAB_PATHS[tab] || '/dashboards')}
-                    className={`relative px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium shrink-0 transition-colors border-b-2 touch-target ${
+                    className={`relative px-3 sm:px-4 py-3 sm:py-3 text-xs sm:text-[13px] font-medium shrink-0 transition-colors border-b-2 min-h-[48px] flex items-center ${
                       active
                         ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400 font-semibold'
                         : 'text-slate-600 dark:text-slate-400 border-transparent hover:text-slate-900 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600'
@@ -189,12 +189,12 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
 
       {/* ── Secondary sub-category tab bar (Services Delivery) ── */}
       {showSecondaryTabs && (
-        <div className="bg-slate-50/50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 relative shrink-0 select-none">
+        <div className="bg-slate-50/50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 relative shrink-0 select-none w-full overflow-hidden">
           {/* Left scroll arrow */}
           {showLeftSecondary && (
             <button
               onClick={() => scrollSecondary('left')}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group min-h-[44px] min-w-[44px]"
               aria-label={t('scrollLeft')}
             >
               <span className="material-symbols-outlined text-[22px] text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">chevron_left</span>
@@ -205,7 +205,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
           {showRightSecondary && (
             <button
               onClick={() => scrollSecondary('right')}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 group min-h-[44px] min-w-[44px]"
               aria-label={t('scrollRight')}
             >
               <span className="material-symbols-outlined text-[22px] text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">chevron_right</span>
@@ -224,7 +224,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
                   <button
                     key={label}
                     onClick={() => navigate(path)}
-                    className={`relative px-2.5 sm:px-3 py-2 sm:py-2.5 text-[11.5px] sm:text-[12.5px] font-medium shrink-0 transition-colors border-b-2 touch-target ${
+                    className={`relative px-2.5 sm:px-3 py-2.5 sm:py-2.5 text-[11.5px] sm:text-[12.5px] font-medium shrink-0 transition-colors border-b-2 min-h-[48px] flex items-center ${
                       active
                         ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400 font-semibold'
                         : 'text-slate-500 dark:text-slate-400 border-transparent hover:text-slate-900 dark:hover:text-slate-200'
@@ -240,7 +240,7 @@ const BaseDashboardTemplate: React.FC<BaseDashboardTemplateProps> = ({
       )}
 
       {/* ── Page content ─────────────────────────────────────── */}
-      <div className="flex-1 p-3 sm:p-4 md:p-5 lg:p-6 overflow-y-auto custom-scrollbar">
+      <div className="flex-1 p-3 sm:p-4 md:p-5 lg:p-6 overflow-y-auto overflow-x-hidden custom-scrollbar w-full">
         {/* Optional data source note */}
         {dataSourceNote && (
           <p className="text-[11px] sm:text-[12px] text-slate-600 dark:text-slate-400 mb-3 sm:mb-4">

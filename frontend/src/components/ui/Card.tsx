@@ -27,19 +27,19 @@ export interface CardProps {
 const CardIcons = () => (
   <div className="flex items-center gap-1 shrink-0">
     <button 
-      className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200 active:scale-95" 
+      className="w-9 h-9 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200 active:scale-95 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0" 
       aria-label="Filter"
     >
       <span className="material-symbols-outlined text-[16px]">filter_list</span>
     </button>
     <button 
-      className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200 active:scale-95" 
+      className="w-9 h-9 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200 active:scale-95 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0" 
       aria-label="Info"
     >
       <span className="material-symbols-outlined text-[16px]">info</span>
     </button>
     <button 
-      className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200 active:scale-95" 
+      className="w-9 h-9 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200 active:scale-95 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0" 
       aria-label="More options"
     >
       <span className="material-symbols-outlined text-[16px]">more_vert</span>
@@ -79,16 +79,16 @@ const Card: React.FC<CardProps> = ({
   const paddingStyles: Record<string, string> = {
     none: '',
     sm:   'p-3 sm:p-4',
-    md:   'p-4 sm:p-5',
-    lg:   'p-5 sm:p-6',
-    xl:   'p-6 sm:p-8',
+    md:   'p-3 sm:p-4 md:p-5',
+    lg:   'p-4 sm:p-5 md:p-6',
+    xl:   'p-5 sm:p-6 md:p-8',
   };
 
   const hasHeader = title || subtitle || headerAction || showCardIcons || badge;
 
   return (
     <div
-      className={`${variantStyles[variant]} ${paddingStyles[padding]} ${className}`}
+      className={`${variantStyles[variant]} ${paddingStyles[padding]} ${className} w-full overflow-hidden`}
       onClick={onClick}
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}

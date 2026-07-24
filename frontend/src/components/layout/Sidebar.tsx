@@ -85,7 +85,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         className={`shrink-0 fixed md:relative h-full z-50 transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         } ${className}`}
-        style={{ width: `${width}px` }}
+        style={{ width: `${Math.min(width, window.innerWidth - 20)}px` }}
       >
         <aside
           className="bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col w-full h-full overflow-y-auto custom-scrollbar"
@@ -102,6 +102,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 ariaLabel="Close menu"
                 onClick={onClose}
                 variant="ghost"
+                className="min-h-[44px] min-w-[44px]"
               />
             </div>
           </div>
@@ -112,7 +113,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               {sidebarLinks.map((link) => (
                 <button
                   key={link.label}
-                  className={`flex items-center gap-3 w-full px-3 py-2 rounded-xl transition-all duration-200 cursor-pointer group text-left ${
+                  className={`flex items-center gap-3 w-full px-3 py-3 min-h-[48px] rounded-xl transition-all duration-200 cursor-pointer group text-left ${
                     link.active
                       ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold shadow-md shadow-blue-500/20'
                       : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-200'
@@ -145,7 +146,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               {footerLinks.map((link) => (
                 <button
                   key={link.label}
-                  className="flex items-center gap-3 w-full px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-200 transition-all duration-200 cursor-pointer group text-left"
+                  className="flex items-center gap-3 w-full px-3 py-3 min-h-[48px] rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-200 transition-all duration-200 cursor-pointer group text-left"
                 >
                   <div className="w-8 h-8 rounded-lg bg-slate-100/80 dark:bg-slate-700 text-slate-500 dark:text-slate-400 flex items-center justify-center group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 group-hover:text-blue-600 group-hover:scale-105 transition-all">
                     <span className="material-symbols-outlined text-[18px]">
@@ -161,9 +162,9 @@ const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </aside>
 
-        {/* Resizer Handle */}
+        {/* Resizer Handle - Desktop Only */}
         <div
-          className={`absolute top-0 right-0 w-2 h-full cursor-col-resize z-[60] transition-colors ${
+          className={`hidden md:block absolute top-0 right-0 w-2 h-full cursor-col-resize z-[60] transition-colors ${
             isResizing ? 'bg-blue-500' : 'bg-transparent hover:bg-blue-400/50'
           }`}
           style={{ right: '-2px' }}

@@ -242,11 +242,11 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         style={{ width: collapsed ? '40px' : `min(${width}px, 85vw)` }}
       >
         <aside
-          className="bg-white/98 dark:bg-slate-800/98 backdrop-blur-xl border-r border-slate-200/80 dark:border-slate-700/80 flex flex-col w-full h-full overflow-y-auto custom-scrollbar-thin"
+          className="bg-white/98 dark:bg-slate-800/98 backdrop-blur-xl border-r border-slate-200/80 dark:border-slate-700/80 flex flex-col w-full h-full overflow-y-auto overflow-x-hidden custom-scrollbar-thin"
           style={{ boxShadow: '4px 0 24px -8px rgba(0,92,184,0.08)' }}
         >
         {/* Premium Header */}
-        <div className="flex items-center justify-between px-4 pt-4 pb-3 shrink-0 border-b border-slate-200 dark:border-slate-700 mb-2 bg-gradient-to-r from-slate-50/80 to-slate-100/50 dark:from-slate-800/80 dark:to-slate-700/50">
+        <div className="flex items-center justify-between px-3 sm:px-4 pt-4 pb-3 shrink-0 border-b border-slate-200 dark:border-slate-700 mb-2 bg-gradient-to-r from-slate-50/80 to-slate-100/50 dark:from-slate-800/80 dark:to-slate-700/50 w-full overflow-hidden">
           {!collapsed && (
             <span className="text-[13px] font-extrabold text-slate-800 dark:text-slate-200 tracking-wide flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px] text-blue-600 dark:text-blue-400">tune</span>
@@ -259,7 +259,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             {onClose && (
               <button
                 onClick={onClose}
-                className="md:hidden px-3 py-2 text-[12px] font-bold text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 bg-white dark:bg-slate-700 hover:bg-red-50 dark:hover:bg-red-900/30 border border-slate-200 dark:border-slate-600 hover:border-red-300 dark:hover:border-red-600 rounded-xl transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm hover:shadow-md active:scale-95"
+                className="md:hidden px-3 py-2 min-h-[44px] min-w-[44px] text-[12px] font-bold text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 bg-white dark:bg-slate-700 hover:bg-red-50 dark:hover:bg-red-900/30 border border-slate-200 dark:border-slate-600 hover:border-red-300 dark:hover:border-red-600 rounded-xl transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm hover:shadow-md active:scale-95"
                 aria-label="Close filters"
                 title="Close filters drawer"
               >
@@ -271,7 +271,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             {/* Desktop Collapse Button */}
             <button
               onClick={() => setCollapsed(!collapsed)}
-              className="hidden md:flex w-7 h-7 items-center justify-center rounded-lg bg-white dark:bg-slate-700 text-slate-500 dark:text-slate-400 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50 dark:hover:from-blue-950/40 dark:hover:to-sky-950/40 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-600 border border-slate-200 dark:border-slate-600 transition-all duration-200 hover:shadow-sm active:scale-95"
+              className="hidden md:flex w-8 h-8 sm:w-7 sm:h-7 items-center justify-center rounded-lg bg-white dark:bg-slate-700 text-slate-500 dark:text-slate-400 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50 dark:hover:from-blue-950/40 dark:hover:to-sky-950/40 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-600 border border-slate-200 dark:border-slate-600 transition-all duration-200 hover:shadow-sm active:scale-95 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0"
               aria-label={collapsed ? t('expandFilters') : t('collapseFilters')}
               title={collapsed ? t('expandFilters') : t('collapseFilters')}
             >
@@ -283,7 +283,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         </div>
 
         {!collapsed && (
-          <div className="flex flex-col gap-4 px-4 pb-5">
+          <div className="flex flex-col gap-4 px-3 sm:px-4 pb-5 w-full overflow-x-hidden">
             {isHealthEquity ? (
               // ── PREMIUM HEALTH EQUITY FILTERS ──────────────────────
               <>
@@ -294,12 +294,12 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                   </label>
                   <div className="flex items-center gap-2 flex-wrap">
                     {selectedYear && (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-50 to-sky-50 dark:from-blue-900/30 dark:to-sky-900/30 text-blue-700 dark:text-blue-300 text-[12px] font-bold rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 bg-gradient-to-r from-blue-50 to-sky-50 dark:from-blue-900/30 dark:to-sky-900/30 text-blue-700 dark:text-blue-300 text-[11px] sm:text-[12px] font-bold rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm">
                         {selectedYear}
                         <button 
                           onClick={() => setSelectedYear('')} 
                           aria-label="Remove year"
-                          className="hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full p-0.5 transition-colors"
+                          className="hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full p-0.5 transition-colors min-h-[32px] min-w-[32px] flex items-center justify-center"
                         >
                           <span className="material-symbols-outlined text-[14px]">close</span>
                         </button>
@@ -308,7 +308,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                     <select
                       value={selectedYear}
                       onChange={(e) => setSelectedYear(e.target.value)}
-                      className="text-[13px] font-semibold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-xl px-3 py-2.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 w-full mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-150 shadow-sm cursor-pointer"
+                      className="text-[12px] sm:text-[13px] font-semibold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-xl px-2.5 sm:px-3 py-2.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 w-full mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-150 shadow-sm cursor-pointer"
                     >
                       <option value="">Select year</option>
                       {YEARS.map((y) => (
@@ -339,7 +339,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                     <select
                       value={equityDimension}
                       onChange={(e) => setEquityDimension(e.target.value)}
-                      className="text-[13px] font-semibold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-xl px-3 py-2.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 w-full mt-1 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-150 shadow-sm cursor-pointer"
+                      className="text-[12px] sm:text-[13px] font-semibold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-xl px-2.5 sm:px-3 py-2.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 w-full mt-1 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-150 shadow-sm cursor-pointer"
                     >
                       <option value="">Select dimension</option>
                       <option value="Region">Region</option>
@@ -382,7 +382,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                     <select
                       value={equityIndicator}
                       onChange={(e) => setEquityIndicator(e.target.value)}
-                      className="text-[13px] font-semibold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-xl px-3 py-2.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 w-full mt-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-150 shadow-sm cursor-pointer"
+                      className="text-[12px] sm:text-[13px] font-semibold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-xl px-2.5 sm:px-3 py-2.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 w-full mt-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-150 shadow-sm cursor-pointer"
                     >
                       <option value="">Select indicator</option>
                       <option value="MAT_Contraceptive Ac...">MAT_Contraceptive Ac...</option>

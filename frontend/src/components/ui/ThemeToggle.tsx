@@ -42,7 +42,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '' }) => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-2xl py-1 z-50 text-xs font-medium text-slate-800 dark:text-slate-200 animate-in fade-in zoom-in-95 duration-150">
+        <div className="fixed right-4 top-16 w-36 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-2xl py-1 z-[9999] text-xs font-medium text-slate-800 dark:text-slate-200 animate-in fade-in zoom-in-95 duration-150">
           {options.map(({ mode, icon, label }) => (
             <button
               key={mode}

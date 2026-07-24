@@ -103,10 +103,10 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
   return (
     <>
       <div
-        className={`bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border border-slate-200/80 dark:border-slate-700/80 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:border-blue-200 dark:hover:border-blue-700 hover:-translate-y-0.5 relative group ${className}`}
+        className={`bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border border-slate-200/80 dark:border-slate-700/80 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:border-blue-200 dark:hover:border-blue-700 hover:-translate-y-0.5 relative group ${className} w-full overflow-hidden`}
       >
         {/* Premium Header toolbar */}
-        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 mb-4 border-b border-slate-200/60 dark:border-slate-700/60">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-3 sm:pb-4 mb-3 sm:mb-4 border-b border-slate-200/60 dark:border-slate-700/60 w-full">
           <div className="flex-1 min-w-0">
             <h3 className="text-[14px] font-extrabold text-slate-800 dark:text-slate-200 tracking-tight leading-tight flex items-center gap-2">
               <span className="w-1 h-5 rounded-full bg-gradient-to-b from-blue-600 to-sky-600 inline-block shadow-sm" />
@@ -123,7 +123,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
             {tableData && tableData.length > 0 && (
               <button
                 onClick={() => setViewMode(viewMode === 'chart' ? 'table' : 'chart')}
-                className={`px-3 py-1.5 text-[11px] font-bold rounded-lg flex items-center gap-1.5 transition-all duration-200 active:scale-95 ${
+                className={`px-2.5 sm:px-3 py-1.5 text-[11px] font-bold rounded-lg flex items-center gap-1.5 transition-all duration-200 active:scale-95 min-h-[40px] sm:min-h-0 ${
                   viewMode === 'table'
                     ? 'bg-white dark:bg-slate-600 text-blue-700 dark:text-blue-300 shadow-md border-2 border-blue-200 dark:border-blue-700'
                     : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-600/60'
@@ -140,7 +140,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
             <div className="relative" ref={downloadRef}>
               <button
                 onClick={() => setDownloadMenuOpen(!downloadMenuOpen)}
-                className="p-1.5 text-slate-400 dark:text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-all duration-200 active:scale-95"
+                className="p-1.5 sm:p-1.5 min-h-[40px] min-w-[40px] sm:min-h-0 sm:min-w-0 text-slate-400 dark:text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-all duration-200 active:scale-95"
                 title={t('download')}
               >
                 <span className="material-symbols-outlined text-[15px]">download</span>
@@ -178,7 +178,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
             <div className="relative" ref={shareRef}>
               <button
                 onClick={() => setShareMenuOpen(!shareMenuOpen)}
-                className="p-1.5 text-slate-400 dark:text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-all duration-200 active:scale-95"
+                className="p-1.5 sm:p-1.5 min-h-[40px] min-w-[40px] sm:min-h-0 sm:min-w-0 text-slate-400 dark:text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-all duration-200 active:scale-95"
                 title={t('share')}
               >
                 <span className="material-symbols-outlined text-[15px]">share</span>
@@ -213,7 +213,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
 
             <button
               onClick={() => setIsFullscreen(true)}
-              className="p-1.5 text-slate-400 dark:text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-all duration-200 active:scale-95"
+              className="p-1.5 sm:p-1.5 min-h-[40px] min-w-[40px] sm:min-h-0 sm:min-w-0 text-slate-400 dark:text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-all duration-200 active:scale-95"
               title={t('enterFullscreen')}
             >
               <span className="material-symbols-outlined text-[15px]">fullscreen</span>
@@ -222,11 +222,11 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
         </div>
 
         {/* Content area */}
-        <div className="w-full relative min-h-[200px] flex items-center justify-center chart-content">
+        <div className="w-full relative min-h-[180px] sm:min-h-[200px] flex items-center justify-center chart-content overflow-hidden">
           {viewMode === 'chart' ? (
             children
           ) : tableData && tableData.length > 0 ? (
-            <div className="w-full overflow-x-auto max-h-[280px] rounded-xl border border-slate-200 dark:border-slate-700 custom-scrollbar">
+            <div className="w-full overflow-x-auto overflow-y-auto max-h-[250px] sm:max-h-[280px] rounded-xl border border-slate-200 dark:border-slate-700 custom-scrollbar">
               <table className="w-full text-[11px] text-left border-collapse">
                 <thead className="sticky top-0 z-10">
                   <tr className="bg-gradient-to-r from-blue-50 to-sky-50 dark:from-slate-700 dark:to-slate-800 border-b-2 border-blue-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-extrabold uppercase tracking-wider">
@@ -258,8 +258,8 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
 
       {/* Premium Fullscreen Dialog Modal */}
       {isFullscreen && (
-        <div className="fixed inset-0 z-50 bg-slate-900/90 dark:bg-slate-900/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn">
-          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl border-2 border-slate-200 dark:border-slate-700 w-full max-w-6xl h-[88vh] flex flex-col overflow-hidden">
+        <div className="fixed inset-0 z-50 bg-slate-900/90 dark:bg-slate-900/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 sm:p-8 animate-fadeIn w-full h-full overflow-hidden">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl border-2 border-slate-200 dark:border-slate-700 w-full max-w-6xl h-[90vh] sm:h-[88vh] flex flex-col overflow-hidden">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between px-6 py-4 border-b-2 border-slate-200 dark:border-slate-700 bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 gap-3">
               <div className="flex-1 min-w-0">
                 <h2 className="text-[15px] font-extrabold text-slate-900 dark:text-slate-100 flex items-center gap-2.5 tracking-tight">
